@@ -6,7 +6,19 @@ Quick sort: requires no extra memory but is unstable
 """
 
 
-def mergesort(list, low, high):
+def mergesort(list, size):
+    """
+    Wrapper function for merge_sort() with just size of list.
+
+    Parameters
+    ----------
+    list (array): List to sort
+    size (int): Size of list
+    """
+    merge_sort(list, 0, size - 1)
+
+
+def merge_sort(list, low, high):
     """
     Mege sort algorithm (in-place) via splitting list in half.
     Time complexity: O(nlogn)
@@ -24,8 +36,8 @@ def mergesort(list, low, high):
     if(low < high):
         mid = (low + high) // 2
 
-        mergesort(list, low, mid)
-        mergesort(list, mid + 1, high)
+        merge_sort(list, low, mid)
+        merge_sort(list, mid + 1, high)
         merge(list, low, mid, high)
 
 
@@ -68,7 +80,19 @@ def merge(list, low, mid, high):
         list[x] = temp[y]
 
 
-def quicksort(list, low, high):
+def quicksort(list, size):
+    """
+    Wrapper function for quick_sort() with just size of list.
+
+    Parameters
+    ----------
+    list (array): List to sort
+    size (int): Size of list
+    """
+    quick_sort(list, 0, size - 1)
+
+
+def quick_sort(list, low, high):
     """
     Quick sort algorithm via splitting list in half by pivot point
     Time complexity: A(nlogn), W(n^2)
@@ -85,8 +109,8 @@ def quicksort(list, low, high):
     """
     if(low < high):
         pivot = partition(list, low, high)
-        quicksort(list, low, pivot - 1)
-        quicksort(list, pivot + 1, high)
+        quick_sort(list, low, pivot - 1)
+        quick_sort(list, pivot + 1, high)
 
 
 def partition(list, low, high):
