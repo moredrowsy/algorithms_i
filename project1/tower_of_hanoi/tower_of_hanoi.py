@@ -8,7 +8,8 @@ class TowerOfHanoi(object):
     A game of Tower of Hanoi
     """
 
-    def __init__(self, source, helper, target, label1, label2, label3):
+    def __init__(self, source, helper, target,
+                 src_label="A", hlp_label="B", tgt_label="C"):
         """
         Initializations
 
@@ -17,23 +18,23 @@ class TowerOfHanoi(object):
         source (array): Source peg
         helper (array): Helper peg
         target (array): Target peg
-        label1 (string): Label for source peg
-        label2 (string): Label for helper peg
-        label3 (string): Label for target peg
+        src_label (string): Label for source peg
+        hlp_label (string): Label for helper peg
+        tgt_label (string): Label for target peg
         """
         self.size = len(source)
-        self.source = {"label": label1, "array": source}
-        self.helper = {"label": label2, "array": helper}
-        self.target = {"label": label3, "array": target}
+        self.source = {"label": src_label, "array": source}
+        self.helper = {"label": hlp_label, "array": helper}
+        self.target = {"label": tgt_label, "array": target}
 
     def solve(self, display=False):
         """
         Solves the game of hanoi.
         """
-        self.move_disks(self.size, self.source,
-                        self.target, self.helper, display)
+        self._move_disks(self.size, self.source,
+                         self.target, self.helper, display)
 
-    def print_pegs(self):
+    def print(self):
         """
         Print the peg's label and arrays
         """
@@ -41,7 +42,7 @@ class TowerOfHanoi(object):
         print(f"{self.helper['label']}: {self.helper['array']}")
         print(f"{self.target['label']}: {self.target['array']}")
 
-    def move_disks(self, disks, source, target, helper, display=False):
+    def _move_disks(self, disks, source, target, helper, display=False):
         """
         Recursive function to move the disk in source peg to target peg
 
@@ -53,18 +54,19 @@ class TowerOfHanoi(object):
         target (dict): Target dictionary with "label" and "array" peg
         """
         if(disks > 0):
-            # move (disks -1) index from source to helper
+            # move (disks - 1) index from source to helper
             # target is now helper peg
-            self.move_disks(disks - 1, source, helper, target, display)
+            self._move_disks(disks - 1, source, helper, target, display)
 
-            # add disk to target
-
+            # add disk from source to target
             target["array"].append(source["array"].pop())
 
             if(display):
-                print(f"\nMoving from {source['label']} to {target['label']}")
-                self.print_pegs()
+                print(
+                    f"\nMoving {target['array'][-1]} "
+                    f"from {source['label']} to {target['label']}")
+                self.print()
 
             # move (disks - 1) index from helper to target
-            # source is now helper
-            self.move_disks(disks - 1, helper, target, source, display)
+            # source is now helper peg
+            self._move_disks(disks - 1, helper, target, source, display)

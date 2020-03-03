@@ -6,21 +6,20 @@ Quick sort: requires no extra memory but is unstable
 """
 
 
-def mergesort(list, size):
+def mergesort(list):
     """
-    Wrapper function for merge_sort() with just size of list.
+    Wrapper function for merge_sort() without indexing parameters.
 
     Parameters
     ----------
     list (array): List to sort
-    size (int): Size of list
     """
-    merge_sort(list, 0, size - 1)
+    merge_sort(list, 0, len(list) - 1)
 
 
 def merge_sort(list, low, high):
     """
-    Mege sort algorithm (in-place) via splitting list in half.
+    Merge sort algorithm (in-place) via splitting list in half.
     Time complexity: O(nlogn)
 
     Parameters
@@ -49,7 +48,7 @@ def merge(list, low, mid, high):
     ----------
     list (array): List to sort
     low (int): First index of list, inclusive
-    mid (int): Middle index (floor)
+    mid (int): Middle index (floor), inclusive
     high (int): Second index of list, inclusive
 
     Return
@@ -80,16 +79,15 @@ def merge(list, low, mid, high):
         list[x] = temp[y]
 
 
-def quicksort(list, size):
+def quicksort(list):
     """
-    Wrapper function for quick_sort() with just size of list.
+    Wrapper function for quick_sort() without indexing parameters.
 
     Parameters
     ----------
     list (array): List to sort
-    size (int): Size of list
     """
-    quick_sort(list, 0, size - 1)
+    quick_sort(list, 0, len(list) - 1)
 
 
 def quick_sort(list, low, high):
