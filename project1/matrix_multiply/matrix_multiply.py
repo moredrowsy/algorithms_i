@@ -1,6 +1,16 @@
+"""
+Matrix Multiplication
+
+- Classical matrix multiplication
+- Strassen matrix multiplication
+- Matrix pretty print
+"""
+
+
 def matrix_multiply(A, B):
     """
     Classical matrix multiplication of using 3 loops.
+    Time complexity: O(n^3)
 
     Parameters
     ----------
@@ -35,8 +45,10 @@ def matrix_multiply(A, B):
 
 def strassen_multiply(A, B):
     """
-    Strassen matrix multiplication: recursively multiply by using 4 submatrices.
-    Uses 7 multiplication and 18 additions for each call.
+    Strassen matrix multiplication: recursively multiply using 4 submatrices.
+    Uses 7 multiplications and 18 additions for each call.
+    Time complexity: O(n^3)
+
     Currently only works for matrix size n = 2, 4, 8, 16, etc.
 
     Parameters
@@ -65,16 +77,16 @@ def strassen_multiply(A, B):
         V = strassen_multiply(matrix_sub(A12, A22), matrix_add(B21, B22))
 
         # compute C submatrices
-        C11 = matrix_sub(matrix_add(P, S), matrix_add(T, V))
+        C11 = matrix_add(matrix_add(P, S), matrix_sub(V, T))
         C12 = matrix_add(R, T)
         C21 = matrix_add(Q, S)
-        C22 = matrix_sub(matrix_add(P, R), matrix_add(Q, U))
+        C22 = matrix_add(matrix_sub(P, Q), matrix_add(R, U))
 
         # merge C submatrices into C
         C = []
-        for i in range(len(C11)):
+        for i in range(len(C11)):  # merge top halves
             C.append(C11[i] + C12[i])
-        for i in range(len(C21)):
+        for i in range(len(C21)):  # merge bottom halves
             C.append(C21[i] + C22[i])
 
         return C
@@ -103,10 +115,6 @@ def matrix_sub(A, B):
             for i in range(len(A))]
 
 
-def merge_matrix(A, B):
-    n = len(A) + len(B)
-
-
 def halve_matrix(X):
     """
     Halve the matrix into four submatrices for matrix size n = 2, 4, 8, 16, etc.
@@ -126,3 +134,10 @@ def halve_matrix(X):
     D = [[X[i][j] for j in range(mid, high)] for i in range(mid, high)]
 
     return A, B, C, D
+
+
+def print_matrix(A, padding=3):
+    for i in range(len(A)):
+        for j in range(len(A[i])):
+            print(f"{(A[i][j]):>{padding}}", end=" ")
+        print()
