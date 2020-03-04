@@ -110,8 +110,6 @@ class Run(object):
         print("\nMatrix D\n" + "-" * 8)
         print_matrix(D)
 
-        print("\nResetting matrices\n" + "-" * 18)
-
 
 if __name__ == "__main__":
     Run().sorting()
