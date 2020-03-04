@@ -30,6 +30,10 @@ class TowerOfHanoi(object):
     def solve(self, display=False):
         """
         Solves the game of hanoi.
+
+        Parameters
+        ----------
+        display (bool): Display each steps of moving disk
         """
         self._move_disks(self.size, self.source,
                          self.target, self.helper, display)

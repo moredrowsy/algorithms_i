@@ -55,7 +55,7 @@ def merge(list, low, mid, high):
     ------
     None. Two subarrays are merged to list by reference.
     """
-    i, j, k = low, mid + 1, 0
+    i, j = low, mid + 1
     temp = []
 
     while(i <= mid and j <= high):
