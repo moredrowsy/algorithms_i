@@ -17,8 +17,7 @@ class Run(object):
     """
 
     def sorting(self):
-        """
-        Run sorting algorithm for Merge sort and Quick sort
+        """Run sorting algorithm for Merge sort and Quick sort
         """
         print("\n\nSORTING ALGORITHMS\n" + "=" * 80)
 
@@ -47,6 +46,8 @@ class Run(object):
         print(f"list2: {list2}")
 
     def tower_of_hanoi(self):
+        """Run Tower of Hanoi problem
+        """
         A = [4, 3, 2, 1]
         B = []
         C = []
@@ -64,6 +65,8 @@ class Run(object):
         toh.print()
 
     def matrix_multiplication(self):
+        """Run classic vs Strassen matrix multiplication
+        """
         print("\n\nMATRIX MULTIPLICATION\n" + "=" * 80)
 
         A = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]

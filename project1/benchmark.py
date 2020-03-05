@@ -2,7 +2,6 @@
 Benchmark program
 """
 import matplotlib.pyplot as plt
-import numpy as np
 import random
 import time
 
@@ -20,8 +19,17 @@ class Benchmark(object):
     """
     random.seed(0)
 
-    def run(self, choice="all"):
-        """Run benchmark function by choice option and show graph(s)
+    def run(self, choice=-1):
+        """
+        Run benchmark function by choice option and show graph(s)
+
+        Parameters
+        ----------
+        choice (int): Benchmark number. -1 to run all benchmarks.
+
+        Return
+        ------
+        False if invalid choice, else True.
         """
         # array of benchmark methods
         benchmarks = [self.sorting, self.tower_of_hanoi,
@@ -31,7 +39,7 @@ class Benchmark(object):
         try:
             choice = int(choice)
         except:
-            choice = -1
+            choice = -1 if choice == "A" or choice == "a"else 0
 
         # run benchmark methods
         if(choice == -1):
@@ -40,16 +48,21 @@ class Benchmark(object):
         elif(choice >= 1 and choice <= len(benchmarks)):
             benchmarks[choice-1](choice)
         else:
-            return "invalid"
+            return False
 
         # show graph and close afterwards
         plt.show()
         plt.close("all")
 
-        return "valid"
+        return True
 
     def sorting(self, fig=1):
-        """Benchmarks sorting functions
+        """
+        Benchmarks sorting functions
+
+        Parameters
+        ----------
+        fig (int): Figure number for plot
         """
         # x and y cooardinates for graphs
         n = [2**(i + 1) for i in range(26)]
@@ -107,7 +120,12 @@ class Benchmark(object):
         plt.legend()  # show legend
 
     def tower_of_hanoi(self, fig=2):
-        """Benchmarks tower of hanoi problem
+        """
+        Benchmarks tower of hanoi problem
+
+        Parameters
+        ----------
+        fig (int): Figure number for plot
         """
         # x and y cooardinates for graphs
         n = [i + 1 for i in range(32)]
@@ -149,7 +167,12 @@ class Benchmark(object):
         plt.legend()  # show legend
 
     def matrix_multiplication(self, fig=3):
-        """Benchmarks matrix multiplication
+        """
+        Benchmarks matrix multiplication
+
+        Parameters
+        ----------
+        fig (int): Figure number for plot
         """
         # x and y cooardinates for graphs
         n = [2**(i + 1) for i in range(10)]
@@ -220,7 +243,6 @@ if __name__ == "__main__":
         "3: Matrix Multiplication\n"\
         "A: Run all benchmarks\n"\
         "X: Exit\n"
-    choice = ""
 
     while(True):
         print(menu)
@@ -228,9 +250,9 @@ if __name__ == "__main__":
 
         if(choice != "X" and choice != "x"):
             # run benchmark with choice number
-            rt = Benchmark().run(choice)
+            valid = Benchmark().run(choice)
 
-            if(rt == "invalid"):
+            if(not valid):
                 print("Invalid choice")
         else:
             break
