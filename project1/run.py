@@ -70,19 +70,19 @@ class Run(object):
         B = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
 
         print("\nMatrix A\n" + "-" * 8)
-        print_matrix(A)
+        print_matrix(A, pad_size=1)
         print("\nMatrix B\n" + "-" * 8)
-        print_matrix(B)
+        print_matrix(B, pad_size=1)
 
         print("\nClassical Matrix Multiplication")
         C = matrix_multiply(A, B)
         print("\nMatrix C\n" + "-" * 8)
-        print_matrix(C)
+        print_matrix(C, pad_size=2)
 
         print("\nStrassen Matrix Multiplication")
         D = strassen_multiply(A, B)
         print("\nMatrix D\n" + "-" * 8)
-        print_matrix(D)
+        print_matrix(D, pad_size=2)
 
         print("\nResetting matrices\n" + "-" * 18)
 
@@ -96,9 +96,9 @@ class Run(object):
              [9, 10, 11, 12, 13, 14, 15, 16], [16, 15, 14, 13, 12, 11, 10, 9]]
 
         print("\nMatrix A\n" + "-" * 8)
-        print_matrix(A)
+        print_matrix(A, pad_size=2)
         print("\nMatrix B\n" + "-" * 8)
-        print_matrix(B)
+        print_matrix(B, pad_size=2)
 
         print("\nClassical Matrix Multiplication")
         C = matrix_multiply(A, B)

@@ -1,3 +1,6 @@
+"""
+Benchmark program
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -8,10 +11,42 @@ from tower_of_hanoi import TowerOfHanoi
 from matrix_multiply import matrix_multiply, strassen_multiply, print_matrix
 
 
-class Graph(object):
-    def sorting(self):
-        random.seed(0)
+class Benchmark(object):
+    """
+    Benchmark class:
+        - Sorting benchmark
+        - Tower of Hanoi benchmark
+        - Matrix multiplication benchmark
+    """
+    random.seed(0)
 
+    def run(self, choice="all"):
+        """Run benchmark function by choice option and show graph(s)
+        """
+        # array of benchmark methods
+        benchmarks = [self.sorting, self.tower_of_hanoi,
+                      self.matrix_multiplication]
+
+        # try to convert choice to int
+        try:
+            choice = int(choice)
+        except:
+            choice = -1
+
+        # run benchmark methods
+        if(choice == -1):
+            for i in range(len(benchmarks)):
+                benchmarks[i](i + 1)
+        else:
+            benchmarks[choice-1](choice)
+
+        # show graph and close afterwards
+        plt.show()
+        plt.close("all")
+
+    def sorting(self, fig=1):
+        """Benchmarks sorting functions
+        """
         # x and y cooardinates for graphs
         n = [2**(i + 1) for i in range(26)]
         timings_mergesort = []
@@ -59,17 +94,17 @@ class Graph(object):
             print(f"{n[i]:<{pad_size}} {duration}")
 
         # graph results
+        plt.figure(fig)
         plt.plot(n, timings_mergesort, label="Merge Sort")
         plt.plot(n, timings_quicksort, label="Quick Sort")
         plt.xlabel('n input size')
         plt.ylabel('timings in seconds')
         plt.title('Growth Rates: Merge Sort vs Quick Sort')
         plt.legend()  # show legend
-        plt.show()
 
-    def tower_of_hanoi(self):
-        random.seed(0)
-
+    def tower_of_hanoi(self, fig=2):
+        """Benchmarks tower of hanoi problem
+        """
         # x and y cooardinates for graphs
         n = [i + 1 for i in range(32)]
         timings_tof = []
@@ -102,16 +137,16 @@ class Graph(object):
             print(f"{n[i]:<{pad_size}} {duration}")
 
         # graph results
+        plt.figure(fig)
         plt.plot(n, timings_tof, label="Tower of Hanoi")
         plt.xlabel('n input size')
         plt.ylabel('timings in seconds')
         plt.title('Growth Rates: Tower of Hanoi')
         plt.legend()  # show legend
-        plt.show()
 
-    def matrix_multiplication(self):
-        random.seed(0)
-
+    def matrix_multiplication(self, fig=3):
+        """Benchmarks matrix multiplication
+        """
         # x and y cooardinates for graphs
         n = [2**(i + 1) for i in range(10)]
         timings_classic = []
@@ -165,13 +200,13 @@ class Graph(object):
             print(f"{n[i]:<{pad_size}} {duration}")
 
         # graph results
+        plt.figure(fig)
         plt.plot(n, timings_classic, label="Classic Matrix Multiplication")
         plt.plot(n, timings_strassen, label="Strassen Matrix Multiplication")
         plt.xlabel('n input size')
         plt.ylabel('timings in seconds')
         plt.title('Growth Rates: Classic vs Strassen Matrix Multiplication')
         plt.legend()  # show legend
-        plt.show()
 
 
 if __name__ == "__main__":
@@ -179,20 +214,16 @@ if __name__ == "__main__":
         "1: Sorting\n"\
         "2: Tower of Hanoi\n"\
         "3: Matrix Multiplication\n"\
-        "X: exit\n"
+        "A: Run all benchmarks\n"\
+        "X: Exit\n"
     choice = ""
 
     while(choice != "X" and choice != "x"):
         print(menu)
         choice = input()
 
-        if(choice == "1"):
-            Graph().sorting()
-        elif(choice == "2"):
-            Graph().tower_of_hanoi()
-        elif (choice == "3"):
-            Graph().matrix_multiplication()
-        elif(choice == "X" or choice == "x"):
-            print("Exiting...")
-        else:
-            print("Invalid choice")
+        if(choice != "X" and choice != "x"):
+            # run benchmark with choice number
+            Benchmark().run(choice)
+
+    print("Exiting benchmark...")
