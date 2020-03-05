@@ -1,4 +1,7 @@
-# How to run project1
+# How to run Project 1
+
+Requirements: python3
+Packages: matplotlib and numpy (for graph benchmarking)
 
 ## Simple verification of each tasks
 

@@ -210,7 +210,7 @@ class Benchmark(object):
 
 
 if __name__ == "__main__":
-    menu = "\nWhich graph to test?\n"\
+    menu = "\nWhich task to benchmark?\n"\
         "1: Sorting\n"\
         "2: Tower of Hanoi\n"\
         "3: Matrix Multiplication\n"\
