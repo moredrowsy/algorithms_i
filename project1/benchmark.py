@@ -37,12 +37,16 @@ class Benchmark(object):
         if(choice == -1):
             for i in range(len(benchmarks)):
                 benchmarks[i](i + 1)
-        else:
+        elif(choice >= 1 and choice <= len(benchmarks)):
             benchmarks[choice-1](choice)
+        else:
+            return "invalid"
 
         # show graph and close afterwards
         plt.show()
         plt.close("all")
+
+        return "valid"
 
     def sorting(self, fig=1):
         """Benchmarks sorting functions
@@ -218,12 +222,17 @@ if __name__ == "__main__":
         "X: Exit\n"
     choice = ""
 
-    while(choice != "X" and choice != "x"):
+    while(True):
         print(menu)
         choice = input()
 
         if(choice != "X" and choice != "x"):
             # run benchmark with choice number
-            Benchmark().run(choice)
+            rt = Benchmark().run(choice)
+
+            if(rt == "invalid"):
+                print("Invalid choice")
+        else:
+            break
 
     print("Exiting benchmark...")
