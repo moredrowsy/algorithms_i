@@ -140,7 +140,7 @@ def print_matrix(A, pad_size=3, sep=" ", end="\n"):
     for i in range(len(A)):
         for j in range(len(A[i])):
             print(f"{(A[i][j]):>{pad_size}}", end=sep)
-        if(i == len(A)-1):
+        if(i == len(A) - 1):
             print(end, end="")
         else:
             print()
