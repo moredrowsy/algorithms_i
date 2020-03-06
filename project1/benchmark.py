@@ -39,7 +39,7 @@ class Benchmark(object):
         try:
             choice = int(choice)
         except:
-            choice = -1 if choice == "A" or choice == "a"else 0
+            choice = -1 if choice == "A" or choice == "a" else 0
 
         # run benchmark methods
         if(choice == -1):
@@ -64,8 +64,10 @@ class Benchmark(object):
         ----------
         fig (int): Figure number for plot
         """
+        sample_size = 26
+
         # x and y cooardinates for graphs
-        n = [2**(i + 1) for i in range(26)]
+        n = [2**(i + 1) for i in range(sample_size)]
         timings_mergesort = []
         timings_quicksort = []
 
@@ -77,11 +79,11 @@ class Benchmark(object):
         sep = "-"
 
         # merge sort benchmark
-        print("\nMERGESORT\n")
-        print(f"{heading1:<{pad_size}} {heading2}")
-        print(f"{sep * len(heading1):<{pad_size}} {sep * len(heading2)}")
+        print("\nMERGESORT\n\n"
+              f"{heading1:<{pad_size}} {heading2}\n"
+              f"{sep * pad_size:<{pad_size}} {sep * len(heading2)}")
 
-        for i in range(len(n)):
+        for i in range(sample_size):
             list = [random.randrange(1, n[i], 1) for j in range(n[i])]
 
             start_time = time.perf_counter()
@@ -94,11 +96,11 @@ class Benchmark(object):
             print(f"{n[i]:<{pad_size}} {duration}")
 
         # quick sort benchmark
-        print("\nQUICKSORT\n")
-        print(f"{heading1:<{pad_size}} {heading2}")
-        print(f"{sep * len(heading1):<{pad_size}} {sep * len(heading2)}")
+        print("\nQUICKSORT\n\n"
+              f"{heading1:<{pad_size}} {heading2}\n"
+              f"{sep * pad_size:<{pad_size}} {sep * len(heading2)}")
 
-        for i in range(len(n)):
+        for i in range(sample_size):
             list = [random.randrange(1, n[i], 1) for j in range(n[i])]
 
             start_time = time.perf_counter()
@@ -127,8 +129,10 @@ class Benchmark(object):
         ----------
         fig (int): Figure number for plot
         """
+        sample_size = 32
+
         # x and y cooardinates for graphs
-        n = [i + 1 for i in range(32)]
+        n = [i + 1 for i in range(sample_size)]
         timings_tof = []
 
         # headings variables
@@ -139,11 +143,11 @@ class Benchmark(object):
         sep = "-"
 
         # tower of hanoi benchmark
-        print("\nTOWER OF HANOI\n")
-        print(f"{heading1:<{pad_size}} {heading2}")
-        print(f"{sep * len(heading1):<{pad_size}} {sep * len(heading2)}")
+        print("\nTOWER OF HANOI\n\n"
+              f"{heading1:<{pad_size}} {heading2}\n"
+              f"{sep * pad_size:<{pad_size}} {sep * len(heading2)}")
 
-        for i in range(len(n)):
+        for i in range(sample_size):
             A = [j for j in range(n[i], 0, -1)]
             B = []
             C = []
@@ -174,8 +178,10 @@ class Benchmark(object):
         ----------
         fig (int): Figure number for plot
         """
+        sample_size = 10
+
         # x and y cooardinates for graphs
-        n = [2**(i + 1) for i in range(10)]
+        n = [2**(i + 1) for i in range(sample_size)]
         timings_classic = []
         timings_strassen = []
 
@@ -187,11 +193,11 @@ class Benchmark(object):
         sep = "-"
 
         # classic benchmark
-        print("\nCLASSIC MATRIX MULTIPLICATION\n")
-        print(f"{heading1:<{pad_size}} {heading2}")
-        print(f"{sep * len(heading1):<{pad_size}} {sep * len(heading2)}")
+        print("\nCLASSIC MATRIX MULTIPLICATION\n\n"
+              f"{heading1:<{pad_size}} {heading2}\n"
+              f"{sep * pad_size:<{pad_size}} {sep * len(heading2)}")
 
-        for i in range(len(n)):
+        for i in range(sample_size):
             A = [[random.randrange(1, n[i], 1)
                   for k in range(n[i])] for j in range(n[i])]
             B = [[random.randrange(1, n[i], 1)
@@ -207,11 +213,11 @@ class Benchmark(object):
             print(f"{n[i]:<{pad_size}} {duration}")
 
         # strassen benchmark
-        print("\nSTRASSEN MATRIX MULTIPLICATION\n")
-        print(f"{heading1:<{pad_size}} {heading2}")
-        print(f"{sep * len(heading1):<{pad_size}} {sep * len(heading2)}")
+        print("\nSTRASSEN MATRIX MULTIPLICATION\n\n"
+              f"{heading1:<{pad_size}} {heading2}\n"
+              f"{sep * pad_size:<{pad_size}} {sep * len(heading2)}")
 
-        for i in range(len(n)):
+        for i in range(sample_size):
             A = [[random.randrange(1, n[i], 1)
                   for k in range(n[i])] for j in range(n[i])]
             B = [[random.randrange(1, n[i], 1)
