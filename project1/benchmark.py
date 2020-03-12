@@ -42,10 +42,10 @@ class Benchmark(object):
             choice = -1 if choice == "A" or choice == "a" else 0
 
         # run benchmark methods
-        if(choice == -1):
+        if choice == -1:
             for i in range(len(benchmarks)):
                 benchmarks[i](i + 1)
-        elif(choice >= 1 and choice <= len(benchmarks)):
+        elif choice >= 1 and choice <= len(benchmarks):
             benchmarks[choice-1](choice)
         else:
             return False
@@ -254,11 +254,11 @@ if __name__ == "__main__":
         print(menu)
         choice = input()
 
-        if(choice != "X" and choice != "x"):
+        if choice != "X" and choice != "x":
             # run benchmark with choice number
             valid = Benchmark().run(choice)
 
-            if(not valid):
+            if not valid:
                 print("Invalid choice")
         else:
             break

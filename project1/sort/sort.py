@@ -32,7 +32,7 @@ def merge_sort(list, low, high):
     ------
     None. List is sorted by reference
     """
-    if(low < high):
+    if low < high:
         mid = (low + high) // 2
 
         merge_sort(list, low, mid)
@@ -59,14 +59,14 @@ def merge(list, low, mid, high):
     temp = []
 
     while(i <= mid and j <= high):
-        if(list[i] < list[j]):
+        if list[i] < list[j]:
             temp.append(list[i])
             i += 1
         else:
             temp.append(list[j])
             j += 1
 
-    if(i > mid):
+    if i > mid:
         while(j <= high):
             temp.append(list[j])
             j += 1
@@ -105,7 +105,7 @@ def quick_sort(list, low, high):
     ------
     None. List is sorted by reference
     """
-    if(low < high):
+    if low < high:
         pivot = partition(list, low, high)
         quick_sort(list, low, pivot - 1)
         quick_sort(list, pivot + 1, high)
@@ -129,7 +129,7 @@ def partition(list, low, high):
     pivot_item = list[low]
 
     while(i <= high):
-        if(list[i] < pivot_item):
+        if list[i] < pivot_item:
             j += 1
             list[i], list[j] = list[j], list[i]
 
