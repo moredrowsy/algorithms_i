@@ -2,6 +2,7 @@
 Greedy Approach Algorithms
 """
 import sys
+from dijkstra import dijkstra
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -15,7 +16,6 @@ class Run(object):
         """Run sorting algorithm for Merge sort and Quick sort
         """
         INF = sys.maxsize
-
         # problem 1
         weights = [
             [0, 1, 3, INF, INF],
@@ -156,7 +156,64 @@ class Run(object):
         print("Optimal schedule:", final_jobs)
         print("Profits:", profits)
 
+    def dijkstra_shortest_path(self):
+        INF = sys.maxsize
+
+        # problem 1
+        weights = [
+            [0, 7, 4, 6, 1],
+            [INF, 0, INF, INF, INF],
+            [INF, 2, 0, 5, INF],
+            [INF, 3, INF, 0, INF],
+            [INF, INF, INF, 1, 0]
+        ]
+
+        print(f"\nWeights matrix:")
+        for i in range(len(weights)):
+            for j in range(len(weights[i])):
+                if weights[i][j] == INF:
+                    print("INF", end=" ")
+                else:
+                    print(f"{weights[i][j]}", end=" ")
+
+            print()
+
+        start_vertex = 0
+        results = dijkstra(weights, start_vertex)
+
+        print("\nDijkstra's Short Path")
+        print("Final:", results['final'])
+        print("Touch:", results['touch'])
+
+        # problem 2
+        weights = [
+            [0, 50, 10, INF, 45, INF],
+            [INF, 0, 15, INF, 10, INF],
+            [20, INF, 0, 15, INF, INF],
+            [INF, 20, INF, 0, 35, INF],
+            [INF, INF, INF, 30, 0, 20],
+            [INF, INF, INF, 3, INF, 0]
+        ]
+
+        print(f"\nWeights matrix:")
+        for i in range(len(weights)):
+            for j in range(len(weights[i])):
+                if weights[i][j] == INF:
+                    print("INF", end=" ")
+                else:
+                    print(f"{weights[i][j]}", end=" ")
+
+            print()
+
+        start_vertex = 0
+        results = dijkstra(weights, start_vertex)
+
+        print("\nDijkstra's Short Path")
+        print("Final:", results['final'])
+        print("Touch:", results['touch'])
+
 
 if __name__ == "__main__":
     Run().prim()
     Run().scheduling()
+    Run().dijkstra_shortest_path()

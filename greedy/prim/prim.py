@@ -2,6 +2,18 @@ import sys
 
 
 def prim(weights, start_vertex):
+    """
+    Find the minimal spanning tree (MST) using Prim's Algorithm
+
+    Parameters
+    ----------
+    weights (array): 2D array of weights between edges
+    start_vertex (int): Starting index
+
+    Return
+    ------
+    array of edges (tuple)
+    """
     INF = sys.maxsize
     n = len(weights)
     vnear = -1
@@ -23,7 +35,7 @@ def prim(weights, start_vertex):
     for _ in range(n - 1):
         min = INF
 
-        # find small distance
+        # find shorter distance
         for i in range(n):
             if distance[i] < min and distance[i] >= 0:
                 min = distance[i]
@@ -36,7 +48,7 @@ def prim(weights, start_vertex):
         # mark visited node
         distance[vnear] = -1
 
-        # find smaller distances from weights[vnear] and update nearest/distance
+        # find shorter distances from weights[vnear] and update nearest/distance
         for i in range(n):
             if weights[vnear][i] < distance[i]:
                 distance[i] = weights[vnear][i]

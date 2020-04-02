@@ -2,6 +2,8 @@ import copy
 
 
 class Job(object):
+    """A Job as a job number (index), deadline, and profit"""
+
     def __init__(self, index, deadline, profit):
         self.index = index
         self.deadline = deadline
@@ -15,6 +17,17 @@ class Job(object):
 
 
 def schedule_deadline(jobs):
+    """
+    Final a sequence of jobs that is within deadline with max profits
+
+    Parameters
+    ----------
+    jobs (array): an array of Jobs
+
+    Return
+    ------
+    array of Jobs
+    """
     final_jobs = []
 
     # sort jobs by profit
@@ -29,7 +42,7 @@ def schedule_deadline(jobs):
         temp_jobs.append(jobs[i])
         temp_jobs.sort(key=lambda j: j.deadline)
 
-        # check if jobs sequence is feasible and set to final_jobs if True
+        # set temp_jobs to final_jobs if feasible sequence
         if feasible(temp_jobs):
             final_jobs = temp_jobs
 
@@ -37,6 +50,7 @@ def schedule_deadline(jobs):
 
 
 def feasible(jobs):
+    """Checks if the sequence of jobs is feasible"""
     for i in range(len(jobs)):
         if jobs[i].deadline < i + 1:
             return False
