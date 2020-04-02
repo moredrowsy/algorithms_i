@@ -1,7 +1,7 @@
 import sys
 
 
-def prim(weights):
+def prim(weights, start_vertex):
     INF = sys.maxsize
     n = len(weights)
     vnear = -1
@@ -9,14 +9,15 @@ def prim(weights):
     distance = []
     final_edges = []
 
-    # init first col
-    nearest.append(-1)
-    distance.append(-1)
-
-    # init nearest vertex as index 0 and distance from weights[0]
-    for i in range(1, n):
-        nearest.append(0)
-        distance.append(weights[0][i])
+    # init nearest vertex as with start_vertex and
+    # distance with weights[start_index]
+    for i in range(n):
+        if i == start_vertex:
+            nearest.append(-1)
+            distance.append(-1)
+        else:
+            nearest.append(start_vertex)
+            distance.append(weights[start_vertex][i])
 
     # repeat for n-1 times
     for i in range(n - 1):
