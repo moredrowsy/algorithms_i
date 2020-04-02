@@ -36,10 +36,11 @@ class Run(object):
             print()
 
         start_vertex = 0
-        final_set = prim(weights, start_vertex)
+        result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(final_set)
+        print(result['edges'])
+        print('total cost:', result['total_cost'])
 
         # problem 2
         weights = [
@@ -64,10 +65,11 @@ class Run(object):
             print()
 
         start_vertex = 0
-        final_set = prim(weights, start_vertex)
+        result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(final_set)
+        print(result['edges'])
+        print('total cost:', result['total_cost'])
 
         # problem 3
         weights = [
@@ -90,10 +92,11 @@ class Run(object):
             print()
 
         start_vertex = 3
-        final_set = prim(weights, start_vertex)
+        result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(final_set)
+        print(result['edges'])
+        print('total cost:', result['total_cost'])
 
     def scheduling(self):
         # problem 1
@@ -182,7 +185,7 @@ class Run(object):
         results = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path")
-        print("Final:", results['final'])
+        print("Final:", results['edges'])
         print("Touch:", results['touch'])
 
         # problem 2
@@ -209,7 +212,34 @@ class Run(object):
         results = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path")
-        print("Final:", results['final'])
+        print("Final:", results['edges'])
+        print("Touch:", results['touch'])
+
+        # problem 3
+        weights = [
+            [0, INF, 72, 50, 90, 35],
+            [INF, 0, 71, 70, 73, 75],
+            [72, 71, 0, INF, 77, 90],
+            [50, 70, INF, 0, 60, 40],
+            [90, 73, 77, 60, 0, 80],
+            [35, 75, 90, 40, 80, 0]
+        ]
+
+        print(f"\nWeights matrix:")
+        for i in range(len(weights)):
+            for j in range(len(weights[i])):
+                if weights[i][j] == INF:
+                    print("INF", end=" ")
+                else:
+                    print(f"{weights[i][j]}", end=" ")
+
+            print()
+
+        start_vertex = 4
+        results = dijkstra(weights, start_vertex)
+
+        print("\nDijkstra's Short Path")
+        print("Final:", results['edges'])
         print("Touch:", results['touch'])
 
 

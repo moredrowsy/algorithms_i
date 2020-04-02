@@ -13,7 +13,7 @@ def dijkstra(weights, start_vertex):
 
     Return
     ------
-    {final: array of tuple, touch: array of tuple}
+    {edges: array of tuple, touch: array of tuple}
 
     NOTES
     -----
@@ -73,4 +73,4 @@ def dijkstra(weights, start_vertex):
 
         length[vnear] = -1
 
-    return {'final': final_edges, 'touch': touch}
+    return {'edges': final_edges, 'touch': touch}

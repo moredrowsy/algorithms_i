@@ -13,7 +13,7 @@ def prim(weights, start_vertex):
 
     Return
     ------
-    array of edges (tuple)
+    {edges: array of edges (tuple), total_cost: int}
 
     NOTES
     -----
@@ -46,6 +46,7 @@ def prim(weights, start_vertex):
     nearest = []
     distance = []
     final_edges = []
+    total_cost = 0
 
     # init nearest vertex as with start_vertex and
     # distance with weights[start_index]
@@ -70,6 +71,7 @@ def prim(weights, start_vertex):
         # add to final set
         edge = (nearest[vnear], vnear)
         final_edges.append(edge)
+        total_cost = total_cost + weights[nearest[vnear]][vnear]
 
         # mark visited node
         distance[vnear] = -1
@@ -80,4 +82,4 @@ def prim(weights, start_vertex):
                 distance[i] = weights[vnear][i]
                 nearest[i] = vnear
 
-    return final_edges
+    return {'edges': final_edges, 'total_cost': total_cost}

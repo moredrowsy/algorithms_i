@@ -15,6 +15,11 @@ class Job(object):
     def __repr__(self):
         return f"(#{self.index}, {self.deadline}, {self.profit})"
 
+    def __eq__(self, o):
+        return self.index == o.index\
+            and self.deadline == o.deadline\
+            and self.profit == o.profit
+
 
 def schedule_deadline(jobs):
     """
