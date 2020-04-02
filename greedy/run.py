@@ -2,7 +2,7 @@
 Greedy Approach Algorithms
 """
 import sys
-from dijkstra import dijkstra
+from dijkstra import dijkstra, print_dijkstra_path
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -184,9 +184,13 @@ class Run(object):
         start_vertex = 0
         results = dijkstra(weights, start_vertex)
 
-        print("\nDijkstra's Short Path")
+        print("\nDijkstra's Short Path from source", start_vertex)
         print("Final:", results['edges'])
         print("Touch:", results['touch'])
+
+        destination = 1
+        print("Print path to destination", destination)
+        print_dijkstra_path(results['touch'], destination)
 
         # problem 2
         weights = [
@@ -211,9 +215,13 @@ class Run(object):
         start_vertex = 0
         results = dijkstra(weights, start_vertex)
 
-        print("\nDijkstra's Short Path")
+        print("\nDijkstra's Short Path from source", start_vertex)
         print("Final:", results['edges'])
         print("Touch:", results['touch'])
+
+        destination = 5
+        print("Print path to destination", destination)
+        print_dijkstra_path(results['touch'], destination)
 
         # problem 3
         weights = [
@@ -238,9 +246,13 @@ class Run(object):
         start_vertex = 4
         results = dijkstra(weights, start_vertex)
 
-        print("\nDijkstra's Short Path")
+        print("\nDijkstra's Short Path from source", start_vertex)
         print("Final:", results['edges'])
         print("Touch:", results['touch'])
+
+        destination = 3
+        print("Print path to destination", destination)
+        print_dijkstra_path(results['touch'], destination)
 
 
 if __name__ == "__main__":

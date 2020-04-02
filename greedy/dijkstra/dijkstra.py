@@ -74,3 +74,19 @@ def dijkstra(weights, start_vertex):
         length[vnear] = -1
 
     return {'edges': final_edges, 'touch': touch}
+
+
+def print_dijkstra_path(paths, destination):
+    """Wrapper for print_dijkstra"""
+    print_dijkstra(paths, destination)
+    print()
+
+
+def print_dijkstra(paths, destination):
+    """
+    """
+    if(paths[destination] != destination):
+        print_dijkstra(paths, paths[destination])
+        print("->", end=" ")
+
+    print(destination, end=" ")
