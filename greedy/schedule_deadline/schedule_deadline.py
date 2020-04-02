@@ -27,6 +27,13 @@ def schedule_deadline(jobs):
     Return
     ------
     array of Jobs
+
+    NOTES
+    -----
+    First sort array of jobs by profit. Pick the top element in jobs to a
+    temp array. Sort this temporary array by deadline and check if this
+    sequence in temp array is feasible. Array is feasible if the deadline is
+    not smaller than temp array's index + 1.
     """
     final_jobs = []
 

@@ -3,7 +3,8 @@ import sys
 
 def prim(weights, start_vertex):
     """
-    Find the minimal spanning tree (MST) using Prim's Algorithm
+    Prim's Algorithm: Find the minimal cost of every node connected node.
+    Produces the minimal spanning tree.
 
     Parameters
     ----------
@@ -13,6 +14,31 @@ def prim(weights, start_vertex):
     Return
     ------
     array of edges (tuple)
+
+    NOTES
+    -----
+    - vnear: Nearest vertex from the index at distance[i] to nearest[vnear].
+             Tells us the previous vertex that has the smallest distance at
+             distance[i].
+    - nearest[]: Has the "nearest" vertices for the corresponding distances
+                 in distance[i].
+    - distance[]: Has the smallest distances at each iteration.
+                  nearest[vnear] will tell us which previous vertex correspond
+                  to distance[i].
+    - final_edges[]: the resultant array of edges that produces the minimal
+                     spanning tree (MST).
+
+    Algorithm finishes when distance[] is populated with all -1
+
+    DIFFERENCE FROM DJIKSTRA
+    ------------------------
+    Consider 3 nodes: X, Y, Z.
+    Total cost is 3 to connect all nodes together. Cost 3 from X -> Z.
+        2
+    X ----- Y
+            |
+            | 1
+            Z
     """
     INF = sys.maxsize
     n = len(weights)

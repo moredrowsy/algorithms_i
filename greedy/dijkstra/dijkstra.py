@@ -3,7 +3,8 @@ import sys
 
 def dijkstra(weights, start_vertex):
     """
-    Find the shortest path using Dijkstra's Algorithm
+    Dijkstra's Algorithm: Find the shortest path from one starting vertex to
+    every other vertices. Produces the shortest path spanning tree.
 
     Parameters
     ----------
@@ -13,6 +14,28 @@ def dijkstra(weights, start_vertex):
     Return
     ------
     {final: array of tuple, touch: array of tuple}
+
+    NOTES
+    -----
+    - vnear: the nearest vertex from index at length[i] to touch[vnear].
+           Tells us which previous vertex has the smallest length at length[i].
+    - length[]: Has the total legnth of the current iteration
+    - touch[]: Has the previous node at corresponding to the total length in
+             length[i]. Use touch[vnear] to get previous node.
+    - final_edges[]: the resultant array of edges that produces the shortest
+                     path tree.
+
+    Algorithm finishes when length[] is populated with all -1
+
+    DIFFERENCE FROM PRIM
+    --------------------
+    Consider 3 nodes: X, Y, Z.
+    Total cost is 4 to connect all nodes together. Cost 2 from X -> Z.
+        2
+    X ----- Y
+    |
+    | 2
+    Z
     """
     INF = sys.maxsize
     n = len(weights)
@@ -26,7 +49,7 @@ def dijkstra(weights, start_vertex):
     for i in range(n):
         if i == start_vertex:
             length.append(-1)
-            touch.append(0)
+            touch.append(start_vertex)
         else:
             length.append(weights[start_vertex][i])
             touch.append(start_vertex)
