@@ -20,14 +20,14 @@ def prim(weights, start_vertex):
             distance.append(weights[start_vertex][i])
 
     # repeat for n-1 times
-    for i in range(n - 1):
+    for _ in range(n - 1):
         min = INF
 
         # find small distance
-        for j in range(1, n):
-            if distance[j] < min and distance[j] >= 0:
-                min = distance[j]
-                vnear = j
+        for i in range(n):
+            if distance[i] < min and distance[i] >= 0:
+                min = distance[i]
+                vnear = i
 
         # add to final set
         edge = (nearest[vnear], vnear)
@@ -37,9 +37,9 @@ def prim(weights, start_vertex):
         distance[vnear] = -1
 
         # find smaller distances from weights[vnear] and update nearest/distance
-        for j in range(1, n):
-            if weights[vnear][j] < distance[j]:
-                distance[j] = weights[vnear][j]
-                nearest[j] = vnear
+        for i in range(n):
+            if weights[vnear][i] < distance[i]:
+                distance[i] = weights[vnear][i]
+                nearest[i] = vnear
 
     return final_edges
