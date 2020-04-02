@@ -38,10 +38,10 @@ class TestDijkstra(unittest.TestCase):
         ]
 
         start_vertex = 0
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
-        self.assertEqual(results['edges'], solution_set)
-        self.assertEqual(results['touch'], touch)
+        self.assertEqual(result['edges'], solution_set)
+        self.assertEqual(result['touch'], touch)
 
     def test_problem2(self):
         INF = sys.maxsize
@@ -65,10 +65,10 @@ class TestDijkstra(unittest.TestCase):
         ]
 
         start_vertex = 0
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
-        self.assertEqual(results['edges'], solution_set)
-        self.assertEqual(results['touch'], touch)
+        self.assertEqual(result['edges'], solution_set)
+        self.assertEqual(result['touch'], touch)
 
     def test_problem3(self):
         INF = sys.maxsize
@@ -92,10 +92,10 @@ class TestDijkstra(unittest.TestCase):
         ]
 
         start_vertex = 4
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
-        self.assertEqual(results['edges'], solution_set)
-        self.assertEqual(results['touch'], touch)
+        self.assertEqual(result['edges'], solution_set)
+        self.assertEqual(result['touch'], touch)
 
 
 if __name__ == "__main__":

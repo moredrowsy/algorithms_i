@@ -13,8 +13,7 @@ class Run(object):
     """
 
     def prim(self):
-        """Run sorting algorithm for Merge sort and Quick sort
-        """
+        """Run Prim's Algorithm on various problems"""
         INF = sys.maxsize
         # problem 1
         weights = [
@@ -40,7 +39,7 @@ class Run(object):
 
         print("\nMST (Prim's Algorithm)")
         print(result['edges'])
-        print('total cost:', result['total_cost'])
+        print('total cost:', result['cost'])
 
         # problem 2
         weights = [
@@ -69,7 +68,7 @@ class Run(object):
 
         print("\nMST (Prim's Algorithm)")
         print(result['edges'])
-        print('total cost:', result['total_cost'])
+        print('total cost:', result['cost'])
 
         # problem 3
         weights = [
@@ -96,70 +95,10 @@ class Run(object):
 
         print("\nMST (Prim's Algorithm)")
         print(result['edges'])
-        print('total cost:', result['total_cost'])
-
-    def scheduling(self):
-        # problem 1
-        jobs = [
-            Job(1, 3, 40),
-            Job(2, 1, 35),
-            Job(3, 1, 30),
-            Job(4, 3, 25),
-            Job(5, 1, 20),
-            Job(6, 3, 15),
-            Job(7, 2, 10)
-        ]
-
-        print("\nScheduling deadline")
-        print("Jobs:", jobs)
-
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
-
-        print("Optimal schedule:", final_jobs)
-        print("Profits:", profits)
-
-        # problem 2
-        jobs = [
-            Job(1, 3, 30),
-            Job(2, 1, 35),
-            Job(3, 2, 15),
-            Job(4, 1, 40),
-            Job(5, 4, 50),
-            Job(6, 3, 25),
-            Job(7, 4, 10)
-        ]
-
-        print("\nScheduling deadline")
-        print("Jobs:", jobs)
-
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
-
-        print("Optimal schedule:", final_jobs)
-        print("Profits:", profits)
-
-        # problem 3
-        jobs = [
-            Job(1, 2, 40),
-            Job(2, 4, 15),
-            Job(3, 3, 60),
-            Job(4, 2, 20),
-            Job(5, 3, 10),
-            Job(6, 1, 45),
-            Job(7, 1, 55)
-        ]
-
-        print("\nScheduling deadline")
-        print("Jobs:", jobs)
-
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
-
-        print("Optimal schedule:", final_jobs)
-        print("Profits:", profits)
+        print('total cost:', result['cost'])
 
     def dijkstra_shortest_path(self):
+        """Run Dijkstra's Algorithm on various problems"""
         INF = sys.maxsize
 
         # problem 1
@@ -182,15 +121,15 @@ class Run(object):
             print()
 
         start_vertex = 0
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", results['edges'])
-        print("Touch:", results['touch'])
+        print("Final:", result['edges'])
+        print("Touch:", result['touch'])
 
         destination = 1
         print("Print path to destination", destination)
-        print_dijkstra_path(results['touch'], destination)
+        print_dijkstra_path(result['touch'], destination)
 
         # problem 2
         weights = [
@@ -213,15 +152,15 @@ class Run(object):
             print()
 
         start_vertex = 0
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", results['edges'])
-        print("Touch:", results['touch'])
+        print("Final:", result['edges'])
+        print("Touch:", result['touch'])
 
         destination = 5
         print("Print path to destination", destination)
-        print_dijkstra_path(results['touch'], destination)
+        print_dijkstra_path(result['touch'], destination)
 
         # problem 3
         weights = [
@@ -244,18 +183,77 @@ class Run(object):
             print()
 
         start_vertex = 4
-        results = dijkstra(weights, start_vertex)
+        result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", results['edges'])
-        print("Touch:", results['touch'])
+        print("Final:", result['edges'])
+        print("Touch:", result['touch'])
 
         destination = 3
         print("Print path to destination", destination)
-        print_dijkstra_path(results['touch'], destination)
+        print_dijkstra_path(result['touch'], destination)
+
+    def scheduling(self):
+        """Run Scheduling Deadline's Algorithm on various problems"""
+        # problem 1
+        jobs = [
+            Job(1, 3, 40),
+            Job(2, 1, 35),
+            Job(3, 1, 30),
+            Job(4, 3, 25),
+            Job(5, 1, 20),
+            Job(6, 3, 15),
+            Job(7, 2, 10)
+        ]
+
+        print("\nScheduling deadline")
+        print("Jobs:", jobs)
+
+        result = schedule_deadline(jobs)
+
+        print("Optimal schedule:", result['jobs'])
+        print("Profits:", result['profits'])
+
+        # problem 2
+        jobs = [
+            Job(1, 3, 30),
+            Job(2, 1, 35),
+            Job(3, 2, 15),
+            Job(4, 1, 40),
+            Job(5, 4, 50),
+            Job(6, 3, 25),
+            Job(7, 4, 10)
+        ]
+
+        print("\nScheduling deadline")
+        print("Jobs:", jobs)
+
+        result = schedule_deadline(jobs)
+
+        print("Optimal schedule:", result['jobs'])
+        print("Profits:", result['profits'])
+
+        # problem 3
+        jobs = [
+            Job(1, 2, 40),
+            Job(2, 4, 15),
+            Job(3, 3, 60),
+            Job(4, 2, 20),
+            Job(5, 3, 10),
+            Job(6, 1, 45),
+            Job(7, 1, 55)
+        ]
+
+        print("\nScheduling deadline")
+        print("Jobs:", jobs)
+
+        result = schedule_deadline(jobs)
+
+        print("Optimal schedule:", result['jobs'])
+        print("Profits:", result['profits'])
 
 
 if __name__ == "__main__":
     Run().prim()
-    Run().scheduling()
     Run().dijkstra_shortest_path()
+    Run().scheduling()

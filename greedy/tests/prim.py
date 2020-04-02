@@ -39,7 +39,7 @@ class TestPrim(unittest.TestCase):
         result = prim(weights, start_vertex)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['total_cost'], total_cost)
+        self.assertEqual(result['cost'], total_cost)
 
     def test_problem2(self):
         INF = sys.maxsize
@@ -68,7 +68,7 @@ class TestPrim(unittest.TestCase):
         result = prim(weights, start_vertex)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['total_cost'], total_cost)
+        self.assertEqual(result['cost'], total_cost)
 
     def test_problem2(self):
         INF = sys.maxsize
@@ -93,7 +93,7 @@ class TestPrim(unittest.TestCase):
         result = prim(weights, start_vertex)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['total_cost'], total_cost)
+        self.assertEqual(result['cost'], total_cost)
 
 
 if __name__ == "__main__":

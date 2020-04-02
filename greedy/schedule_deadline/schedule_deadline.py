@@ -41,11 +41,14 @@ def schedule_deadline(jobs):
     not smaller than temp array's index + 1.
     """
     final_jobs = []
+    profits = 0
 
     # sort jobs by profit
     jobs.sort(key=lambda j: j.profit, reverse=True)
 
     final_jobs.append(jobs[0])
+    profits = profits + jobs[0].profit
+
     for i in range(1, len(jobs)):
         # temp copy of final jobs
         temp_jobs = copy.deepcopy(final_jobs)
@@ -57,8 +60,9 @@ def schedule_deadline(jobs):
         # set temp_jobs to final_jobs if feasible sequence
         if feasible(temp_jobs):
             final_jobs = temp_jobs
+            profits = profits + jobs[i].profit
 
-    return final_jobs
+    return {'jobs': final_jobs, 'profits': profits}
 
 
 def feasible(jobs):

@@ -35,11 +35,10 @@ class TestDijkstra(unittest.TestCase):
         ]
         profits_answer = 100
 
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
+        result = schedule_deadline(jobs)
 
-        self.assertEqual(final_jobs, solution_set)
-        self.assertEqual(profits, profits_answer)
+        self.assertEqual(result['jobs'], solution_set)
+        self.assertEqual(result['profits'], profits_answer)
 
     def test_problem2(self):
         jobs = [
@@ -59,11 +58,10 @@ class TestDijkstra(unittest.TestCase):
         ]
         profits_answer = 145
 
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
+        result = schedule_deadline(jobs)
 
-        self.assertEqual(final_jobs, solution_set)
-        self.assertEqual(profits, profits_answer)
+        self.assertEqual(result['jobs'], solution_set)
+        self.assertEqual(result['profits'], profits_answer)
 
     def test_problem3(self):
         jobs = [
@@ -83,11 +81,10 @@ class TestDijkstra(unittest.TestCase):
         ]
         profits_answer = 170
 
-        final_jobs = schedule_deadline(jobs)
-        profits = sum(job.profit for job in final_jobs)
+        result = schedule_deadline(jobs)
 
-        self.assertEqual(final_jobs, solution_set)
-        self.assertEqual(profits, profits_answer)
+        self.assertEqual(result['jobs'], solution_set)
+        self.assertEqual(result['profits'], profits_answer)
 
 
 if __name__ == "__main__":

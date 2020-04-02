@@ -63,14 +63,17 @@ def dijkstra(weights, start_vertex):
                 min = length[i]
                 vnear = i
 
+        # add to final set
         edge = (touch[vnear], vnear)
         final_edges.append(edge)
 
+        # find shorter total length from length[vnear] with weights[vnear]
         for i in range(n):
             if length[vnear] + weights[vnear][i] < length[i]:
                 length[i] = length[vnear] + weights[vnear][i]
                 touch[i] = vnear
 
+        # mark visited node
         length[vnear] = -1
 
     return {'edges': final_edges, 'touch': touch}
