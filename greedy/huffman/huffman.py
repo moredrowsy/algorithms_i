@@ -2,7 +2,8 @@ import heapq
 
 
 class HuffmanNode(object):
-    """A node object for Huffman's coding with sym and freq"""
+    """A node object for Huffman's coding with symbol and frequency"""
+    none = '\0'  # Class variable used for no symbol
 
     def __init__(self, sym, freq, left=None, right=None):
         """
@@ -19,12 +20,10 @@ class HuffmanNode(object):
         self.right = right
 
     def __str__(self):
-        NUL = '\0'
-        return f"({self.sym if self.sym != NUL else 'None'}, {self.freq})"
+        return f"({self.sym if self.sym != self.none else 'None'}, {self.freq})"
 
     def __repr__(self):
-        NUL = '\0'
-        return f"({self.sym if self.sym != NUL else 'None'}, {self.freq})"
+        return f"({self.sym if self.sym != self.none else 'None'}, {self.freq})"
 
     def __lt__(self, o):
         return self.freq < o.freq if self.freq != o.freq else self.sym < o.sym
@@ -57,7 +56,8 @@ def huffman_tree(nodes):
     for _ in range(n - 1):
         left = heapq.heappop(nodes)
         right = heapq.heappop(nodes)
-        root = HuffmanNode('\0', left.freq + right.freq, left, right)
+        root = HuffmanNode(HuffmanNode.none, left.freq +
+                           right.freq, left, right)
         heapq.heappush(nodes, root)
 
     return heapq.heappop(nodes)
@@ -139,15 +139,12 @@ def huffman_mapping(root, huffmap, string):
     huffmap (dict): Dictionary object
     string (str): Encoded binary string
     """
-    if root.right:
+    if root:
         huffman_mapping(root.right, huffmap, string + str(1))
-    else:
-        huffmap[root.sym] = string
-
-    if root.left:
         huffman_mapping(root.left, huffmap, string + str(0))
-    else:
-        huffmap[root.sym] = string
+
+        if root.sym != HuffmanNode.none:
+            huffmap[root.sym] = string
 
 
 def print_huffman_tree(root):
@@ -157,14 +154,9 @@ def print_huffman_tree(root):
 
 def print_tree(root, level):
     """Print entire tree via root node recursively"""
-    if root.right:
+    if root:
         print_tree(root.right, level + 1)
-    else:
-        print(10 * level * ' ', 7 * ' ', '|||')
-
-    print(10 * level * ' ', root)
-
-    if root.left:
+        print(10 * level * ' ', root)
         print_tree(root.left, level + 1)
     else:
-        print(10 * level * ' ', 7 * ' ', '|||')
+        print(10 * level * ' ', '|||')
