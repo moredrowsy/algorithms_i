@@ -47,6 +47,29 @@ class HuffmanNode(object):
         return self.left is None and self.right is None
 
 
+def huffman_nodes(string):
+    """
+    Calculate the frequency of characters in string.
+
+    Parameters
+    ----------
+    string (str): Input string for parsing
+
+    Return
+    ------
+    list: A list of HuffmanNodes
+    """
+    map_nodes = {}
+
+    for i in range(len(string)):
+        if string[i] in map_nodes:
+            map_nodes[string[i]].freq += 1
+        else:
+            map_nodes[string[i]] = HuffmanNode(string[i], 1)
+
+    return list(map_nodes.values())
+
+
 def huffman_tree(nodes):
     """
     Produces a Huffman coding tree
