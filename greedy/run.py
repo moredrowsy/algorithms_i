@@ -1,9 +1,6 @@
 """
 Greedy Approach Algorithms
 """
-import sys
-
-
 from dijkstra import dijkstra, print_dijkstra_path
 from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree,\
     print_huffman_tree
@@ -18,7 +15,7 @@ class Run(object):
 
     def prim_algorithm(self):
         """Run Prim's Algorithm on various problems"""
-        INF = sys.maxsize
+        INF = float('inf')
         # problem 1
         weights = [
             [0, 1, 3, INF, INF],
@@ -103,7 +100,7 @@ class Run(object):
 
     def dijkstra_shortest_path(self):
         """Run Dijkstra's Algorithm on various problems"""
-        INF = sys.maxsize
+        INF = float('inf')
 
         # problem 1
         weights = [

@@ -1,7 +1,6 @@
 """
 Unit tests for sort module
 """
-import sys
 import unittest
 
 from prim import prim
@@ -19,7 +18,7 @@ class TestPrim(unittest.TestCase):
         """
 
     def test_problem1(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, 1, 3, INF, INF],
             [1, 0, 3, 6, INF],
@@ -42,7 +41,7 @@ class TestPrim(unittest.TestCase):
         self.assertEqual(result['cost'], total_cost)
 
     def test_problem2(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, 13, 3, 22, 8, INF, INF, INF],
             [13, 0, INF, 9, INF, INF, INF, INF],
@@ -71,7 +70,7 @@ class TestPrim(unittest.TestCase):
         self.assertEqual(result['cost'], total_cost)
 
     def test_problem3(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, INF, 72, 50, 90, 35],
             [INF, 0, 71, 70, 73, 75],

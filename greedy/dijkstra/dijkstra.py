@@ -1,6 +1,3 @@
-import sys
-
-
 def dijkstra(weights, start_vertex):
     """
     Dijkstra's Algorithm: Find the shortest path from one starting vertex to
@@ -37,7 +34,7 @@ def dijkstra(weights, start_vertex):
     | 2
     Z
     """
-    INF = sys.maxsize
+    INF = float('inf')
     n = len(weights)
     vnear = -1
     length = []

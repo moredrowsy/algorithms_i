@@ -1,6 +1,3 @@
-import sys
-
-
 def prim(weights, start_vertex):
     """
     Prim's Algorithm: Find the minimal cost of every node connected node.
@@ -40,7 +37,7 @@ def prim(weights, start_vertex):
             | 1
             Z
     """
-    INF = sys.maxsize
+    INF = float('inf')
     n = len(weights)
     vnear = -1
     nearest = []

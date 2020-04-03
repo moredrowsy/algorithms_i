@@ -1,7 +1,6 @@
 """
 Unit tests for sort module
 """
-import sys
 import unittest
 
 from dijkstra import dijkstra
@@ -19,7 +18,7 @@ class TestDijkstra(unittest.TestCase):
         """
 
     def test_problem1(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, 7, 4, 6, 1],
             [INF, 0, INF, INF, INF],
@@ -44,7 +43,7 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(result['touch'], touch)
 
     def test_problem2(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, 50, 10, INF, 45, INF],
             [INF, 0, 15, INF, 10, INF],
@@ -71,7 +70,7 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(result['touch'], touch)
 
     def test_problem3(self):
-        INF = sys.maxsize
+        INF = float('inf')
         weights = [
             [0, INF, 72, 50, 90, 35],
             [INF, 0, 71, 70, 73, 75],
