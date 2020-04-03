@@ -36,6 +36,10 @@ def fractional_knapsack(knapsack, capacity):
     knapsack (array): List of KnapsackItems
     capacity (float): Capacity of the knapsack
 
+    Return
+    ------
+    {set: array of (fraction, KnapsackItem), cost: int}
+
     NOTES
     -----
     Sort the list of knapsack items by their profit/weight ratio
@@ -49,7 +53,7 @@ def fractional_knapsack(knapsack, capacity):
     final_set = []
 
     # sort knapsack by ratio
-    knapsack.sort(key=lambda i: i.ratio, reverse=True)
+    knapsack.sort(key=lambda item: item.ratio, reverse=True)
 
     for item in knapsack:
         if capacity > 0:

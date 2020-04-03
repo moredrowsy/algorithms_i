@@ -50,8 +50,8 @@ def schedule_deadline(jobs):
     final_jobs = []
     profits = 0
 
-    # sort jobs by profit
-    jobs.sort(key=lambda j: j.profit, reverse=True)
+    # sort jobs by highest profit
+    jobs.sort(key=lambda job: job.profit, reverse=True)
 
     final_jobs.append(jobs[0])
     profits += jobs[0].profit
@@ -60,9 +60,9 @@ def schedule_deadline(jobs):
         # temp copy of final jobs
         temp_jobs = copy.deepcopy(final_jobs)
 
-        # add next job and sort by deadline
+        # add next job and sort by lowest deadline
         temp_jobs.append(jobs[i])
-        temp_jobs.sort(key=lambda j: j.deadline)
+        temp_jobs.sort(key=lambda job: job.deadline)
 
         # set temp_jobs to final_jobs if feasible sequence
         if feasible(temp_jobs):
