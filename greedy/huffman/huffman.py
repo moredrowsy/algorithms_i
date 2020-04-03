@@ -3,13 +3,12 @@ import heapq
 
 class HuffmanNode(object):
     """A node object for Huffman's coding with symbol and frequency"""
-    none = '\0'  # Class variable used for no symbol
 
     def __init__(self, sym, freq, left=None, right=None):
         """
         Parameters
         ----------
-        sym (char): Character symbol
+        sym (char): Character symbol. Use None if no symbol.
         freq (int): Frequency integer
         left (HuffmanNode): left child HuffmanNode
         right (HuffmanNode): right child HuffmanNode
@@ -20,13 +19,23 @@ class HuffmanNode(object):
         self.right = right
 
     def __str__(self):
-        return f"({self.sym if self.sym != self.none else 'None'}, {self.freq})"
+        return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
     def __repr__(self):
-        return f"({self.sym if self.sym != self.none else 'None'}, {self.freq})"
+        return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
     def __lt__(self, o):
-        return self.freq < o.freq if self.freq != o.freq else self.sym < o.sym
+        if self.freq != o.freq:
+            return self.freq < o.freq
+        else:
+            if self.sym and o.sym:
+                return self.sym < o.sym
+            elif self.sym is None and o.sym is None:
+                return False
+            elif self.sym:
+                return False
+            else:
+                return True
 
     def __eq__(self, o):
         return self.freq == o.freq
@@ -56,8 +65,7 @@ def huffman_tree(nodes):
     for _ in range(n - 1):
         left = heapq.heappop(nodes)
         right = heapq.heappop(nodes)
-        root = HuffmanNode(HuffmanNode.none, left.freq +
-                           right.freq, left, right)
+        root = HuffmanNode(None, left.freq + right.freq, left, right)
         heapq.heappush(nodes, root)
 
     return heapq.heappop(nodes)
@@ -143,7 +151,7 @@ def huffman_mapping(root, huffmap, string):
         huffman_mapping(root.right, huffmap, string + str(1))
         huffman_mapping(root.left, huffmap, string + str(0))
 
-        if root.sym != HuffmanNode.none:
+        if root.sym:
             huffmap[root.sym] = string
 
 
