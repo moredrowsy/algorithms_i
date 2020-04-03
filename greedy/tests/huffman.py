@@ -4,8 +4,7 @@ Unit tests for sort module
 import sys
 import unittest
 
-from huffman import HuffmanNode, huffman_tree, huffman_decode,\
-    print_huffman_tree
+from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree
 
 
 class TestHuffman(unittest.TestCase):
@@ -33,16 +32,20 @@ class TestHuffman(unittest.TestCase):
         root = huffman_tree(nodes)
         self.assertEqual(root, root_answer)
 
-        coded_str1 = '001110111000'
-        coded_str2 = '0100101111'
-        decoded_answer1 = 'abba'
-        decoded_answer2 = 'dafe'
+        str1 = "abba"
+        str2 = "dafe"
+        encoded_answer1 = "001110111000"
+        encoded_answer2 = "0100101111"
 
-        decoded1 = huffman_decode(root, coded_str1)
-        decoded2 = huffman_decode(root, coded_str2)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
 
-        self.assertEqual(decoded1, decoded_answer1)
-        self.assertEqual(decoded2, decoded_answer2)
+        self.assertEqual(encoded_str1, encoded_answer1)
+        self.assertEqual(encoded_str2, encoded_answer2)
+        self.assertEqual(decoded_str1, str1)
+        self.assertEqual(decoded_str2, str2)
 
     def test_problem2(self):
         nodes = [
@@ -59,16 +62,20 @@ class TestHuffman(unittest.TestCase):
         root = huffman_tree(nodes)
         self.assertEqual(root, root_answer)
 
-        coded_str1 = '1100000011'
-        coded_str2 = '0100100101'
-        decoded_answer1 = 'SAAB'
-        decoded_answer2 = 'ZIX'
+        str1 = "SAAB"
+        str2 = "ZIX"
+        encoded_answer1 = "1100000011"
+        encoded_answer2 = "0100100101"
 
-        decoded1 = huffman_decode(root, coded_str1)
-        decoded2 = huffman_decode(root, coded_str2)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
 
-        self.assertEqual(decoded1, decoded_answer1)
-        self.assertEqual(decoded2, decoded_answer2)
+        self.assertEqual(encoded_str1, encoded_answer1)
+        self.assertEqual(encoded_str2, encoded_answer2)
+        self.assertEqual(decoded_str1, str1)
+        self.assertEqual(decoded_str2, str2)
 
     def test_problem3(self):
         nodes = [
@@ -86,16 +93,20 @@ class TestHuffman(unittest.TestCase):
         root = huffman_tree(nodes)
         self.assertEqual(root, root_answer)
 
-        coded_str1 = '10100101'
-        coded_str2 = '111111001110111101'
-        decoded_answer1 = 'DEED'
-        decoded_answer2 = 'MUCK'
+        str1 = "DEED"
+        str2 = "MUCK"
+        encoded_answer1 = "10100101"
+        encoded_answer2 = "111111001110111101"
 
-        decoded1 = huffman_decode(root, coded_str1)
-        decoded2 = huffman_decode(root, coded_str2)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
 
-        self.assertEqual(decoded1, decoded_answer1)
-        self.assertEqual(decoded2, decoded_answer2)
+        self.assertEqual(encoded_str1, encoded_answer1)
+        self.assertEqual(encoded_str2, encoded_answer2)
+        self.assertEqual(decoded_str1, str1)
+        self.assertEqual(decoded_str2, str2)
 
 
 if __name__ == "__main__":

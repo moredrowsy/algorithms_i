@@ -5,7 +5,7 @@ import sys
 
 
 from dijkstra import dijkstra, print_dijkstra_path
-from huffman import HuffmanNode, huffman_tree, huffman_decode,\
+from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree,\
     print_huffman_tree
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
@@ -274,15 +274,20 @@ class Run(object):
         print("Huffman root:", root)
         print_huffman_tree(root)
 
-        string = '001110111000'
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        str1 = "abba"
+        str2 = "dafe"
 
-        string = '0100101111'
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
+
+        print("Str1:", str1)
+        print("Str2:", str2)
+        print("Encoded str1", encoded_str1)
+        print("Encoded str2", encoded_str2)
+        print("Decoded str1", decoded_str1)
+        print("Decoded str2", decoded_str2)
 
         # problem 2
         nodes = [
@@ -302,15 +307,20 @@ class Run(object):
         print("Huffman root:", root)
         print_huffman_tree(root)
 
-        string = '1100000011'
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        str1 = "SAAB"
+        str2 = "ZIX"
 
-        string = '0100100101'
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
+
+        print("Str1:", str1)
+        print("Str2:", str2)
+        print("Encoded str1", encoded_str1)
+        print("Encoded str2", encoded_str2)
+        print("Decoded str1", decoded_str1)
+        print("Decoded str2", decoded_str2)
 
         # problem 3
         nodes = [
@@ -331,15 +341,20 @@ class Run(object):
         print("Huffman root:", root)
         print_huffman_tree(root)
 
-        string = '10100101'
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        str1 = "DEED"
+        str2 = "MUCK"
 
-        string = '111111001110111101 '
-        decoded_string = huffman_decode(root, string)
-        print("\nCoded string:", string)
-        print("Decoded string:", decoded_string)
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
+
+        print("Str1:", str1)
+        print("Str2:", str2)
+        print("Encoded str1", encoded_str1)
+        print("Encoded str2", encoded_str2)
+        print("Decoded str1", decoded_str1)
+        print("Decoded str2", decoded_str2)
 
 
 if __name__ == "__main__":

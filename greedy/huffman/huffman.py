@@ -74,7 +74,7 @@ def huffman_decode(root, string):
 
     Return
     ------
-    decoded_string (str): Decoded string
+    str: Decoded string
     """
     decoded_string = ''
     node = root
@@ -92,8 +92,66 @@ def huffman_decode(root, string):
     return decoded_string
 
 
+def huffman_encode(root, string):
+    """
+    Encode a string to binary coded string
+
+    Parameters
+    ----------
+    root (HuffmanNode): Root node of Huffman coding tree
+    string (str): String to encode
+
+    Return
+    ------
+    str: Encoded binary string
+    """
+    encoded_string = ''
+    huffmap = huffman_map(root)
+
+    for i in range(len(string)):
+        encoded_string += huffmap[string[i]]
+
+    return encoded_string
+
+
+def huffman_map(root):
+    """
+    Wrapper for huffman_mapping()
+
+    Return
+    ------
+    {'letters': encoded string}: A dictionary of letters to encoded strings
+    """
+    huffmap = {}
+    string = ''
+    huffman_mapping(root, huffmap, string)
+    return huffmap
+
+
+def huffman_mapping(root, huffmap, string):
+    """
+    Produces a Huffman dictionary of letters as keys mapping to encoded strings
+    via adding to huffmap by reference.
+
+    Parameters
+    ----------
+    root (HuffmanNode): Root node of Huffman coding tree
+    huffmap (dict): Dictionary object
+    string (str): Encoded binary string
+    """
+    if root.right:
+        huffman_mapping(root.right, huffmap, string + str(1))
+    else:
+        huffmap[root.sym] = string
+
+    if root.left:
+        huffman_mapping(root.left, huffmap, string + str(0))
+    else:
+        huffmap[root.sym] = string
+
+
 def print_huffman_tree(root):
-    """Wrapper for recursive print_tree"""
+    """Wrapper for recursive print_tree()"""
     print_tree(root, 0)
 
 
