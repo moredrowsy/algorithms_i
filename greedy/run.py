@@ -12,7 +12,7 @@ class Run(object):
     Run Greedy Algorithm's methods
     """
 
-    def prim(self):
+    def prim_algorithm(self):
         """Run Prim's Algorithm on various problems"""
         INF = sys.maxsize
         # problem 1
@@ -38,8 +38,8 @@ class Run(object):
         result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(result['edges'])
-        print('total cost:', result['cost'])
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
 
         # problem 2
         weights = [
@@ -67,8 +67,8 @@ class Run(object):
         result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(result['edges'])
-        print('total cost:', result['cost'])
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
 
         # problem 3
         weights = [
@@ -94,8 +94,8 @@ class Run(object):
         result = prim(weights, start_vertex)
 
         print("\nMST (Prim's Algorithm)")
-        print(result['edges'])
-        print('total cost:', result['cost'])
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
 
     def dijkstra_shortest_path(self):
         """Run Dijkstra's Algorithm on various problems"""
@@ -124,7 +124,7 @@ class Run(object):
         result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", result['edges'])
+        print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 
         destination = 1
@@ -155,7 +155,7 @@ class Run(object):
         result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", result['edges'])
+        print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 
         destination = 5
@@ -186,7 +186,7 @@ class Run(object):
         result = dijkstra(weights, start_vertex)
 
         print("\nDijkstra's Short Path from source", start_vertex)
-        print("Final:", result['edges'])
+        print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 
         destination = 3
@@ -254,6 +254,6 @@ class Run(object):
 
 
 if __name__ == "__main__":
-    Run().prim()
+    Run().prim_algorithm()
     Run().dijkstra_shortest_path()
     Run().scheduling()

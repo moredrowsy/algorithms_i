@@ -7,9 +7,9 @@ import unittest
 from schedule_deadline import schedule_deadline, Job
 
 
-class TestDijkstra(unittest.TestCase):
+class TestSchedule(unittest.TestCase):
     """
-    Tests Dijsktra's ALgorithm
+    Tests Scheduling Deadline's ALgorithm
     """
     # class attributes
 

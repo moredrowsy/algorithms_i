@@ -71,7 +71,7 @@ def prim(weights, start_vertex):
         # add to final set
         edge = (nearest[vnear], vnear)
         final_edges.append(edge)
-        total_cost = total_cost + weights[nearest[vnear]][vnear]
+        total_cost += weights[nearest[vnear]][vnear]
 
         # mark visited node
         distance[vnear] = -1

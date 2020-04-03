@@ -5,6 +5,13 @@ class Job(object):
     """A Job as a job number (index), deadline, and profit"""
 
     def __init__(self, index, deadline, profit):
+        """
+        Parameters
+        ----------
+        index (int): Job number
+        deadline (int): deadline number
+        profit(float): profit for this job
+        """
         self.index = index
         self.deadline = deadline
         self.profit = profit
@@ -47,7 +54,7 @@ def schedule_deadline(jobs):
     jobs.sort(key=lambda j: j.profit, reverse=True)
 
     final_jobs.append(jobs[0])
-    profits = profits + jobs[0].profit
+    profits += jobs[0].profit
 
     for i in range(1, len(jobs)):
         # temp copy of final jobs
@@ -60,7 +67,7 @@ def schedule_deadline(jobs):
         # set temp_jobs to final_jobs if feasible sequence
         if feasible(temp_jobs):
             final_jobs = temp_jobs
-            profits = profits + jobs[i].profit
+            profits += jobs[i].profit
 
     return {'jobs': final_jobs, 'profits': profits}
 

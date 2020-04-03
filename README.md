@@ -11,6 +11,12 @@
 - Matrix Multiplication
   - Classical vs Strassen's Matrix Multiplication
 
+## Project 2
+
+- Fractional Knapsack
+
+- Whole Knapsack
+
 ## Greedy Algorithms
 
 - Prim's Algorithm: Finding the minimal spanning tree (MST)
