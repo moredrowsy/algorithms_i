@@ -58,7 +58,7 @@ def merge(list, low, mid, high):
     i, j = low, mid + 1
     temp = []
 
-    while(i <= mid and j <= high):
+    while i <= mid and j <= high:
         if list[i] < list[j]:
             temp.append(list[i])
             i += 1
@@ -67,11 +67,11 @@ def merge(list, low, mid, high):
             j += 1
 
     if i > mid:
-        while(j <= high):
+        while j <= high:
             temp.append(list[j])
             j += 1
     else:
-        while(i <= mid):
+        while i <= mid:
             temp.append(list[i])
             i += 1
 
@@ -128,7 +128,7 @@ def partition(list, low, high):
     i, j = low + 1, low
     pivot_item = list[low]
 
-    while(i <= high):
+    while i <= high:
         if list[i] < pivot_item:
             j += 1
             list[i], list[j] = list[j], list[i]

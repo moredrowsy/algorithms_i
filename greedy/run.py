@@ -1,8 +1,12 @@
 """
 Greedy Approach Algorithms
 """
+import heapq
 import sys
+
+
 from dijkstra import dijkstra, print_dijkstra_path
+from huffman import huffman_tree, HuffmanNode
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -252,8 +256,64 @@ class Run(object):
         print("Optimal schedule:", result['jobs'])
         print("Profits:", result['profits'])
 
+    def huffman_coding(self):
+        # problem 1
+        codes = [
+            HuffmanNode('b', 5),
+            HuffmanNode('e', 10),
+            HuffmanNode('c', 12),
+            HuffmanNode('a', 16),
+            HuffmanNode('d', 17),
+            HuffmanNode('f', 25)
+        ]
+
+        heapq.heapify(codes)
+        print("\nHeapified codes:", end=" ")
+        print(list(codes))
+
+        root = huffman_tree(codes)
+        print("Huffman root:", root)
+
+        # problem 2
+        codes = [
+            HuffmanNode('A', 12),
+            HuffmanNode('B', 7),
+            HuffmanNode('I', 18),
+            HuffmanNode('M', 10),
+            HuffmanNode('S', 9),
+            HuffmanNode('X', 5),
+            HuffmanNode('Z', 2)
+        ]
+
+        heapq.heapify(codes)
+        print("\nHeapified codes:", end=" ")
+        print(list(codes))
+
+        root = huffman_tree(codes)
+        print("Huffman root:", root)
+
+        # problem 3
+        codes = [
+            HuffmanNode('Z', 2),
+            HuffmanNode('K', 7),
+            HuffmanNode('M', 24),
+            HuffmanNode('C', 32),
+            HuffmanNode('U', 37),
+            HuffmanNode('D', 42),
+            HuffmanNode('L', 42),
+            HuffmanNode('E', 120)
+        ]
+
+        heapq.heapify(codes)
+        print("\nHeapified codes:", end=" ")
+        print(list(codes))
+
+        root = huffman_tree(codes)
+        print("Huffman root:", root)
+
 
 if __name__ == "__main__":
     Run().prim_algorithm()
     Run().dijkstra_shortest_path()
     Run().scheduling()
+    Run().huffman_coding()

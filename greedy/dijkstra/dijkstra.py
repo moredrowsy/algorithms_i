@@ -88,7 +88,7 @@ def print_dijkstra_path(paths, destination):
 def print_dijkstra(paths, destination):
     """
     """
-    if(paths[destination] != destination):
+    if paths[destination] != destination:
         print_dijkstra(paths, paths[destination])
         print("->", end=" ")
 

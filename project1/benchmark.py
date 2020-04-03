@@ -250,7 +250,7 @@ if __name__ == "__main__":
         "A: Run all benchmarks\n"\
         "X: Exit\n"
 
-    while(True):
+    while True:
         print(menu)
         choice = input()
 
