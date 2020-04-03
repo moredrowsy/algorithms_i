@@ -6,7 +6,7 @@ import sys
 
 
 from dijkstra import dijkstra, print_dijkstra_path
-from huffman import huffman_tree, HuffmanNode
+from huffman import huffman_tree, HuffmanNode, print_huffman_tree
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -258,7 +258,7 @@ class Run(object):
 
     def huffman_coding(self):
         # problem 1
-        codes = [
+        nodes = [
             HuffmanNode('b', 5),
             HuffmanNode('e', 10),
             HuffmanNode('c', 12),
@@ -267,15 +267,16 @@ class Run(object):
             HuffmanNode('f', 25)
         ]
 
-        heapq.heapify(codes)
-        print("\nHeapified codes:", end=" ")
-        print(list(codes))
+        heapq.heapify(nodes)
+        print("\nHeapified nodes:", end=" ")
+        print(list(nodes))
 
-        root = huffman_tree(codes)
+        root = huffman_tree(nodes)
         print("Huffman root:", root)
+        print_huffman_tree(root)
 
         # problem 2
-        codes = [
+        nodes = [
             HuffmanNode('A', 12),
             HuffmanNode('B', 7),
             HuffmanNode('I', 18),
@@ -285,15 +286,16 @@ class Run(object):
             HuffmanNode('Z', 2)
         ]
 
-        heapq.heapify(codes)
-        print("\nHeapified codes:", end=" ")
-        print(list(codes))
+        heapq.heapify(nodes)
+        print("\nHeapified nodes:", end=" ")
+        print(list(nodes))
 
-        root = huffman_tree(codes)
+        root = huffman_tree(nodes)
         print("Huffman root:", root)
+        print_huffman_tree(root)
 
         # problem 3
-        codes = [
+        nodes = [
             HuffmanNode('Z', 2),
             HuffmanNode('K', 7),
             HuffmanNode('M', 24),
@@ -304,12 +306,13 @@ class Run(object):
             HuffmanNode('E', 120)
         ]
 
-        heapq.heapify(codes)
-        print("\nHeapified codes:", end=" ")
-        print(list(codes))
+        heapq.heapify(nodes)
+        print("\nHeapified nodes:", end=" ")
+        print(list(nodes))
 
-        root = huffman_tree(codes)
+        root = huffman_tree(nodes)
         print("Huffman root:", root)
+        print_huffman_tree(root)
 
 
 if __name__ == "__main__":

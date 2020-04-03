@@ -19,12 +19,10 @@ class HuffmanNode(object):
         self.right = right
 
     def __str__(self):
-        return f"({self.sym}, {self.freq})" if self.sym\
-            else f"(None, {self.freq})"
+        return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
     def __repr__(self):
-        return f"({self.sym}, {self.freq})" if self.sym\
-            else f"(None, {self.freq})"
+        return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
     def __lt__(self, o):
         return self.freq < o.freq
@@ -48,23 +46,43 @@ class HuffmanNode(object):
         return self.left is None and self.right is None
 
 
-def huffman_tree(codes):
+def huffman_tree(nodes):
     """
     Produces a Huffman coding tree
 
     Parameters
     ----------
-    code (array): Array of HuffmanNodes
+    nodes (array): Array of HuffmanNodes
 
     Return
     ------
     root (HuffmanNode): The root node for the Huffman coding tree
     """
-    n = len(codes)
+    n = len(nodes)
     for _ in range(n - 1):
-        left = heapq.heappop(codes)
-        right = heapq.heappop(codes)
+        left = heapq.heappop(nodes)
+        right = heapq.heappop(nodes)
         root = HuffmanNode(None, left.freq + right.freq, left, right)
-        heapq.heappush(codes, root)
+        heapq.heappush(nodes, root)
 
-    return heapq.heappop(codes)
+    return heapq.heappop(nodes)
+
+
+def print_huffman_tree(root):
+    """Wrapper for recursive print_tree"""
+    print_tree(root, 0)
+
+
+def print_tree(root, level):
+    """Print entire tree via root node recursively"""
+    if root.right:
+        print_tree(root.right, level + 1)
+    else:
+        print(10 * level * ' ', 7 * ' ', '|||')
+
+    print(10 * level * ' ', root)
+
+    if root.left:
+        print_tree(root.left, level + 1)
+    else:
+        print(10 * level * ' ', 7 * ' ', '|||')
