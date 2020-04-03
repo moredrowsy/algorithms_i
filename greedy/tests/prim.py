@@ -70,7 +70,7 @@ class TestPrim(unittest.TestCase):
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['cost'], total_cost)
 
-    def test_problem2(self):
+    def test_problem3(self):
         INF = sys.maxsize
         weights = [
             [0, INF, 72, 50, 90, 35],

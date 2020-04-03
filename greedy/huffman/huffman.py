@@ -25,22 +25,21 @@ class HuffmanNode(object):
         return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
     def __lt__(self, o):
-        return self.freq < o.freq
-
-    def __le__(self, o):
-        return self.freq <= o.freq
+        if self.freq != o.freq:
+            return self.freq < o.freq
+        else:
+            if self.sym is None:
+                return True
+            elif o.sym is None:
+                return False
+            else:
+                return self.sym < o.sym
 
     def __eq__(self, o):
         return self.freq == o.freq
 
     def __ne__(self, o):
         return self.freq != o.freq
-
-    def __gt__(self, o):
-        return self.freq > o.freq
-
-    def __ge__(self, o):
-        return self.freq >= o.freq
 
     def is_leaf(self):
         return self.left is None and self.right is None
@@ -59,6 +58,8 @@ def huffman_tree(nodes):
     root (HuffmanNode): The root node for the Huffman coding tree
     """
     n = len(nodes)
+    heapq.heapify(nodes)
+
     for _ in range(n - 1):
         left = heapq.heappop(nodes)
         right = heapq.heappop(nodes)
@@ -66,6 +67,35 @@ def huffman_tree(nodes):
         heapq.heappush(nodes, root)
 
     return heapq.heappop(nodes)
+
+
+def huffman_decode(root, string):
+    """
+    Decode an encoded Huffman string
+
+    Parameters
+    ----------
+    root (HuffmanNode): Root node of a Huffman coding tree
+    string (str): Encoded string of 0 and 1
+
+    Return
+    ------
+    decoded_string (str): Decoded string
+    """
+    decoded_string = ''
+    node = root
+
+    for i in range(len(string)):
+        if string[i] == '0':
+            node = node.left
+        else:
+            node = node.right
+
+        if node.is_leaf():
+            decoded_string += node.sym
+            node = root
+
+    return decoded_string
 
 
 def print_huffman_tree(root):

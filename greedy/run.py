@@ -1,12 +1,12 @@
 """
 Greedy Approach Algorithms
 """
-import heapq
 import sys
 
 
 from dijkstra import dijkstra, print_dijkstra_path
-from huffman import huffman_tree, HuffmanNode, print_huffman_tree
+from huffman import HuffmanNode, huffman_tree, huffman_decode,\
+    print_huffman_tree
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -267,13 +267,22 @@ class Run(object):
             HuffmanNode('f', 25)
         ]
 
-        heapq.heapify(nodes)
         print("\nHeapified nodes:", end=" ")
         print(list(nodes))
 
         root = huffman_tree(nodes)
         print("Huffman root:", root)
         print_huffman_tree(root)
+
+        string = '001110111000'
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
+
+        string = '0100101111'
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
 
         # problem 2
         nodes = [
@@ -286,13 +295,22 @@ class Run(object):
             HuffmanNode('Z', 2)
         ]
 
-        heapq.heapify(nodes)
         print("\nHeapified nodes:", end=" ")
         print(list(nodes))
 
         root = huffman_tree(nodes)
         print("Huffman root:", root)
         print_huffman_tree(root)
+
+        string = '1100000011'
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
+
+        string = '0100100101'
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
 
         # problem 3
         nodes = [
@@ -306,13 +324,22 @@ class Run(object):
             HuffmanNode('E', 120)
         ]
 
-        heapq.heapify(nodes)
         print("\nHeapified nodes:", end=" ")
         print(list(nodes))
 
         root = huffman_tree(nodes)
         print("Huffman root:", root)
         print_huffman_tree(root)
+
+        string = '10100101'
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
+
+        string = '111111001110111101 '
+        decoded_string = huffman_decode(root, string)
+        print("\nCoded string:", string)
+        print("Decoded string:", decoded_string)
 
 
 if __name__ == "__main__":
