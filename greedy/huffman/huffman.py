@@ -19,21 +19,15 @@ class HuffmanNode(object):
         self.right = right
 
     def __str__(self):
-        return f"({self.sym if self.sym else 'None'}, {self.freq})"
+        NUL = '\0'
+        return f"({self.sym if self.sym != NUL else 'None'}, {self.freq})"
 
     def __repr__(self):
-        return f"({self.sym if self.sym else 'None'}, {self.freq})"
+        NUL = '\0'
+        return f"({self.sym if self.sym != NUL else 'None'}, {self.freq})"
 
     def __lt__(self, o):
-        if self.freq != o.freq:
-            return self.freq < o.freq
-        else:
-            if self.sym is None:
-                return True
-            elif o.sym is None:
-                return False
-            else:
-                return self.sym < o.sym
+        return self.freq < o.freq if self.freq != o.freq else self.sym < o.sym
 
     def __eq__(self, o):
         return self.freq == o.freq
@@ -63,7 +57,7 @@ def huffman_tree(nodes):
     for _ in range(n - 1):
         left = heapq.heappop(nodes)
         right = heapq.heappop(nodes)
-        root = HuffmanNode(None, left.freq + right.freq, left, right)
+        root = HuffmanNode('\0', left.freq + right.freq, left, right)
         heapq.heappush(nodes, root)
 
     return heapq.heappop(nodes)
