@@ -145,8 +145,8 @@ class Run(object):
 
             result = fractional_knapsack(self.items, self.capacity)
 
-            print("Cost:", result['cost'])
-            for item in result['set']:
+            print("Profit:", result['profit'])
+            for item in result['knapsack']:
                 print("Fraction:", item[0], "\tItem:", item[1])
         else:
             print("Invalid. No items entered")

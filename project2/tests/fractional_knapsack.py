@@ -28,14 +28,13 @@ class TestFractionalKnapsack(unittest.TestCase):
         solution_set = [
             (1, KnapsackItem(1, 15, 24)),
             (0.5, KnapsackItem(2, 10, 15)),
-            (0, KnapsackItem(0, 18, 25))
         ]
-        cost_answer = 31.5
+        profit_answer = 31.5
 
         result = fractional_knapsack(knapsack, capacity)
 
-        self.assertEqual(result['set'], solution_set)
-        self.assertEqual(result['cost'], cost_answer)
+        self.assertEqual(result['knapsack'], solution_set)
+        self.assertEqual(result['profit'], profit_answer)
 
 
 if __name__ == "__main__":

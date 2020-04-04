@@ -30,46 +30,35 @@ class KnapsackItem(object):
             and self.profit == o.profit
 
 
-def fractional_knapsack(items, capacity):
+def fractional_knapsack(items, cap):
     """
     Calculate the optimal set of items' profit in Knapsack
 
     Parameters
     ----------
     items (array): List of KnapsackItems
-    capacity (float): Capacity of the knapsack
+    cap (float): Capacity of the knapsack
 
     Return
     ------
-    {set: array of (fraction, KnapsackItem), cost: int}
-
-    NOTES
-    -----
-    Sort the list of knapsack items by their profit/weight ratio
-    Pick each the first item at every iteration
-    If there's capacity:
-        If capacity - item's weight >= 0, then add entire item to final set
-        Else add item at fraction of capacity/item's weight
-    Else: Add the rest of the items at 0 fraction.
+    {knapsack: array of (fraction, KnapsackItem), profit: float}
     """
-    cost = 0
-    final_set = []
+    profit = 0
+    knapsack = []
 
-    # sort knapsack by ratio
-    knapsack = sorted(items, key=lambda item: item.ratio, reverse=True)
+    # sort items by nonincreasing ratio
+    sorted_items = sorted(items, key=lambda item: item.ratio, reverse=True)
 
-    for item in knapsack:
-        if capacity > 0:
-            if capacity - item.weight >= 0:
-                fractional = 1
-                final_set.append((fractional, item))
-            else:
-                fractional = capacity / item.weight
-                final_set.append((fractional, item))
+    for item in sorted_items:
+        if cap > 0:
+            # set to capacity/weight if future capacity is negative
+            # otherwise 1
+            fraction = cap / item.weight if cap - item.weight < 0 else 1
 
-            cost += final_set[-1][1].profit * final_set[-1][0]
-            capacity -= item.weight
+            knapsack.append((fraction, item))
+            profit += fraction * item.profit
+            cap -= item.weight
         else:
-            final_set.append((0, item))
+            break
 
-    return {'set': final_set, 'cost': cost}
+    return {'knapsack': knapsack, 'profit': profit}
