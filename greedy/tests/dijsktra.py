@@ -1,5 +1,5 @@
 """
-Unit tests for sort module
+Unit tests
 """
 import unittest
 

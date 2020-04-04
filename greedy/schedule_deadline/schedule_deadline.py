@@ -1,3 +1,6 @@
+"""
+Scheduling Deadline: Find the optimal sequence of jobs for maximal profits
+"""
 import copy
 
 
@@ -53,10 +56,7 @@ def schedule_deadline(jobs):
     # sort jobs by highest profit
     jobs.sort(key=lambda job: job.profit, reverse=True)
 
-    final_jobs.append(jobs[0])
-    profits += jobs[0].profit
-
-    for i in range(1, len(jobs)):
+    for i in range(len(jobs)):
         # temp copy of final jobs
         temp_jobs = copy.deepcopy(final_jobs)
 

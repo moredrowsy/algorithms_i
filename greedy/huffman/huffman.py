@@ -1,3 +1,6 @@
+"""
+Huffman's Coding Algorithm: Encoding/decoding strings with prefix codes
+"""
 import heapq
 
 
@@ -111,10 +114,7 @@ def huffman_decode(root, string):
     node = root
 
     for i in range(len(string)):
-        if string[i] == '0':
-            node = node.left
-        else:
-            node = node.right
+        node = node.left if string[i] == '0' else node.right
 
         if node.is_leaf():
             decoded_string += node.sym

@@ -1,5 +1,5 @@
 """
-Unit tests for sort module
+Unit tests
 """
 import copy
 import random
@@ -10,7 +10,7 @@ from sort import mergesort, quicksort
 
 class TestSort(unittest.TestCase):
     """
-    Tests for agent.
+    Tests for sorting algorithms
     """
     # class attributes
 

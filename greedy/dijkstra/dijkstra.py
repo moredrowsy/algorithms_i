@@ -1,3 +1,8 @@
+"""
+Dijkstra's Algorithm: Find shortest path tree from single source
+"""
+
+
 def dijkstra(weights, start_vertex):
     """
     Dijkstra's Algorithm: Find the shortest path from one starting vertex to

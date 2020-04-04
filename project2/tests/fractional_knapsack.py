@@ -1,5 +1,5 @@
 """
-Unit tests for sort module
+Unit tests
 """
 import sys
 import unittest
@@ -9,7 +9,7 @@ from fractional_knapsack import fractional_knapsack, KnapsackItem
 
 class TestFractionalKnapsack(unittest.TestCase):
     """
-    Tests Dijsktra's ALgorithm
+    Tests for Fractional Knapsack
     """
     # class attributes
 

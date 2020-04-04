@@ -1,5 +1,5 @@
 """
-Unit tests for sort module
+Unit tests
 """
 import random
 import unittest
@@ -9,7 +9,7 @@ from tower_of_hanoi import TowerOfHanoi
 
 class TestSort(unittest.TestCase):
     """
-    Tests for agent.
+    Tests for Tower of Hanoi
     """
     # class attributes
 

@@ -1,5 +1,5 @@
 """
-Unit tests for sort module
+Unit tests
 """
 import copy
 import random
@@ -11,7 +11,7 @@ from matrix_multiply.matrix_multiply import *
 
 class TestSort(unittest.TestCase):
     """
-    Tests for agent.
+    Tests for Matrix Multiplication
     """
     # class attributes
 

@@ -1,3 +1,8 @@
+"""
+Prim's Algorithm: Find the minimal spanning tree to every node
+"""
+
+
 def prim(weights, start_vertex):
     """
     Prim's Algorithm: Find the minimal cost of every node connected node.
