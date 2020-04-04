@@ -1,3 +1,6 @@
+import copy
+
+
 class KnapsackItem(object):
     """Represent a knapsack item with weight, profit, ratio"""
 
@@ -16,10 +19,10 @@ class KnapsackItem(object):
         self.ratio = profit / weight
 
     def __str__(self):
-        return f"(#{self.index}], {self.weight}, {self.profit})"
+        return f"(id:{self.index} weight:{self.weight} profit:{self.profit})"
 
     def __repr__(self):
-        return f"(#{self.index}, {self.weight}, {self.profit}, {self.ratio})"
+        return f"(id:{self.index} w:{self.weight} p:{self.profit} r:{self.ratio})"
 
     def __eq__(self, o):
         return self.index == o.index\
@@ -27,13 +30,13 @@ class KnapsackItem(object):
             and self.profit == o.profit
 
 
-def fractional_knapsack(knapsack, capacity):
+def fractional_knapsack(items, capacity):
     """
     Calculate the optimal set of items' profit in Knapsack
 
     Parameters
     ----------
-    knapsack (array): List of KnapsackItems
+    items (array): List of KnapsackItems
     capacity (float): Capacity of the knapsack
 
     Return
@@ -53,7 +56,7 @@ def fractional_knapsack(knapsack, capacity):
     final_set = []
 
     # sort knapsack by ratio
-    knapsack.sort(key=lambda item: item.ratio, reverse=True)
+    knapsack = sorted(items, key=lambda item: item.ratio, reverse=True)
 
     for item in knapsack:
         if capacity > 0:
