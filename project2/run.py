@@ -15,12 +15,13 @@ class Run(object):
     capacity = -1
     items = []
     menu = "\nOPTIONS\n"\
-        "1: Change capacity\n"\
-        "2: Add items manually\n"\
-        "3: Add items from file\n"\
-        "4. List items\n"\
-        "5: List fractional knapsack items\n"\
-        "6: List whole knapsack items\n"\
+        "1: List fractional knapsack items\n"\
+        "2: List whole knapsack items\n"\
+        "3. List entered items\n"\
+        "4: Change capacity\n"\
+        "5: Add items manually\n"\
+        "6: Add items from file\n"\
+        "7. Clear all entered items\n"\
         "X: Exit\n"
 
     def setup(self):
@@ -45,9 +46,12 @@ class Run(object):
 
     def start(self):
         """Run user interactive mode"""
+        print("\nKNAPSACK PROGRAM")
+        self.setup()
+
         while True:
-            info = f"\nCAPACITY: {run.capacity}\t"
-            info += f"ITEMS ENTERED: {len(run.items)} items"
+            info = f"\nCAPACITY: {self.capacity}\t"
+            info += f"ITEMS ENTERED: {len(self.items)} items"
 
             print(info)
             print(self.menu)
@@ -55,16 +59,20 @@ class Run(object):
 
             if choice == "X" or choice == "x":
                 break
-            elif choice == "1":
-                self.change_capacity()
-            elif choice == "2":
-                self.add_items()
-            elif choice == "3":
-                self.add_from_file()
-            elif choice == "4":
-                self.print_items()
-            elif choice == "5":
+
+            self.clear_screen()
+            if choice == "1":
                 self.fract_knapsack()
+            elif choice == "3":
+                self.print_items()
+            elif choice == "4":
+                self.change_capacity()
+            elif choice == "5":
+                self.add_items()
+            elif choice == "6":
+                self.add_from_file()
+            elif choice == "7":
+                self.clear_items()
             else:
                 pass
 
@@ -84,23 +92,20 @@ class Run(object):
 
     def add_items(self):
         """User add KnapsackItems from user"""
-        instructions = "\nFormat: [WEIGHT] [PROFIT]\nEnter -1 to stop"
         info = 0
+        print("\nFormat: [WEIGHT] [PROFIT]\nEnter X to stop")
 
-        print(instructions)
         while True:
-            item_id = self.items[-1].index + 1\
-                if len(self.items) > 0 else 0
-
             info = input()
             data = info.split()
 
-            if info == "-1":
+            if info == "X" or info == "x":
                 break
             elif len(data) == 2:
                 try:
                     self.items.append(KnapsackItem(
                         len(self.items), float(data[0]), float(data[1])))
+                    print("Added item:", self.items[-1])
                 except:
                     print("Invalid input")
             else:
@@ -108,25 +113,25 @@ class Run(object):
 
     def add_from_file(self, filename=None):
         """Populate KnapsackItems from file"""
-        instructions = "Enter file name"
-        temp_items = []
-
         while True:
             if not filename:
-                print(instructions)
+                print("Enter file name")
                 filename = input()
 
             with open(filename) as file:
-                item_id = 0
-
                 for line in file:
                     data = line.split()
-                    temp_items.append(KnapsackItem(
-                        item_id, float(data[0]), float(data[1])))
-                    item_id += 1
+                    self.items.append(KnapsackItem(
+                        len(self.items), float(data[0]), float(data[1])))
 
-                self.items = temp_items
+                    print("Added item:", self.items[-1])
+
+                self.items = self.items
                 break
+
+    def clear_items(self):
+        self.items = []
+        print("All entered items removed.")
 
     def print_items(self):
         """Print items entered from user or file"""
@@ -136,6 +141,13 @@ class Run(object):
                 print(item)
         else:
             print("No items entered")
+
+    def clear_screen(self):
+        import os
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
 
     def fract_knapsack(self):
         """Run fractional knapsack algorithm
@@ -147,13 +159,13 @@ class Run(object):
 
             print("Profit:", result['profit'])
             for item in result['knapsack']:
-                print("Fraction:", item[0], "\tItem:", item[1])
+                self.print_fract_knapsack_item(item)
         else:
             print("Invalid. No items entered")
 
+    def print_fract_knapsack_item(self, item, end="\n"):
+        print(f"Fraction: {item[0]:.2f}\tItem: {item[1]}", end=end)
+
 
 if __name__ == "__main__":
-    print("\nKNAPSACK PROGRAM")
-    run = Run()
-    run.setup()
-    run.start()
+    Run().start()
