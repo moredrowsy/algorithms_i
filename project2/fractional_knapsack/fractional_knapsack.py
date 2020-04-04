@@ -2,7 +2,6 @@
 Fractional Knapsack: Find the optimal collection of items within knapsack
 capacity with maximal profit
 """
-import copy
 
 
 class KnapsackItem(object):

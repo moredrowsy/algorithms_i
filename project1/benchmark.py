@@ -252,6 +252,7 @@ if __name__ == "__main__":
 
     while True:
         print(menu)
+        print(">", end=" ")
         choice = input()
 
         if choice != "X" and choice != "x":

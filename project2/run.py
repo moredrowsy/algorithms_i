@@ -4,6 +4,7 @@ Project 2
 - Fractional Knapsack
 - Whole Knapsack
 """
+import os
 
 from fractional_knapsack import fractional_knapsack, KnapsackItem
 
@@ -26,27 +27,29 @@ class Run(object):
 
     def setup(self):
         """Run knapsack program setup"""
-        print("\nSETUP\n-----")
+        print("SETUP\n-----")
 
         self.change_capacity()
 
         print("\nEnter items manually or from file?")
         print("1: Manually")
         print("2: From file as input.txt")
-        choice = input()
+        choice = self.get_input()
 
         while choice != "1" and choice != "2":
             print("Invalid choice")
-            choice = input()
+            choice = self.get_input()
 
         if choice == "1":
+            print()
             self.add_items()
         else:
             self.add_from_file("input.txt")
 
     def start(self):
         """Run user interactive mode"""
-        print("\nKNAPSACK PROGRAM")
+        title = "\nKNAPSACK PROGRAM\n----------------\n"
+        print(title)
         self.setup()
 
         while True:
@@ -55,12 +58,14 @@ class Run(object):
 
             print(info)
             print(self.menu)
-            choice = input()
+            choice = self.get_input()
 
             if choice == "X" or choice == "x":
                 break
 
             self.clear_screen()
+            print(title)
+
             if choice == "1":
                 self.fract_knapsack()
             elif choice == "3":
@@ -79,9 +84,8 @@ class Run(object):
     def change_capacity(self):
         """User change knapsack capacity"""
         while True:
-            print("Enter knapsack capacity: ", end="")
             try:
-                self.capacity = int(input())
+                self.capacity = int(self.get_input("Enter knapsack capacity"))
 
                 if self.capacity > 0:
                     break
@@ -93,10 +97,10 @@ class Run(object):
     def add_items(self):
         """User add KnapsackItems from user"""
         info = 0
-        print("\nFormat: [WEIGHT] [PROFIT]\nEnter X to stop")
+        print("Format: [WEIGHT] [PROFIT]\nEnter X to stop")
 
         while True:
-            info = input()
+            info = self.get_input()
             data = info.split()
 
             if info == "X" or info == "x":
@@ -115,10 +119,14 @@ class Run(object):
         """Populate KnapsackItems from file"""
         while True:
             if not filename:
-                print("Enter file name")
-                filename = input()
+                filename = self.get_input("Enter file name")
+
+            while not os.path.exists(filename):
+                print("Path does not exist.")
+                filename = self.get_input("Enter file name")
 
             with open(filename) as file:
+                print()
                 for line in file:
                     data = line.split()
                     self.items.append(KnapsackItem(
@@ -136,7 +144,7 @@ class Run(object):
     def print_items(self):
         """Print items entered from user or file"""
         if len(self.items) > 0:
-            print("\nItems entered")
+            print("Items entered")
             for item in self.items:
                 print(item)
         else:
@@ -149,19 +157,25 @@ class Run(object):
         else:
             os.system('clear')
 
+    def get_input(self, msg=None, end="\n"):
+        if msg:
+            print(msg, end=end)
+        print(">", end=" ")
+        return input()
+
     def fract_knapsack(self):
         """Run fractional knapsack algorithm
         """
         if len(self.items) > 0:
-            print("\nListing Fractional Knapsack")
+            print("Listing Fractional Knapsack")
 
             result = fractional_knapsack(self.items, self.capacity)
 
-            print("Profit:", result['profit'])
+            print(f"Profit: {result['profit']:.2f}")
             for item in result['knapsack']:
                 self.print_fract_knapsack_item(item)
         else:
-            print("Invalid. No items entered")
+            print("No items entered")
 
     def print_fract_knapsack_item(self, item, end="\n"):
         print(f"Fraction: {item[0]:.2f}\tItem: {item[1]}", end=end)

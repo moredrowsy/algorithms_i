@@ -1,7 +1,6 @@
 """
 Unit tests
 """
-import sys
 import unittest
 
 from fractional_knapsack import fractional_knapsack, KnapsackItem

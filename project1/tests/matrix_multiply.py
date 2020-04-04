@@ -1,8 +1,6 @@
 """
 Unit tests
 """
-import copy
-import random
 import unittest
 
 from matrix_multiply import matrix_multiply, strassen_multiply

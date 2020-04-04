@@ -58,7 +58,7 @@ def schedule_deadline(jobs):
 
     for i in range(len(jobs)):
         # temp copy of final jobs
-        temp_jobs = copy.deepcopy(final_jobs)
+        temp_jobs = copy.copy(final_jobs)
 
         # add next job and sort by lowest deadline
         temp_jobs.append(jobs[i])

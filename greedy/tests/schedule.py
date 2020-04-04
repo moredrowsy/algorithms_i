@@ -1,7 +1,6 @@
 """
 Unit tests
 """
-import sys
 import unittest
 
 from schedule_deadline import schedule_deadline, Job

@@ -1,7 +1,6 @@
 """
 Unit tests
 """
-import sys
 import unittest
 
 from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree

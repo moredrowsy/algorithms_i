@@ -1,7 +1,6 @@
 """
 Unit tests
 """
-import random
 import unittest
 
 from tower_of_hanoi import TowerOfHanoi
