@@ -23,3 +23,7 @@
 - Dijkstra's Shortest Path: Find the shortest path tree (SPT)
 - Deadline Scheduling
 - Huffman's Algorithm: Produces Huffman coding tree
+
+## Dynamic Algorithms
+
+- Binomial Coefficient
