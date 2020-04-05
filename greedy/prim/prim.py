@@ -7,6 +7,13 @@ def prim(weights, start_vertex):
     """
     Prim's Algorithm: Find the minimal cost of every node connected node.
     Produces the minimal spanning tree.
+    Time complexity: O(n^2)
+    Complexity breakdown:
+        fro loop outer 1: n
+        for loop outer 2: n - 1
+        for loop inner 1: n
+        for loop inner 2: n
+        total: n + (n-1)*2n = O(n^2)
 
     Parameters
     ----------
@@ -44,11 +51,8 @@ def prim(weights, start_vertex):
     """
     INF = float('inf')
     n = len(weights)
-    vnear = -1
-    nearest = []
-    distance = []
-    final_edges = []
-    total_cost = 0
+    vnear, total_cost = -1, 0
+    nearest, distance, final_edges = [], [], []
 
     # init nearest vertex as with start_vertex and
     # distance with weights[start_index]

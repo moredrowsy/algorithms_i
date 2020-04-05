@@ -6,6 +6,7 @@ Tower of Hanoi
 class TowerOfHanoi(object):
     """
     A game of Tower of Hanoi
+    Time complexity: O(2^n)
     """
 
     def __init__(self, source, helper, target,

@@ -1,5 +1,5 @@
 """
-Greedy Approach Algorithms
+Greedy Algorithms
 """
 from dijkstra import dijkstra, print_dijkstra_path
 from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree,\

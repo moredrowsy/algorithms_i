@@ -7,6 +7,13 @@ def dijkstra(weights, start_vertex):
     """
     Dijkstra's Algorithm: Find the shortest path from one starting vertex to
     every other vertices. Produces the shortest path spanning tree.
+    Time complexity: O(n^2)
+    Complexity breakdown:
+        fro loop outer 1: n
+        for loop outer 2: n - 1
+        for loop inner 1: n
+        for loop inner 2: n
+        total: n + (n-1)*2n = O(n^2)
 
     Parameters
     ----------
@@ -42,9 +49,7 @@ def dijkstra(weights, start_vertex):
     INF = float('inf')
     n = len(weights)
     vnear = -1
-    length = []
-    touch = []
-    final_edges = []
+    length, touch, final_edges = [], [], []
 
     # init nearest vertex as with start_vertex and
     # distance with weights[start_index]

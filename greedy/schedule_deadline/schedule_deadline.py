@@ -33,7 +33,13 @@ class Job(object):
 
 def schedule_deadline(jobs):
     """
-    Final a sequence of jobs that is within deadline with max profits
+    Final a sequence of jobs that is within deadline with max profits.
+    Time complexity: O(n^2)
+    Complexity breakdown:
+        sort: nlogn
+        for loop: n
+        feasibility check: n
+        total: nlogn + n*n = O(n^2)
 
     Parameters
     ----------

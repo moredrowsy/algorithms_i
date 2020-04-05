@@ -15,7 +15,7 @@ class Run(object):
     """
     capacity = -1
     items = []
-    menu = "\nOPTIONS\n"\
+    menu = "OPTIONS\n"\
         "1: List fractional knapsack items\n"\
         "2: List whole knapsack items\n"\
         "3. List entered items\n"\
@@ -23,7 +23,7 @@ class Run(object):
         "5: Add items manually\n"\
         "6: Add items from file\n"\
         "7. Clear all entered items\n"\
-        "X: Exit\n"
+        "X: Exit"
 
     def setup(self):
         """Run knapsack program setup"""
@@ -34,11 +34,11 @@ class Run(object):
         print("\nEnter items manually or from file?")
         print("1: Manually")
         print("2: From file as input.txt")
-        choice = self.get_input()
+        choice = self.input()
 
         while choice != "1" and choice != "2":
             print("Invalid choice")
-            choice = self.get_input()
+            choice = self.input()
 
         if choice == "1":
             print()
@@ -56,9 +56,9 @@ class Run(object):
             info = f"\nCAPACITY: {self.capacity}\t"
             info += f"ITEMS ENTERED: {len(self.items)} items"
 
-            print(info)
-            print(self.menu)
-            choice = self.get_input()
+            print(info, end="\n\n")
+            print(self.menu, end="\n")
+            choice = self.input()
 
             if choice == "X" or choice == "x":
                 break
@@ -85,8 +85,7 @@ class Run(object):
         """User change knapsack capacity"""
         while True:
             try:
-                self.capacity = int(self.get_input("Enter knapsack capacity"))
-
+                self.capacity = int(self.input("Enter knapsack capacity"))
                 if self.capacity > 0:
                     break
                 else:
@@ -100,7 +99,7 @@ class Run(object):
         print("Format: [WEIGHT] [PROFIT]\nEnter X to stop")
 
         while True:
-            info = self.get_input()
+            info = self.input()
             data = info.split()
 
             if info == "X" or info == "x":
@@ -119,11 +118,11 @@ class Run(object):
         """Populate KnapsackItems from file"""
         while True:
             if not filename:
-                filename = self.get_input("Enter file name")
+                filename = self.input("Enter file name")
 
             while not os.path.exists(filename):
                 print("Path does not exist.")
-                filename = self.get_input("Enter file name")
+                filename = self.input("Enter file name")
 
             with open(filename) as file:
                 print()
@@ -157,11 +156,10 @@ class Run(object):
         else:
             os.system('clear')
 
-    def get_input(self, msg=None, end="\n"):
+    def input(self, msg=None, end="\n"):
         if msg:
             print(msg, end=end)
-        print(">", end=" ")
-        return input()
+        return input("> ")
 
     def fract_knapsack(self):
         """Run fractional knapsack algorithm
