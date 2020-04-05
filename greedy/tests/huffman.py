@@ -8,7 +8,7 @@ from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree
 
 class TestHuffman(unittest.TestCase):
     """
-    Tests Huffman's ALgorithm
+    Tests Huffman's Algorithm
     """
     # class attributes
 

@@ -6,7 +6,7 @@ import unittest
 from tower_of_hanoi import TowerOfHanoi
 
 
-class TestSort(unittest.TestCase):
+class TestTowerOfHanoi(unittest.TestCase):
     """
     Tests for Tower of Hanoi
     """

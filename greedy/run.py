@@ -15,15 +15,15 @@ class Run(object):
 
     def prim_algorithm(self):
         """Run Prim's Algorithm on various problems"""
-        INF = float('inf')
+        inf = float('inf')
 
         # problem 1
         weights = [
-            [0, 1, 3, INF, INF],
-            [1, 0, 3, 6, INF],
+            [0, 1, 3, inf, inf],
+            [1, 0, 3, 6, inf],
             [3, 3, 0, 4, 2],
-            [INF, 6, 4, 0, 5],
-            [INF, INF, 2, 5, 0],
+            [inf, 6, 4, 0, 5],
+            [inf, inf, 2, 5, 0],
         ]
 
         print(f"\nWeights matrix")
@@ -38,14 +38,14 @@ class Run(object):
 
         # problem 2
         weights = [
-            [0, 13, 3, 22, 8, INF, INF, INF],
-            [13, 0, INF, 9, INF, INF, INF, INF],
-            [3, INF, 0, INF, 9, INF, INF, INF],
-            [22, 9, INF, 0, INF, 10, INF, INF],
-            [8, INF, 9, INF, 0, 15, 10, INF],
-            [INF, INF, INF, 10, 15, 0, INF, 12],
-            [INF, INF, INF, INF, 10, INF, 0, INF],
-            [INF, INF, INF, INF, 12, INF, INF, 0]
+            [0, 13, 3, 22, 8, inf, inf, inf],
+            [13, 0, inf, 9, inf, inf, inf, inf],
+            [3, inf, 0, inf, 9, inf, inf, inf],
+            [22, 9, inf, 0, inf, 10, inf, inf],
+            [8, inf, 9, inf, 0, 15, 10, inf],
+            [inf, inf, inf, 10, 15, 0, inf, 12],
+            [inf, inf, inf, inf, 10, inf, 0, inf],
+            [inf, inf, inf, inf, 12, inf, inf, 0]
         ]
 
         print(f"\nWeights matrix")
@@ -60,10 +60,10 @@ class Run(object):
 
         # problem 3
         weights = [
-            [0, INF, 72, 50, 90, 35],
-            [INF, 0, 71, 70, 73, 75],
-            [72, 71, 0, INF, 77, 90],
-            [50, 70, INF, 0, 60, 40],
+            [0, inf, 72, 50, 90, 35],
+            [inf, 0, 71, 70, 73, 75],
+            [72, 71, 0, inf, 77, 90],
+            [50, 70, inf, 0, 60, 40],
             [90, 73, 77, 60, 0, 80],
             [35, 75, 90, 40, 80, 0]
         ]
@@ -80,15 +80,15 @@ class Run(object):
 
     def dijkstra_shortest_path(self):
         """Run Dijkstra's Algorithm on various problems"""
-        INF = float('inf')
+        inf = float('inf')
 
         # problem 1
         weights = [
             [0, 7, 4, 6, 1],
-            [INF, 0, INF, INF, INF],
-            [INF, 2, 0, 5, INF],
-            [INF, 3, INF, 0, INF],
-            [INF, INF, INF, 1, 0]
+            [inf, 0, inf, inf, inf],
+            [inf, 2, 0, 5, inf],
+            [inf, 3, inf, 0, inf],
+            [inf, inf, inf, 1, 0]
         ]
 
         print(f"\nWeights matrix")
@@ -107,12 +107,12 @@ class Run(object):
 
         # problem 2
         weights = [
-            [0, 50, 10, INF, 45, INF],
-            [INF, 0, 15, INF, 10, INF],
-            [20, INF, 0, 15, INF, INF],
-            [INF, 20, INF, 0, 35, INF],
-            [INF, INF, INF, 30, 0, 20],
-            [INF, INF, INF, 3, INF, 0]
+            [0, 50, 10, inf, 45, inf],
+            [inf, 0, 15, inf, 10, inf],
+            [20, inf, 0, 15, inf, inf],
+            [inf, 20, inf, 0, 35, inf],
+            [inf, inf, inf, 30, 0, 20],
+            [inf, inf, inf, 3, inf, 0]
         ]
 
         print(f"\nWeights matrix")
@@ -131,10 +131,10 @@ class Run(object):
 
         # problem 3
         weights = [
-            [0, INF, 72, 50, 90, 35],
-            [INF, 0, 71, 70, 73, 75],
-            [72, 71, 0, INF, 77, 90],
-            [50, 70, INF, 0, 60, 40],
+            [0, inf, 72, 50, 90, 35],
+            [inf, 0, 71, 70, 73, 75],
+            [72, 71, 0, inf, 77, 90],
+            [50, 70, inf, 0, 60, 40],
             [90, 73, 77, 60, 0, 80],
             [35, 75, 90, 40, 80, 0]
         ]

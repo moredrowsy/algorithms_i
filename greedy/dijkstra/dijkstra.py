@@ -48,7 +48,7 @@ def dijkstra(weights, source):
     | 2
     Z
     """
-    INF = float('inf')
+    inf = float('inf')
     n = len(weights)
     vnear = -1
     length, touch, final_edges = [], [], []
@@ -63,7 +63,7 @@ def dijkstra(weights, source):
             touch.append(source)
 
     for _ in range(n - 1):
-        min_dist = INF
+        min_dist = inf
 
         # find shorter path
         for i in range(n):

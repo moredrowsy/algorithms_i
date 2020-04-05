@@ -52,7 +52,7 @@ def prim(weights, source=0):
             | 1
             Z
     """
-    INF = float('inf')
+    inf = float('inf')
     n = len(weights)
     vnear, total_cost = -1, 0
     nearest, distance, final_edges = [], [], []
@@ -68,7 +68,7 @@ def prim(weights, source=0):
 
     # repeat for n-1 times
     for _ in range(n - 1):
-        min_dist = INF
+        min_dist = inf
 
         # find shorter distance
         for i in range(n):

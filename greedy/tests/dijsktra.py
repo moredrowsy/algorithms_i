@@ -8,7 +8,7 @@ from dijkstra import dijkstra
 
 class TestDijkstra(unittest.TestCase):
     """
-    Tests Dijsktra's ALgorithm
+    Tests Dijsktra's Algorithm
     """
     # class attributes
 
@@ -18,13 +18,13 @@ class TestDijkstra(unittest.TestCase):
         """
 
     def test_problem1(self):
-        INF = float('inf')
+        inf = float('inf')
         weights = [
             [0, 7, 4, 6, 1],
-            [INF, 0, INF, INF, INF],
-            [INF, 2, 0, 5, INF],
-            [INF, 3, INF, 0, INF],
-            [INF, INF, INF, 1, 0]
+            [inf, 0, inf, inf, inf],
+            [inf, 2, 0, 5, inf],
+            [inf, 3, inf, 0, inf],
+            [inf, inf, inf, 1, 0]
         ]
         solution_set = [
             (0, 4),
@@ -43,14 +43,14 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(result['touch'], touch)
 
     def test_problem2(self):
-        INF = float('inf')
+        inf = float('inf')
         weights = [
-            [0, 50, 10, INF, 45, INF],
-            [INF, 0, 15, INF, 10, INF],
-            [20, INF, 0, 15, INF, INF],
-            [INF, 20, INF, 0, 35, INF],
-            [INF, INF, INF, 30, 0, 20],
-            [INF, INF, INF, 3, INF, 0]
+            [0, 50, 10, inf, 45, inf],
+            [inf, 0, 15, inf, 10, inf],
+            [20, inf, 0, 15, inf, inf],
+            [inf, 20, inf, 0, 35, inf],
+            [inf, inf, inf, 30, 0, 20],
+            [inf, inf, inf, 3, inf, 0]
         ]
         solution_set = [
             (0, 2),
@@ -70,12 +70,12 @@ class TestDijkstra(unittest.TestCase):
         self.assertEqual(result['touch'], touch)
 
     def test_problem3(self):
-        INF = float('inf')
+        inf = float('inf')
         weights = [
-            [0, INF, 72, 50, 90, 35],
-            [INF, 0, 71, 70, 73, 75],
-            [72, 71, 0, INF, 77, 90],
-            [50, 70, INF, 0, 60, 40],
+            [0, inf, 72, 50, 90, 35],
+            [inf, 0, 71, 70, 73, 75],
+            [72, 71, 0, inf, 77, 90],
+            [50, 70, inf, 0, 60, 40],
             [90, 73, 77, 60, 0, 80],
             [35, 75, 90, 40, 80, 0]
         ]

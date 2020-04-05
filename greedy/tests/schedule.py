@@ -8,7 +8,7 @@ from schedule_deadline import schedule_deadline, Job
 
 class TestSchedule(unittest.TestCase):
     """
-    Tests Scheduling Deadline's ALgorithm
+    Tests Scheduling Deadline's Algorithm
     """
     # class attributes
 

@@ -7,7 +7,7 @@ from matrix_multiply import matrix_multiply, strassen_multiply
 from matrix_multiply.matrix_multiply import *
 
 
-class TestSort(unittest.TestCase):
+class TestMatrixMultiply(unittest.TestCase):
     """
     Tests for Matrix Multiplication
     """
