@@ -7,6 +7,7 @@ def dijkstra(weights, source):
     """
     Dijkstra's Algorithm: Find the shortest path from one source node to
     every other nodes. Produces the shortest path spanning tree.
+
     Time complexity: O(n^2)
     Complexity breakdown:
         fro loop outer 1: n
@@ -17,8 +18,8 @@ def dijkstra(weights, source):
 
     Parameters
     ----------
-    weights (array): 2D array of weights between edges. Connected, weighted,
-        directed graph of n >= 2.
+    weights (2D array): Adjacency matrix. Connected, weighted, and directed
+        graph of n >= 2.
     source (int): Starting index
 
     Return
@@ -87,13 +88,30 @@ def dijkstra(weights, source):
 
 
 def print_dijkstra_path(paths, destination):
-    """Wrapper for print_dijkstra"""
+    """
+    Wrapper for print_dijkstra
+
+    Parameters
+    ----------
+    paths (array): Array from Dijkstra's last visited nodes
+    destination (int): Destination node
+
+    NOTES
+    -----
+    source node is assumed from dijkstra's algorithm
+    """
     print_dijkstra(paths, destination)
     print()
 
 
 def print_dijkstra(paths, destination):
     """
+    Recursively follow the paths array to produce the dijkstra path
+
+    Parameters
+    ----------
+    paths (array): Array from Dijkstra's last visited nodes
+    destination (int): Destination node
     """
     if paths[destination] != destination:
         print_dijkstra(paths, paths[destination])

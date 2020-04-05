@@ -76,6 +76,7 @@ def huffman_nodes(string):
 def huffman_tree(nodes):
     """
     Produces a Huffman coding tree.
+
     Time complexity: O(nlogn)
     Complexity breakdown:
         heapq.heapify: logn

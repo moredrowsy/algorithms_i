@@ -1,12 +1,13 @@
 """
-Prim's Algorithm: Find the minimal spanning tree to every node
+Prim's Algorithm: Find minimal spanning tree from each node to every other nodes
 """
 
 
-def prim(weights, source):
+def prim(weights, source=0):
     """
     Prim's Algorithm: Find the minimal cost of every node connected node.
     Produces the minimal spanning tree.
+
     Time complexity: O(n^2)
     Complexity breakdown:
         fro loop outer 1: n
@@ -17,8 +18,8 @@ def prim(weights, source):
 
     Parameters
     ----------
-    weights (array): 2D array of weights between edges. Connected, weighted,
-        and undirected graph of n >= 2.
+    weights (2D array): Adjacency matrix. Connected, weighted, and undirected
+        graph of n >= 2.
     source (int): Starting index. No effect on MST total cost but the
         MST tree might be differennt for edges with same weight.
 

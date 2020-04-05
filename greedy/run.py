@@ -16,6 +16,7 @@ class Run(object):
     def prim_algorithm(self):
         """Run Prim's Algorithm on various problems"""
         INF = float('inf')
+
         # problem 1
         weights = [
             [0, 1, 3, INF, INF],
@@ -25,20 +26,13 @@ class Run(object):
             [INF, INF, 2, 5, 0],
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 0
         result = prim(weights, source_node)
 
-        print("\nMST (Prim's Algorithm)")
+        print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
         print("Cost:", result['cost'])
 
@@ -54,20 +48,13 @@ class Run(object):
             [INF, INF, INF, INF, 12, INF, INF, 0]
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 0
         result = prim(weights, source_node)
 
-        print("\nMST (Prim's Algorithm)")
+        print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
         print("Cost:", result['cost'])
 
@@ -81,20 +68,13 @@ class Run(object):
             [35, 75, 90, 40, 80, 0]
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 3
         result = prim(weights, source_node)
 
-        print("\nMST (Prim's Algorithm)")
+        print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
         print("Cost:", result['cost'])
 
@@ -111,15 +91,8 @@ class Run(object):
             [INF, INF, INF, 1, 0]
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 0
         result = dijkstra(weights, source_node)
@@ -142,15 +115,8 @@ class Run(object):
             [INF, INF, INF, 3, INF, 0]
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 0
         result = dijkstra(weights, source_node)
@@ -173,15 +139,8 @@ class Run(object):
             [35, 75, 90, 40, 80, 0]
         ]
 
-        print(f"\nWeights matrix:")
-        for i in range(len(weights)):
-            for j in range(len(weights[i])):
-                if weights[i][j] == INF:
-                    print("INF", end=" ")
-                else:
-                    print(f"{weights[i][j]}", end=" ")
-
-            print()
+        print(f"\nWeights matrix")
+        print_matrix(weights)
 
         source_node = 4
         result = dijkstra(weights, source_node)
@@ -352,6 +311,16 @@ class Run(object):
         print("Encoded str2", encoded_str2)
         print("Decoded str1", decoded_str1)
         print("Decoded str2", decoded_str2)
+
+
+def print_matrix(A, pad_size=3, sep=" ", end="\n"):
+    for i in range(len(A)):
+        for j in range(len(A[i])):
+            print(f"{(A[i][j]):>{pad_size}}", end=sep)
+        if i == len(A) - 1:
+            print(end, end="")
+        else:
+            print()
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ Binomial Coefficient: Find the coefficient given with n and k
 def binomial_coefficient(n, k):
     """
     Calculate binomial coefficient via dynamic approach
+
     Time complexity: O(nk):
     Complexity breakdown:
         n x k array: nk
@@ -23,7 +24,7 @@ def binomial_coefficient(n, k):
     int: binomial coefficient of n and k
     """
     # create coefficient array of [0...n][0...k]
-    C = [[0 for _ in range(k + 1)] for i in range(n + 1)]
+    C = [[0 for j in range(k + 1)] for i in range(n + 1)]
 
     # calculate binomial coefficients in array
     for i in range(n + 1):
