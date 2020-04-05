@@ -41,7 +41,7 @@ def floyd(weights):
 
 def print_floyd_path(paths, source, destination):
     """
-    Wrapper for floyd_path
+    Prints Floyd's path from source to destination.
 
     Parameters
     ----------
@@ -49,31 +49,22 @@ def print_floyd_path(paths, source, destination):
     source (int): Starting node
     destination (int): Ending node
     """
-    edges = []
-    floyd_path(paths, source, destination, edges)
-
-    for edge in edges:
-        print(f"{edge[0]} -> ", end="")
-    print(edges[-1][1])
+    print(f"{source} -> ", end="")
+    print_floyd_int_path(paths, source, destination)
+    print(f"{destination}")
 
 
-def floyd_path(paths, source, destination, edges):
+def print_floyd_int_path(paths, source, destination):
     """
-    Produces a list of edges for Floyd's paths recursively
+    Prints intermediate nodes from Floyd's paths array.
 
     Parameters
     ----------
     paths (2D array): Array from Floyd's last visited nodes
     source (int): Starting node
     destination (int): Ending node
-    edges (array): 1D array for adding edges by reference
-
-    Return
-    ------
-    edges (array): A list of edges are returned by reference
     """
     if paths[source][destination] != float('inf'):
-        edges.append((source, paths[source][destination]))
-        floyd_path(paths, source, paths[source][destination], edges)
-        floyd_path(paths, paths[source][destination], destination, edges)
-        edges.append((paths[source][destination], destination))
+        print_floyd_int_path(paths, source, paths[source][destination])
+        print(f"{paths[source][destination]} -> ", end="")
+        print_floyd_int_path(paths, paths[source][destination], destination)

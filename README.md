@@ -27,3 +27,4 @@
 ## Dynamic Algorithms
 
 - Binomial Coefficient
+- Floyd's Algorithm: Finding the shortest paths array

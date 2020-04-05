@@ -115,6 +115,6 @@ def print_dijkstra(paths, destination):
     """
     if paths[destination] != destination:
         print_dijkstra(paths, paths[destination])
-        print("->", end=" ")
+        print(" -> ", end="")
 
-    print(destination, end=" ")
+    print(destination, end="")
