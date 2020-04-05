@@ -36,8 +36,8 @@ class TestDijkstra(unittest.TestCase):
             0, 3, 0, 4, 0
         ]
 
-        start_vertex = 0
-        result = dijkstra(weights, start_vertex)
+        source_node = 0
+        result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['touch'], touch)
@@ -63,8 +63,8 @@ class TestDijkstra(unittest.TestCase):
             0, 3, 0, 2, 0, 4
         ]
 
-        start_vertex = 0
-        result = dijkstra(weights, start_vertex)
+        source_node = 0
+        result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['touch'], touch)
@@ -90,8 +90,8 @@ class TestDijkstra(unittest.TestCase):
             4, 4, 4, 4, 4, 4
         ]
 
-        start_vertex = 4
-        result = dijkstra(weights, start_vertex)
+        source_node = 4
+        result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['touch'], touch)

@@ -35,8 +35,8 @@ class Run(object):
 
             print()
 
-        start_vertex = 0
-        result = prim(weights, start_vertex)
+        source_node = 0
+        result = prim(weights, source_node)
 
         print("\nMST (Prim's Algorithm)")
         print("Edges:", result['edges'])
@@ -64,8 +64,8 @@ class Run(object):
 
             print()
 
-        start_vertex = 0
-        result = prim(weights, start_vertex)
+        source_node = 0
+        result = prim(weights, source_node)
 
         print("\nMST (Prim's Algorithm)")
         print("Edges:", result['edges'])
@@ -91,8 +91,8 @@ class Run(object):
 
             print()
 
-        start_vertex = 3
-        result = prim(weights, start_vertex)
+        source_node = 3
+        result = prim(weights, source_node)
 
         print("\nMST (Prim's Algorithm)")
         print("Edges:", result['edges'])
@@ -121,10 +121,10 @@ class Run(object):
 
             print()
 
-        start_vertex = 0
-        result = dijkstra(weights, start_vertex)
+        source_node = 0
+        result = dijkstra(weights, source_node)
 
-        print("\nDijkstra's Short Path from source", start_vertex)
+        print("\nDijkstra's Short Path from source", source_node)
         print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 
@@ -152,10 +152,10 @@ class Run(object):
 
             print()
 
-        start_vertex = 0
-        result = dijkstra(weights, start_vertex)
+        source_node = 0
+        result = dijkstra(weights, source_node)
 
-        print("\nDijkstra's Short Path from source", start_vertex)
+        print("\nDijkstra's Short Path from source", source_node)
         print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 
@@ -183,10 +183,10 @@ class Run(object):
 
             print()
 
-        start_vertex = 4
-        result = dijkstra(weights, start_vertex)
+        source_node = 4
+        result = dijkstra(weights, source_node)
 
-        print("\nDijkstra's Short Path from source", start_vertex)
+        print("\nDijkstra's Short Path from source", source_node)
         print("Edges:", result['edges'])
         print("Touch:", result['touch'])
 

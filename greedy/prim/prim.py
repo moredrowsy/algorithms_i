@@ -3,7 +3,7 @@ Prim's Algorithm: Find the minimal spanning tree to every node
 """
 
 
-def prim(weights, start_vertex):
+def prim(weights, source):
     """
     Prim's Algorithm: Find the minimal cost of every node connected node.
     Produces the minimal spanning tree.
@@ -17,8 +17,10 @@ def prim(weights, start_vertex):
 
     Parameters
     ----------
-    weights (array): 2D array of weights between edges
-    start_vertex (int): Starting index
+    weights (array): 2D array of weights between edges. Connected, weighted,
+        and undirected graph of n >= 2.
+    source (int): Starting index. No effect on MST total cost but the
+        MST tree might be differennt for edges with same weight.
 
     Return
     ------
@@ -26,15 +28,15 @@ def prim(weights, start_vertex):
 
     NOTES
     -----
-    - vnear: Nearest vertex from the index at distance[i] to nearest[vnear].
-             Tells us the previous vertex that has the smallest distance at
+    - vnear: Nearest node from the index at distance[i] to nearest[vnear].
+             Tells us the previous node that has the smallest distance at
              distance[i].
-    - nearest[]: Has the "nearest" vertices for the corresponding distances
+    - nearest[]: Has the "nearest" nodes for the corresponding distances
                  in distance[i].
     - distance[]: Has the smallest distances at each iteration.
-                  nearest[vnear] will tell us which previous vertex correspond
+                  nearest[vnear] will tell us which previous node correspond
                   to distance[i].
-    - final_edges[]: the resultant array of edges that produces the minimal
+    - final_edges[]: Resultant array of edges that produces the minimal
                      spanning tree (MST).
 
     Algorithm finishes when distance[] is populated with all -1
@@ -54,24 +56,23 @@ def prim(weights, start_vertex):
     vnear, total_cost = -1, 0
     nearest, distance, final_edges = [], [], []
 
-    # init nearest vertex as with start_vertex and
-    # distance with weights[start_index]
+    # init nearest with source and distance from weights[source]
     for i in range(n):
-        if i == start_vertex:
+        if i == source:
             nearest.append(-1)
             distance.append(-1)
         else:
-            nearest.append(start_vertex)
-            distance.append(weights[start_vertex][i])
+            nearest.append(source)
+            distance.append(weights[source][i])
 
     # repeat for n-1 times
     for _ in range(n - 1):
-        min = INF
+        min_dist = INF
 
         # find shorter distance
         for i in range(n):
-            if distance[i] < min and distance[i] >= 0:
-                min = distance[i]
+            if distance[i] < min_dist and distance[i] >= 0:
+                min_dist = distance[i]
                 vnear = i
 
         # add to final set

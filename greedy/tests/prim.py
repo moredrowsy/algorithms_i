@@ -34,8 +34,8 @@ class TestPrim(unittest.TestCase):
         ]
         total_cost = 10
 
-        start_vertex = 0
-        result = prim(weights, start_vertex)
+        source_node = 0
+        result = prim(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['cost'], total_cost)
@@ -63,8 +63,8 @@ class TestPrim(unittest.TestCase):
         ]
         total_cost = 65
 
-        start_vertex = 0
-        result = prim(weights, start_vertex)
+        source_node = 0
+        result = prim(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['cost'], total_cost)
@@ -88,8 +88,8 @@ class TestPrim(unittest.TestCase):
         ]
         total_cost = 276
 
-        start_vertex = 3
-        result = prim(weights, start_vertex)
+        source_node = 3
+        result = prim(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['cost'], total_cost)

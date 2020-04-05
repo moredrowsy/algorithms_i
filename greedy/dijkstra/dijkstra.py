@@ -3,10 +3,10 @@ Dijkstra's Algorithm: Find shortest path tree from single source
 """
 
 
-def dijkstra(weights, start_vertex):
+def dijkstra(weights, source):
     """
-    Dijkstra's Algorithm: Find the shortest path from one starting vertex to
-    every other vertices. Produces the shortest path spanning tree.
+    Dijkstra's Algorithm: Find the shortest path from one source node to
+    every other nodes. Produces the shortest path spanning tree.
     Time complexity: O(n^2)
     Complexity breakdown:
         fro loop outer 1: n
@@ -17,8 +17,9 @@ def dijkstra(weights, start_vertex):
 
     Parameters
     ----------
-    weights (array): 2D array of weights between edges
-    start_vertex (int): Starting index
+    weights (array): 2D array of weights between edges. Connected, weighted,
+        directed graph of n >= 2.
+    source (int): Starting index
 
     Return
     ------
@@ -26,12 +27,12 @@ def dijkstra(weights, start_vertex):
 
     NOTES
     -----
-    - vnear: the nearest vertex from index at length[i] to touch[vnear].
-           Tells us which previous vertex has the smallest length at length[i].
+    - vnear: the nearest node from index at length[i] to touch[vnear].
+           Tells us which previous node has the smallest length at length[i].
     - length[]: Has the total legnth of the current iteration
     - touch[]: Has the previous node at corresponding to the total length in
              length[i]. Use touch[vnear] to get previous node.
-    - final_edges[]: the resultant array of edges that produces the shortest
+    - final_edges[]: Resultant array of edges that produces the shortest
                      path tree.
 
     Algorithm finishes when length[] is populated with all -1
@@ -51,23 +52,22 @@ def dijkstra(weights, start_vertex):
     vnear = -1
     length, touch, final_edges = [], [], []
 
-    # init nearest vertex as with start_vertex and
-    # distance with weights[start_index]
+    # init nearest with source and distance from weights[source]
     for i in range(n):
-        if i == start_vertex:
+        if i == source:
             length.append(-1)
-            touch.append(start_vertex)
+            touch.append(source)
         else:
-            length.append(weights[start_vertex][i])
-            touch.append(start_vertex)
+            length.append(weights[source][i])
+            touch.append(source)
 
     for _ in range(n - 1):
-        min = INF
+        min_dist = INF
 
         # find shorter path
         for i in range(n):
-            if length[i] < min and length[i] >= 0:
-                min = length[i]
+            if length[i] < min_dist and length[i] >= 0:
+                min_dist = length[i]
                 vnear = i
 
         # add to final set
