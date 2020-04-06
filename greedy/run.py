@@ -29,8 +29,8 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 0
-        result = prim(weights, source_node)
+        source = 0
+        result = prim(weights, source)
 
         print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
@@ -51,8 +51,8 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 0
-        result = prim(weights, source_node)
+        source = 0
+        result = prim(weights, source)
 
         print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
@@ -71,8 +71,8 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 3
-        result = prim(weights, source_node)
+        source = 3
+        result = prim(weights, source)
 
         print("\nPrim's Algorithm (MST)")
         print("Edges:", result['edges'])
@@ -94,16 +94,16 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 0
-        result = dijkstra(weights, source_node)
+        source = 0
+        result = dijkstra(weights, source)
 
-        print("\nDijkstra's Short Path from source", source_node)
+        print("\nDijkstra's Short Path from source", source)
         print("Edges:", result['edges'])
-        print("Touch:", result['touch'])
+        print("Predecessor:", result['predecessor'])
 
-        destination = 1
-        print("Print path to destination", destination)
-        print_dijkstra_path(result['touch'], destination)
+        target = 1
+        print("Print path to target", target)
+        print_dijkstra_path(result['predecessor'], target)
 
         # problem 2
         weights = [
@@ -118,16 +118,16 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 0
-        result = dijkstra(weights, source_node)
+        source = 0
+        result = dijkstra(weights, source)
 
-        print("\nDijkstra's Short Path from source", source_node)
+        print("\nDijkstra's Short Path from source", source)
         print("Edges:", result['edges'])
-        print("Touch:", result['touch'])
+        print("Predecessor:", result['predecessor'])
 
-        destination = 5
-        print("Print path to destination", destination)
-        print_dijkstra_path(result['touch'], destination)
+        target = 5
+        print("Print path to target", target)
+        print_dijkstra_path(result['predecessor'], target)
 
         # problem 3
         weights = [
@@ -142,16 +142,16 @@ class Run(object):
         print(f"\nWeights matrix")
         print_matrix(weights)
 
-        source_node = 4
-        result = dijkstra(weights, source_node)
+        source = 4
+        result = dijkstra(weights, source)
 
-        print("\nDijkstra's Short Path from source", source_node)
+        print("\nDijkstra's Short Path from source", source)
         print("Edges:", result['edges'])
-        print("Touch:", result['touch'])
+        print("Predecessor:", result['predecessor'])
 
-        destination = 3
-        print("Print path to destination", destination)
-        print_dijkstra_path(result['touch'], destination)
+        target = 3
+        print("Print path to target", target)
+        print_dijkstra_path(result['predecessor'], target)
 
     def scheduling(self):
         """Run Scheduling Deadline's Algorithm on various problems"""
@@ -299,6 +299,38 @@ class Run(object):
 
         str1 = "DEED"
         str2 = "MUCK"
+
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
+
+        print("Str1:", str1)
+        print("Str2:", str2)
+        print("Encoded str1", encoded_str1)
+        print("Encoded str2", encoded_str2)
+        print("Decoded str1", decoded_str1)
+        print("Decoded str2", decoded_str2)
+
+        # problem 4
+        nodes = [
+            HuffmanNode('a', 16),
+            HuffmanNode('b', 5),
+            HuffmanNode('c', 12),
+            HuffmanNode('d', 17),
+            HuffmanNode('e', 10),
+            HuffmanNode('f', 25)
+        ]
+
+        print("\nHeapified nodes:", end=" ")
+        print(list(nodes))
+
+        root = huffman_tree(nodes)
+        print("Huffman root:", root)
+        print_huffman_tree(root)
+
+        str1 = "fade"
+        str2 = "efface"
 
         encoded_str1 = huffman_encode(root, str1)
         encoded_str2 = huffman_encode(root, str2)

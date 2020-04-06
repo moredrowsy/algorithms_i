@@ -107,6 +107,35 @@ class TestHuffman(unittest.TestCase):
         self.assertEqual(decoded_str1, str1)
         self.assertEqual(decoded_str2, str2)
 
+    def test_problem4(self):
+        nodes = [
+            HuffmanNode('a', 16),
+            HuffmanNode('b', 5),
+            HuffmanNode('c', 12),
+            HuffmanNode('d', 17),
+            HuffmanNode('e', 10),
+            HuffmanNode('f', 25)
+        ]
+        root_answer = HuffmanNode(None, 85)
+
+        root = huffman_tree(nodes)
+        self.assertEqual(root, root_answer)
+
+        str1 = "fade"
+        str2 = "efface"
+        encoded_answer1 = "1000011111"
+        encoded_answer2 = "11111010001101111"
+
+        encoded_str1 = huffman_encode(root, str1)
+        encoded_str2 = huffman_encode(root, str2)
+        decoded_str1 = huffman_decode(root, encoded_str1)
+        decoded_str2 = huffman_decode(root, encoded_str2)
+
+        self.assertEqual(encoded_str1, encoded_answer1)
+        self.assertEqual(encoded_str2, encoded_answer2)
+        self.assertEqual(decoded_str1, str1)
+        self.assertEqual(decoded_str2, str2)
+
 
 if __name__ == "__main__":
     unittest.main()

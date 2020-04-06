@@ -7,7 +7,7 @@ import copy
 def floyd(weights):
     """
     Floyd's Algorithm: Find the shortest paths from every node to every other
-    nodes. Produces the shortest paths 2D array.
+    nodes. Produces intermediate nodes array from path source to target.
 
     Time complexity: O(n^3)
     Complexity breakdown:
@@ -23,48 +23,48 @@ def floyd(weights):
 
     Return
     ------
-    {distances: array, paths: array}
+    {distances: array, intermediate: array}
     """
     n = len(weights)
     dist = copy.deepcopy(weights)
-    paths = [[float('inf') for j in range(n)] for i in range(n)]
+    intermediate = [[float('inf') for j in range(n)] for i in range(n)]
 
     for k in range(n):
         for i in range(n):
             for j in range(n):
                 if dist[i][k] + dist[k][j] < dist[i][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
-                    paths[i][j] = k
+                    intermediate[i][j] = k
 
-    return {"distances": dist, "paths": paths}
+    return {'distances': dist, 'intermediate': intermediate}
 
 
-def print_floyd_path(paths, source, destination):
+def print_floyd_path(intermediate, source, target):
     """
-    Prints Floyd's path from source to destination.
+    Prints Floyd's path from source to target.
 
     Parameters
     ----------
-    paths (2D array): Array from Floyd's last visited nodes
-    source (int): Starting node
-    destination (int): Ending node
+    intermediate (2D array): Array of intermediate nodes in paths
+    source (int): Origin node
+    target (int): Destination node
     """
     print(f"{source} -> ", end="")
-    print_floyd_int_path(paths, source, destination)
-    print(f"{destination}")
+    print_intermediate(intermediate, source, target)
+    print(f"{target}")
 
 
-def print_floyd_int_path(paths, source, destination):
+def print_intermediate(intermediate, source, target):
     """
-    Prints intermediate nodes from Floyd's paths array.
+    Prints intermediate nodes from Floyd's intermediate array.
 
     Parameters
     ----------
-    paths (2D array): Array from Floyd's last visited nodes
-    source (int): Starting node
-    destination (int): Ending node
+    intermediate (2D array): Array of intermediate nodes in paths
+    source (int): Origin node
+    target (int): Destination node
     """
-    if paths[source][destination] != float('inf'):
-        print_floyd_int_path(paths, source, paths[source][destination])
-        print(f"{paths[source][destination]} -> ", end="")
-        print_floyd_int_path(paths, paths[source][destination], destination)
+    if intermediate[source][target] != float('inf'):
+        print_intermediate(intermediate, source, intermediate[source][target])
+        print(f"{intermediate[source][target]} -> ", end="")
+        print_intermediate(intermediate, intermediate[source][target], target)

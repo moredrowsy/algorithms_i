@@ -24,9 +24,9 @@ class TowerOfHanoi(object):
         tgt_label (string): Label for target peg
         """
         self.size = len(source)
-        self.source = {"label": src_label, "array": source}
-        self.helper = {"label": hlp_label, "array": helper}
-        self.target = {"label": tgt_label, "array": target}
+        self.source = {'label': src_label, 'array': source}
+        self.helper = {'label': hlp_label, 'array': helper}
+        self.target = {'label': tgt_label, 'array': target}
 
     def solve(self, display=False):
         """
@@ -65,12 +65,11 @@ class TowerOfHanoi(object):
             self._move_disks(disks - 1, source, helper, target, display)
 
             # add disk from source to target
-            target["array"].append(source["array"].pop())
+            target['array'].append(source['array'].pop())
 
             if display:
-                print(
-                    f"\nMoving {target['array'][-1]} "
-                    f"from {source['label']} to {target['label']}")
+                print(f"\nMoving {target['array'][-1]} "
+                      f"from {source['label']} to {target['label']}")
                 self.print()
 
             # move disks-1 from helper to target

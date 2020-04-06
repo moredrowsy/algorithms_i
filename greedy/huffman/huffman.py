@@ -158,7 +158,7 @@ def huffman_map(root):
 
     Return
     ------
-    {'letters': encoded string}: A dictionary of letters to encoded strings
+    {char: encoded string}: A dictionary of letters to encoded strings
     """
     huffmap = {}
     string = ''

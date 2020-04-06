@@ -32,7 +32,7 @@ class TestDijkstra(unittest.TestCase):
             (0, 2),
             (3, 1)
         ]
-        touch = [
+        predecessor = [
             0, 3, 0, 4, 0
         ]
 
@@ -40,7 +40,7 @@ class TestDijkstra(unittest.TestCase):
         result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['touch'], touch)
+        self.assertEqual(result['predecessor'], predecessor)
 
     def test_problem2(self):
         inf = float('inf')
@@ -59,7 +59,7 @@ class TestDijkstra(unittest.TestCase):
             (0, 4),
             (4, 5)
         ]
-        touch = [
+        predecessor = [
             0, 3, 0, 2, 0, 4
         ]
 
@@ -67,7 +67,7 @@ class TestDijkstra(unittest.TestCase):
         result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['touch'], touch)
+        self.assertEqual(result['predecessor'], predecessor)
 
     def test_problem3(self):
         inf = float('inf')
@@ -86,7 +86,7 @@ class TestDijkstra(unittest.TestCase):
             (4, 5),
             (4, 0)
         ]
-        touch = [
+        predecessor = [
             4, 4, 4, 4, 4, 4
         ]
 
@@ -94,7 +94,7 @@ class TestDijkstra(unittest.TestCase):
         result = dijkstra(weights, source_node)
 
         self.assertEqual(result['edges'], solution_set)
-        self.assertEqual(result['touch'], touch)
+        self.assertEqual(result['predecessor'], predecessor)
 
 
 if __name__ == "__main__":

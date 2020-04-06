@@ -24,17 +24,18 @@ def dijkstra(weights, source):
 
     Return
     ------
-    {edges: array of tuple, touch: array of tuple}
+    {edges: array of tuple, predecessor: array of parent nodes}
 
     NOTES
     -----
-    - vnear: the nearest node from index at length[i] to touch[vnear].
-           Tells us which previous node has the smallest length at length[i].
-    - length[]: Has the total legnth of the current iteration
-    - touch[]: Has the previous node at corresponding to the total length in
-             length[i]. Use touch[vnear] to get previous node.
+    - vnear: Node with min distance at each iteration.
+        Node is also index at length[i] to touch[vnear].
+        Tells us the previous node min total length at length[i].
+    - length[]: List of min total length at each node.
+    - touch[]: List of vnear nodes for total length in length[i]
+        touch[vnear] to get node corresponding to length[i]
     - final_edges[]: Resultant array of edges that produces the shortest
-                     path tree.
+        path tree.
 
     Algorithm finishes when length[] is populated with all -1
 
@@ -65,7 +66,7 @@ def dijkstra(weights, source):
     for _ in range(n - 1):
         min_dist = inf
 
-        # find shorter path
+        # find node with min dist
         for i in range(n):
             if length[i] < min_dist and length[i] >= 0:
                 min_dist = length[i]
@@ -75,7 +76,7 @@ def dijkstra(weights, source):
         edge = (touch[vnear], vnear)
         final_edges.append(edge)
 
-        # find shorter total length from length[vnear] with weights[vnear]
+        # update arrays with vnear to find new min total length
         for i in range(n):
             if length[vnear] + weights[vnear][i] < length[i]:
                 length[i] = length[vnear] + weights[vnear][i]
@@ -84,37 +85,37 @@ def dijkstra(weights, source):
         # mark visited node
         length[vnear] = -1
 
-    return {'edges': final_edges, 'touch': touch}
+    return {'edges': final_edges, 'predecessor': touch}
 
 
-def print_dijkstra_path(paths, destination):
+def print_dijkstra_path(predecessor, target):
     """
-    Wrapper for print_dijkstra
+    Wrapper for print_predecessor
 
     Parameters
     ----------
-    paths (array): Array from Dijkstra's last visited nodes
-    destination (int): Destination node
+    predecessor (array): List of parent nodes
+    target (int): Destination node
 
     NOTES
     -----
     source node is assumed from dijkstra's algorithm
     """
-    print_dijkstra(paths, destination)
+    print_predecessor(predecessor, target)
     print()
 
 
-def print_dijkstra(paths, destination):
+def print_predecessor(predecessor, target):
     """
-    Recursively follow the paths array to produce the dijkstra path
+    Prints dijkstra's shortest path by recursively following parent nodes.
 
     Parameters
     ----------
-    paths (array): Array from Dijkstra's last visited nodes
-    destination (int): Destination node
+    predecessor (array): List of parent nodes
+    target (int): Destination node
     """
-    if paths[destination] != destination:
-        print_dijkstra(paths, paths[destination])
+    if predecessor[target] != target:
+        print_predecessor(predecessor, predecessor[target])
         print(" -> ", end="")
 
-    print(destination, end="")
+    print(target, end="")

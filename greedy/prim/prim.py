@@ -29,14 +29,12 @@ def prim(weights, source=0):
 
     NOTES
     -----
-    - vnear: Nearest node from the index at distance[i] to nearest[vnear].
-             Tells us the previous node that has the smallest distance at
-             distance[i].
-    - nearest[]: Has the "nearest" nodes for the corresponding distances
-                 in distance[i].
-    - distance[]: Has the smallest distances at each iteration.
-                  nearest[vnear] will tell us which previous node correspond
-                  to distance[i].
+    - vnear: Node with min distance at each iteration.
+        Node is also index at distance[i] to nearest[vnear].
+        Tells us the previous node with min distance at distance[i].
+    - distance[]: List of min distances at each iteration.
+    - nearest[]: List of vnear nodes for distance in distance[i]
+        nearest[vnear] to get node corresponding to distance[i].
     - final_edges[]: Resultant array of edges that produces the minimal
                      spanning tree (MST).
 
@@ -60,17 +58,17 @@ def prim(weights, source=0):
     # init nearest with source and distance from weights[source]
     for i in range(n):
         if i == source:
-            nearest.append(-1)
             distance.append(-1)
+            nearest.append(-1)
         else:
-            nearest.append(source)
             distance.append(weights[source][i])
+            nearest.append(source)
 
     # repeat for n-1 times
     for _ in range(n - 1):
         min_dist = inf
 
-        # find shorter distance
+        # find node with min dist
         for i in range(n):
             if distance[i] < min_dist and distance[i] >= 0:
                 min_dist = distance[i]
@@ -84,7 +82,7 @@ def prim(weights, source=0):
         # mark visited node
         distance[vnear] = -1
 
-        # find shorter distances from weights[vnear] and update nearest/distance
+        # update arrays with vnear to find new min distance
         for i in range(n):
             if weights[vnear][i] < distance[i]:
                 distance[i] = weights[vnear][i]

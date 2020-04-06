@@ -8,7 +8,7 @@ from floyd import floyd
 
 class TestFloyd(unittest.TestCase):
     """
-    Tests Binomial Coefficient's Algorithm
+    Tests Floyd's Algorithm
     """
     # class attributes
 
@@ -34,7 +34,7 @@ class TestFloyd(unittest.TestCase):
             [6, 7, 2, 0, 3],
             [3, 4, 6, 4, 0]
         ]
-        paths = [
+        intermediate = [
             [inf, inf, 3, inf, 3],
             [4, inf, inf, inf, 3],
             [4, 4, inf, inf, 3],
@@ -45,7 +45,7 @@ class TestFloyd(unittest.TestCase):
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
-        self.assertEqual(result['paths'], paths)
+        self.assertEqual(result['intermediate'], intermediate)
 
     def test_problem2(self):
         inf = float('inf')
@@ -60,7 +60,7 @@ class TestFloyd(unittest.TestCase):
             [5, 0, 7],
             [8, 3, 0]
         ]
-        paths = [
+        intermediate = [
             [inf, 2, inf],
             [inf, inf, 0],
             [1, inf, inf]
@@ -69,7 +69,7 @@ class TestFloyd(unittest.TestCase):
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
-        self.assertEqual(result['paths'], paths)
+        self.assertEqual(result['intermediate'], intermediate)
 
     def test_problem3(self):
         inf = float('inf')
@@ -92,7 +92,7 @@ class TestFloyd(unittest.TestCase):
             [26, 23, 32, 18, 20, 0, 10],
             [16, 13, 22, 8, 10, 26, 0],
         ]
-        paths = [
+        intermediate = [
             [inf, inf, 4, 1, 3, inf, 5],
             [inf, inf, 4, inf, 3, 0, 3],
             [1, inf, inf, 1, 3, 1, 3],
@@ -105,7 +105,7 @@ class TestFloyd(unittest.TestCase):
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
-        self.assertEqual(result['paths'], paths)
+        self.assertEqual(result['intermediate'], intermediate)
 
 
 if __name__ == "__main__":

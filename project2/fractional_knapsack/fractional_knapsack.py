@@ -60,8 +60,7 @@ def fractional_knapsack(items, cap):
 
     for item in sorted_items:
         if cap > 0:
-            # set to capacity/weight if future capacity is negative
-            # otherwise 1
+            # if future capacity is negative, set to capacity/weight; else 1
             fraction = cap / item.weight if cap - item.weight < 0 else 1
 
             knapsack.append((fraction, item))

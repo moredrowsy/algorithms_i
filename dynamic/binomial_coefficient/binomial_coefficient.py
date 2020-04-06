@@ -5,7 +5,7 @@ Binomial Coefficient: Find the coefficient given with n and k
 
 def binomial_coefficient(n, k):
     """
-    Calculate binomial coefficient via dynamic approach
+    Calculate binomial coefficient via dynamic approach.
 
     Time complexity: O(nk):
     Complexity breakdown:
