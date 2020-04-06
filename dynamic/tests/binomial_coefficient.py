@@ -10,7 +10,6 @@ class TestBinomialCoefficient(unittest.TestCase):
     """
     Tests Binomial Coefficient's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

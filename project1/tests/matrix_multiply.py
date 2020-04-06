@@ -11,7 +11,6 @@ class TestMatrixMultiply(unittest.TestCase):
     """
     Tests for Matrix Multiplication
     """
-    # class attributes
 
     def setUp(self):
         """

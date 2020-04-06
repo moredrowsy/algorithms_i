@@ -194,12 +194,13 @@ class Run(object):
         dimensions = [5, 2, 3, 4, 6, 7, 8]
         print("\nDimensions", dimensions)
 
-        sep = chain_matrix_multiply(dimensions)
+        result = chain_matrix_multiply(dimensions)
         print("\nSeperation matrix")
-        print_matrix(sep)
+        print_matrix(result['seperations'])
 
         print("\nOrder")
-        print_optimal_order(sep, 0, len(dimensions) - 2)
+        print_optimal_order(result['seperations'], 0, len(dimensions) - 2)
+        print('\nCost:', result['cost'])
 
         # problem 2
         print("\n\nPROBLEM 2")
@@ -209,10 +210,11 @@ class Run(object):
         dimensions = [20, 2, 30, 12, 8]
         print("\nDimensions", dimensions)
 
-        sep = chain_matrix_multiply(dimensions)
+        result = chain_matrix_multiply(dimensions)
         print("\nSeperation matrix")
-        print_matrix(sep)
-        print_optimal_order(sep, 0, len(dimensions) - 2)
+        print_matrix(result['seperations'])
+        print_optimal_order(result['seperations'], 0, len(dimensions) - 2)
+        print('\nCost:', result['cost'])
 
         # problem 3
         print("\n\nPROBLEM 3")
@@ -222,10 +224,11 @@ class Run(object):
         dimensions = [10, 4, 5, 20, 2, 50]
         print("\nDimensions", dimensions)
 
-        sep = chain_matrix_multiply(dimensions)
+        result = chain_matrix_multiply(dimensions)
         print("\nSeperation matrix")
-        print_matrix(sep)
-        print_optimal_order(sep, 0, len(dimensions) - 2)
+        print_matrix(result['seperations'])
+        print_optimal_order(result['seperations'], 0, len(dimensions) - 2)
+        print('\nCost:', result['cost'])
 
 
 def print_matrix(A, pad_size=3, sep=" ", end="\n"):

@@ -10,7 +10,6 @@ class TestFractionalKnapsack(unittest.TestCase):
     """
     Tests for Fractional Knapsack
     """
-    # class attributes
 
     def setUp(self):
         """

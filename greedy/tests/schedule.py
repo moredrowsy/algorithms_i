@@ -10,7 +10,6 @@ class TestSchedule(unittest.TestCase):
     """
     Tests Scheduling Deadline's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

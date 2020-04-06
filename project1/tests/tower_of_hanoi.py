@@ -10,7 +10,6 @@ class TestTowerOfHanoi(unittest.TestCase):
     """
     Tests for Tower of Hanoi
     """
-    # class attributes
 
     def setUp(self):
         """

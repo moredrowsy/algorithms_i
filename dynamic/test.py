@@ -2,12 +2,13 @@
 All unit tests
 """
 import unittest
-from tests import binomial_coefficient, floyd
+from tests import binomial_coefficient, floyd, chain_matrix_multiply
 
 
 MODULES = [
     binomial_coefficient,
-    floyd
+    floyd,
+    chain_matrix_multiply
 ]
 
 

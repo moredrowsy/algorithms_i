@@ -10,7 +10,6 @@ class TestHuffman(unittest.TestCase):
     """
     Tests Huffman's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

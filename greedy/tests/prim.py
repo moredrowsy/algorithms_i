@@ -10,7 +10,6 @@ class TestPrim(unittest.TestCase):
     """
     Tests Prim's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

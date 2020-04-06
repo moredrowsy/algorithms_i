@@ -29,7 +29,7 @@ def chain_matrix_multiply(dimensions):
 
     Return
     ------
-    sequene (2D array): List of matrix order seperations
+    {seperations: 2D array of seperation indices, cost: total multiplications}
 
     NOTES
     -----
@@ -59,10 +59,10 @@ def chain_matrix_multiply(dimensions):
                     multiplications[i][j] = cost
                     seperations[i][j] = k
 
-    return seperations
+    return {'seperations': seperations, 'cost': multiplications[0][n-1]}
 
 
-def print_optimal_order(seperations, source, target, prefix="A"):
+def print_optimal_order(sep, source, target, prefix="A"):
     """
     Print matrix order by the seperations array with given index of starting
     matrix through ending matrix.
@@ -71,15 +71,14 @@ def print_optimal_order(seperations, source, target, prefix="A"):
 
     Parameters
     ----------
-    seperations (2D array): List of matrix order seperations
+    sep (2D array): List of matrix order seperations
     source (int): Index of starting matrix
     target (int): Index of ending matrix
     """
     if source == target:
         print(f"{prefix}{source}", end="")
     else:
-        k = seperations[source][target]
         print("(", end="")
-        print_optimal_order(seperations, source, k)
-        print_optimal_order(seperations, k + 1, target)
+        print_optimal_order(sep, source, sep[source][target])
+        print_optimal_order(sep, sep[source][target] + 1, target)
         print(")", end="")

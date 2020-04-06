@@ -10,7 +10,6 @@ class TestDijkstra(unittest.TestCase):
     """
     Tests Dijsktra's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

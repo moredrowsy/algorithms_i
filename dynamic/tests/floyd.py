@@ -10,7 +10,6 @@ class TestFloyd(unittest.TestCase):
     """
     Tests Floyd's Algorithm
     """
-    # class attributes
 
     def setUp(self):
         """

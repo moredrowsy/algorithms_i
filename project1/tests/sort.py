@@ -12,7 +12,6 @@ class TestSort(unittest.TestCase):
     """
     Tests for sorting algorithms
     """
-    # class attributes
 
     def setUp(self):
         """
