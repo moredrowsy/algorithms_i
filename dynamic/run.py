@@ -2,6 +2,7 @@
 Dynamic Algorithms
 """
 from binomial_coefficient import binomial_coefficient
+from chain_matrix_multiply import chain_matrix_multiply, print_optimal_order
 from floyd import floyd, print_floyd_path
 
 
@@ -181,6 +182,51 @@ class Run(object):
         print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
+    def chain_matrix(self):
+        """Run Chain Matrix Multiplication algorithm"""
+        print("\n\nCHAIN MATRIX MULTIPLIATION\n--------------------")
+
+        # problem 1
+        print("\n\nPROBLEM 1")
+
+        #  A0     A1     A2     A3     A4     A5
+        # 5x2    2x3    3x4    4x6    6x7    7x8
+        dimensions = [5, 2, 3, 4, 6, 7, 8]
+        print("\nDimensions", dimensions)
+
+        sep = chain_matrix_multiply(dimensions)
+        print("\nSeperation matrix")
+        print_matrix(sep)
+
+        print("\nOrder")
+        print_optimal_order(sep, 0, len(dimensions) - 2)
+
+        # problem 2
+        print("\n\nPROBLEM 2")
+
+        #  A0     A1     A2     A3
+        # 20x2   2x30   30x12  12x8
+        dimensions = [20, 2, 30, 12, 8]
+        print("\nDimensions", dimensions)
+
+        sep = chain_matrix_multiply(dimensions)
+        print("\nSeperation matrix")
+        print_matrix(sep)
+        print_optimal_order(sep, 0, len(dimensions) - 2)
+
+        # problem 3
+        print("\n\nPROBLEM 3")
+
+        #  A0     A1     A2     A3     A4
+        # 10x4   4x5    5x20   20x2   2x50
+        dimensions = [10, 4, 5, 20, 2, 50]
+        print("\nDimensions", dimensions)
+
+        sep = chain_matrix_multiply(dimensions)
+        print("\nSeperation matrix")
+        print_matrix(sep)
+        print_optimal_order(sep, 0, len(dimensions) - 2)
+
 
 def print_matrix(A, pad_size=3, sep=" ", end="\n"):
     for i in range(len(A)):
@@ -195,3 +241,4 @@ def print_matrix(A, pad_size=3, sep=" ", end="\n"):
 if __name__ == "__main__":
     Run().binomial()
     Run().floyd_algorithm()
+    Run().chain_matrix()

@@ -28,3 +28,4 @@
 
 - Binomial Coefficient
 - Floyd's Algorithm: Finding the shortest paths array
+- Chain Matrix Multiplication: Finding the optinum order to multiply matrices

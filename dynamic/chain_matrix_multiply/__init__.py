@@ -1,0 +1,2 @@
+from .chain_matrix_multiply import chain_matrix_multiply
+from .chain_matrix_multiply import print_optimal_order
