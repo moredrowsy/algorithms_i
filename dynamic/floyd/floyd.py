@@ -39,13 +39,50 @@ def floyd(weights):
     return {'distances': dist, 'intermediate': intermediate}
 
 
+def floyd_path(intermediate, source, target):
+    """
+    Return a list of nodes in a path from source to target
+
+    Parameters
+    ----------
+    intermediate (2D array): List of intermediate nodes in paths
+    source (int): Origin node
+    target (int): Destination node
+
+    Return
+    ------
+    list of nodes in a path
+    """
+    path = [source]
+    path_intermediate(intermediate, source, target, path)
+    path.append(target)
+    return path
+
+
+def path_intermediate(intermed, source, target, path):
+    """
+    Adds intermediate nodes to path from intermediate array
+
+    Parameters
+    ----------
+    intermed (2D array): List of intermediate nodes in paths
+    source (int): Origin node
+    target (int): Destination node
+    path (list): List of nodes added by reference
+    """
+    if intermed[source][target] != float('inf'):
+        path_intermediate(intermed, source, intermed[source][target], path)
+        path.append(intermed[source][target])
+        path_intermediate(intermed, intermed[source][target], target, path)
+
+
 def print_floyd_path(intermediate, source, target):
     """
     Prints Floyd's path from source to target.
 
     Parameters
     ----------
-    intermediate (2D array): Array of intermediate nodes in paths
+    intermediate (2D array): List of intermediate nodes in paths
     source (int): Origin node
     target (int): Destination node
     """
@@ -54,17 +91,17 @@ def print_floyd_path(intermediate, source, target):
     print(f"{target}")
 
 
-def print_intermediate(intermediate, source, target):
+def print_intermediate(intermed, source, target):
     """
-    Prints intermediate nodes from Floyd's intermediate array.
+    Prints intermediate nodes from Floyd's intermed array.
 
     Parameters
     ----------
-    intermediate (2D array): Array of intermediate nodes in paths
+    intermed (2D array): List of intermediate nodes in paths
     source (int): Origin node
     target (int): Destination node
     """
-    if intermediate[source][target] != float('inf'):
-        print_intermediate(intermediate, source, intermediate[source][target])
-        print(f"{intermediate[source][target]} -> ", end="")
-        print_intermediate(intermediate, intermediate[source][target], target)
+    if intermed[source][target] != float('inf'):
+        print_intermediate(intermed, source, intermed[source][target])
+        print(f"{intermed[source][target]} -> ", end="")
+        print_intermediate(intermed, intermed[source][target], target)

@@ -3,7 +3,7 @@ Unit tests
 """
 import unittest
 
-from dijkstra import dijkstra
+from dijkstra import dijkstra, dijkstra_path
 
 
 class TestDijkstra(unittest.TestCase):
@@ -32,15 +32,17 @@ class TestDijkstra(unittest.TestCase):
             (0, 2),
             (3, 1)
         ]
-        predecessor = [
-            0, 3, 0, 4, 0
-        ]
+        predecessor = [0, 3, 0, 4, 0]
+        path_answer = [0, 4, 3, 1]
 
-        source_node = 0
-        result = dijkstra(weights, source_node)
+        source = 0
+        target = 1
+        result = dijkstra(weights, source)
+        path = dijkstra_path(result['predecessor'], target)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['predecessor'], predecessor)
+        self.assertEqual(path, path_answer)
 
     def test_problem2(self):
         inf = float('inf')
@@ -59,15 +61,17 @@ class TestDijkstra(unittest.TestCase):
             (0, 4),
             (4, 5)
         ]
-        predecessor = [
-            0, 3, 0, 2, 0, 4
-        ]
+        predecessor = [0, 3, 0, 2, 0, 4]
+        path_answer = [0, 4, 5]
 
-        source_node = 0
-        result = dijkstra(weights, source_node)
+        source = 0
+        target = 5
+        result = dijkstra(weights, source)
+        path = dijkstra_path(result['predecessor'], target)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['predecessor'], predecessor)
+        self.assertEqual(path, path_answer)
 
     def test_problem3(self):
         inf = float('inf')
@@ -86,15 +90,17 @@ class TestDijkstra(unittest.TestCase):
             (4, 5),
             (4, 0)
         ]
-        predecessor = [
-            4, 4, 4, 4, 4, 4
-        ]
+        predecessor = [4, 4, 4, 4, 4, 4]
+        path_answer = [4, 3]
 
-        source_node = 4
-        result = dijkstra(weights, source_node)
+        source = 4
+        target = 3
+        result = dijkstra(weights, source)
+        path = dijkstra_path(result['predecessor'], target)
 
         self.assertEqual(result['edges'], solution_set)
         self.assertEqual(result['predecessor'], predecessor)
+        self.assertEqual(path, path_answer)
 
 
 if __name__ == "__main__":

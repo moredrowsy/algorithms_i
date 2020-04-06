@@ -88,6 +88,40 @@ def dijkstra(weights, source):
     return {'edges': final_edges, 'predecessor': touch}
 
 
+def dijkstra_path(predecessor, target):
+    """
+    Return a list of nodes in a path to target
+
+    Parameters
+    ----------
+    predecessor (array): List of parent nodes
+    target (int): Destination node
+
+    Return
+    ------
+    list of nodes in a path
+    """
+    path = []
+    path_from_predecessor(predecessor, target, path)
+    return path
+
+
+def path_from_predecessor(predecessor, target, path):
+    """
+    Add nodes to path list from predecessor array
+
+    Parameters
+    ----------
+    predecessor (array): List of parent nodes
+    target (int): Destination node
+    path (array): List of nodes added by reference
+    """
+    if predecessor[target] != target:
+        path_from_predecessor(predecessor, predecessor[target], path)
+
+    path.append(target)
+
+
 def print_dijkstra_path(predecessor, target):
     """
     Wrapper for print_predecessor

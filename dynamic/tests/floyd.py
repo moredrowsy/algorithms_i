@@ -3,7 +3,7 @@ Unit tests
 """
 import unittest
 
-from floyd import floyd
+from floyd import floyd, floyd_path
 
 
 class TestFloyd(unittest.TestCase):
@@ -41,11 +41,16 @@ class TestFloyd(unittest.TestCase):
             [4, 4, inf, inf, inf],
             [inf, 0, 3, 0, inf]
         ]
+        path_answer = [1, 3, 4]
 
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
+
+        source, target = 1, 4
+        path = floyd_path(result['intermediate'], source, target)
+        self.assertEqual(path, path_answer)
 
     def test_problem2(self):
         inf = float('inf')
@@ -65,11 +70,16 @@ class TestFloyd(unittest.TestCase):
             [inf, inf, 0],
             [1, inf, inf]
         ]
+        path_answer = [1, 0, 2]
 
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
+
+        source, target = 1, 2
+        path = floyd_path(result['intermediate'], source, target)
+        self.assertEqual(path, path_answer)
 
     def test_problem3(self):
         inf = float('inf')
@@ -101,11 +111,16 @@ class TestFloyd(unittest.TestCase):
             [6, 6, 6, 6, 6, inf, inf],
             [3, 3, 4, inf, 3, 3, inf],
         ]
+        path_answer = [1, 3, 4, 2]
 
         result = floyd(weights)
 
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
+
+        source, target = 1, 2
+        path = floyd_path(result['intermediate'], source, target)
+        self.assertEqual(path, path_answer)
 
 
 if __name__ == "__main__":

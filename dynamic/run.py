@@ -12,15 +12,21 @@ class Run(object):
 
     def binomial(self):
         """Run Binomial Coefficient algorithm"""
+        print("\n\nBINOMIAL COEFFICIENT\n--------------------")
+
         n, k = 4, 2
         coefficient = binomial_coefficient(n, k)
-        print(f"Binomial Coefficient\nC[{n}][{k}] = {coefficient}")
+        print(f"\nCoefficient[{n}][{k}] = {coefficient}")
 
     def floyd_algorithm(self):
-        """Run Floyd's Shortest intermediate Algorithm"""
+        """Run Floyd's Shortest Paths Algorithm"""
         inf = float('inf')
 
+        print("\n\nFLOYD'S ALGORITHM\n-----------------")
+
         # problem 1
+        print("\n\nPROBLEM 1")
+
         weights = [
             [0, 1, inf, 1, 5],
             [9, 0, 3, 2, inf],
@@ -30,19 +36,21 @@ class Run(object):
         ]
 
         print(f"\nWeights matrix:")
+        print_matrix(weights)
         result = floyd(weights)
 
-        print("\nFloyd's Shortest intermediate")
-        print("Distances")
+        print("\nDistances")
         print_matrix(result['distances'])
-        print("Paths")
+        print("\nPaths")
         print_matrix(result['intermediate'])
 
         source, target = 1, 4
-        print(f"Shortest path from {source} to {target}:")
+        print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 2
+        print("\n\nPROBLEM 2")
+
         weights = [
             [0, 8, 2],
             [5, 0, inf],
@@ -50,19 +58,21 @@ class Run(object):
         ]
 
         print(f"\nWeights matrix:")
+        print_matrix(weights)
         result = floyd(weights)
 
-        print("\nFloyd's Shortest intermediate")
-        print("Distances")
+        print("\nDistances")
         print_matrix(result['distances'])
-        print("Paths")
+        print("\nPaths")
         print_matrix(result['intermediate'])
 
         source, target = 1, 2
-        print(f"Shortest path from {source} to {target}:")
+        print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 3
+        print("\n\nPROBLEM 3")
+
         weights = [
             [0, 4, inf, inf, inf, 10, inf],
             [3, 0, inf, 18, inf, inf, inf],
@@ -75,20 +85,23 @@ class Run(object):
 
         print(f"\nWeights matrix:")
         print_matrix(weights)
+        print_matrix(weights)
 
         result = floyd(weights)
 
-        print("\nFloyd's Shortest intermediate")
-        print("Distances")
+        print("\nDistances")
         print_matrix(result['distances'])
-        print("Paths")
+        print("\nPaths")
         print_matrix(result['intermediate'])
 
         source, target = 1, 2
-        print(f"Shortest path from {source} to {target}:")
+        print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 4
+        print("TESTING PROBLEMS USED IN DIJKSTRA")
+        print("\n\nPROBLEM 1")
+
         weights = [
             [0, 7, 4, 6, 1],
             [inf, 0, inf, inf, inf],
@@ -99,20 +112,23 @@ class Run(object):
 
         print(f"\nWeights matrix:")
         print_matrix(weights)
+        print_matrix(weights)
 
         result = floyd(weights)
 
-        print("\nFloyd's Shortest intermediate")
-        print("Distances")
+        print("\nDistances")
         print_matrix(result['distances'])
-        print("Paths")
+        print("\nPaths")
         print_matrix(result['intermediate'])
 
         source, target = 0, 1
-        print(f"Shortest path from {source} to {target}:")
+        print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 5
+        print("TESTING PROBLEMS USED IN DIJKSTRA")
+        print("\n\nPROBLEM 2")
+
         weights = [
             [0, 50, 10, inf, 45, inf],
             [inf, 0, 15, inf, 10, inf],
@@ -124,17 +140,45 @@ class Run(object):
 
         print(f"\nWeights matrix:")
         print_matrix(weights)
+        print_matrix(weights)
 
         result = floyd(weights)
 
-        print("\nFloyd's Shortest intermediate")
-        print("Distances")
+        print("\nDistances")
         print_matrix(result['distances'])
-        print("Paths")
+        print("\nPaths")
         print_matrix(result['intermediate'])
 
         source, target = 0, 5
-        print(f"Shortest path from {source} to {target}:")
+        print(f"\nShortest path from {source} to {target}:")
+        print_floyd_path(result['intermediate'], source, target)
+
+        # problem 6
+        print("TESTING PROBLEMS USED IN DIJKSTRA")
+        print("\n\nPROBLEM 3")
+
+        weights = [
+            [0, inf, 72, 50, 90, 35],
+            [inf, 0, 71, 70, 73, 75],
+            [72, 71, 0, inf, 77, 90],
+            [50, 70, inf, 0, 60, 40],
+            [90, 73, 77, 60, 0, 80],
+            [35, 75, 90, 40, 80, 0]
+        ]
+
+        print(f"\nWeights matrix:")
+        print_matrix(weights)
+        print_matrix(weights)
+
+        result = floyd(weights)
+
+        print("\nDistances")
+        print_matrix(result['distances'])
+        print("\nPaths")
+        print_matrix(result['intermediate'])
+
+        source, target = 4, 3
+        print(f"\nShortest path from {source} to {target}:")
         print_floyd_path(result['intermediate'], source, target)
 
 

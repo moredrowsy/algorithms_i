@@ -17,7 +17,11 @@ class Run(object):
         """Run Prim's Algorithm on various problems"""
         inf = float('inf')
 
+        print("\n\nPRIM'S ALGORITHM\n----------------")
+
         # problem 1
+        print("\n\nPROBLEM 1")
+
         weights = [
             [0, 1, 3, inf, inf],
             [1, 0, 3, 6, inf],
@@ -37,6 +41,8 @@ class Run(object):
         print("Cost:", result['cost'])
 
         # problem 2
+        print("\n\nPROBLEM 2")
+
         weights = [
             [0, 13, 3, 22, 8, inf, inf, inf],
             [13, 0, inf, 9, inf, inf, inf, inf],
@@ -59,6 +65,8 @@ class Run(object):
         print("Cost:", result['cost'])
 
         # problem 3
+        print("\n\nPROBLEM 3")
+
         weights = [
             [0, inf, 72, 50, 90, 35],
             [inf, 0, 71, 70, 73, 75],
@@ -82,7 +90,11 @@ class Run(object):
         """Run Dijkstra's Algorithm on various problems"""
         inf = float('inf')
 
+        print("\n\nDIJKSTRA'S ALGORITHM\n--------------------")
+
         # problem 1
+        print("\n\nPROBLEM 1")
+
         weights = [
             [0, 7, 4, 6, 1],
             [inf, 0, inf, inf, inf],
@@ -106,6 +118,8 @@ class Run(object):
         print_dijkstra_path(result['predecessor'], target)
 
         # problem 2
+        print("\n\nPROBLEM 2")
+
         weights = [
             [0, 50, 10, inf, 45, inf],
             [inf, 0, 15, inf, 10, inf],
@@ -130,6 +144,8 @@ class Run(object):
         print_dijkstra_path(result['predecessor'], target)
 
         # problem 3
+        print("\n\nPROBLEM 3")
+
         weights = [
             [0, inf, 72, 50, 90, 35],
             [inf, 0, 71, 70, 73, 75],
@@ -155,7 +171,12 @@ class Run(object):
 
     def scheduling(self):
         """Run Scheduling Deadline's Algorithm on various problems"""
+
+        print("\n\nSCHEDULING DEADLINE\n-------------------")
+
         # problem 1
+        print("\n\nPROBLEM 1")
+
         jobs = [
             Job(1, 3, 40),
             Job(2, 1, 35),
@@ -175,6 +196,8 @@ class Run(object):
         print("Profits:", result['profits'])
 
         # problem 2
+        print("\n\nPROBLEM 2")
+
         jobs = [
             Job(1, 3, 30),
             Job(2, 1, 35),
@@ -194,6 +217,7 @@ class Run(object):
         print("Profits:", result['profits'])
 
         # problem 3
+        print("\n\nPROBLEM 3")
         jobs = [
             Job(1, 2, 40),
             Job(2, 4, 15),
@@ -213,7 +237,11 @@ class Run(object):
         print("Profits:", result['profits'])
 
     def huffman_coding(self):
+        print("\n\nHUFFMAN CODING\n--------------")
+
         # problem 1
+        print("\n\nPROBLEM 1")
+
         nodes = [
             HuffmanNode('b', 5),
             HuffmanNode('e', 10),
@@ -246,6 +274,8 @@ class Run(object):
         print("Decoded str2", decoded_str2)
 
         # problem 2
+        print("\n\nPROBLEM 2")
+
         nodes = [
             HuffmanNode('A', 12),
             HuffmanNode('B', 7),
@@ -279,6 +309,8 @@ class Run(object):
         print("Decoded str2", decoded_str2)
 
         # problem 3
+        print("\n\nPROBLEM 3")
+
         nodes = [
             HuffmanNode('Z', 2),
             HuffmanNode('K', 7),
@@ -313,6 +345,8 @@ class Run(object):
         print("Decoded str2", decoded_str2)
 
         # problem 4
+        print("\n\nPROBLEM 4")
+
         nodes = [
             HuffmanNode('a', 16),
             HuffmanNode('b', 5),
