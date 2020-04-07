@@ -14,7 +14,7 @@ class KnapsackItem(object):
         Parameters
         ----------
         id (int): Knapsack item number
-        weight (float): the weight of this item
+        weight (int): the weight of this item
         profit (float): the profit for this item
         ratio (float): the profit per weight ratio
         """
@@ -94,7 +94,7 @@ def knapsack_items(items, profits):
             continue
 
         knapsack.append(items[item-1])
-        cap -= items[item-1].weight
+        cap -= int(items[item-1].weight)
 
     return knapsack
 
@@ -113,7 +113,7 @@ def fractional_knapsack(items, cap):
     Parameters
     ----------
     items (array): List of KnapsackItems
-    cap (float): Capacity of the knapsack
+    cap (int): Capacity of the knapsack
 
     Return
     ------

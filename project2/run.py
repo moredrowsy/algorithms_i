@@ -171,8 +171,8 @@ class Run(object):
             result = knapsack(self.items, self.capacity)
 
             print(f"Profit: {result['profit']:.2f}")
-            # for item in result['knapsack']:
-            #     self.print_fract_knapsack_item(item)
+            for item in result['knapsack']:
+                print(f"Item: {item}")
         else:
             print("No items entered")
 
@@ -185,12 +185,9 @@ class Run(object):
 
             print(f"Profit: {result['profit']:.2f}")
             for item in result['knapsack']:
-                self.print_fract_knapsack_item(item)
+                print(f"Fraction: {item[0]:.2f}\tItem: {item[1]}")
         else:
             print("No items entered")
-
-    def print_fract_knapsack_item(self, item, end="\n"):
-        print(f"Fraction: {item[0]:.2f}\tItem: {item[1]}", end=end)
 
 
 if __name__ == "__main__":
