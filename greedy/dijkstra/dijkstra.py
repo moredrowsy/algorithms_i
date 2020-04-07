@@ -49,7 +49,6 @@ def dijkstra(weights, source):
     | 2
     Z
     """
-    inf = float('inf')
     n = len(weights)
     vnear = -1
     length, touch, final_edges = [], [], []
@@ -64,7 +63,7 @@ def dijkstra(weights, source):
             touch.append(source)
 
     for _ in range(n - 1):
-        min_dist = inf
+        min_dist = float('inf')
 
         # find node with min dist
         for i in range(n):

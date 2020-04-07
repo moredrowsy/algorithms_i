@@ -50,7 +50,6 @@ def prim(weights, source=0):
             | 1
             Z
     """
-    inf = float('inf')
     n = len(weights)
     vnear, total_cost = -1, 0
     nearest, distance, final_edges = [], [], []
@@ -66,7 +65,7 @@ def prim(weights, source=0):
 
     # repeat for n-1 times
     for _ in range(n - 1):
-        min_dist = inf
+        min_dist = float('inf')
 
         # find node with min dist
         for i in range(n):

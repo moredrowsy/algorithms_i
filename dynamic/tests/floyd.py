@@ -19,6 +19,7 @@ class TestFloyd(unittest.TestCase):
     def test_problem1(self):
         inf = float('inf')
 
+        # problem
         weights = [
             [0, 1, inf, 1, 5],
             [9, 0, 3, 2, inf],
@@ -26,6 +27,8 @@ class TestFloyd(unittest.TestCase):
             [inf, inf, 2, 0, 3],
             [3, inf, inf, inf, 0]
         ]
+
+        # solution
         distances = [
             [0, 1, 3, 1, 4],
             [8, 0, 3, 2, 5],
@@ -42,8 +45,8 @@ class TestFloyd(unittest.TestCase):
         ]
         path_answer = [1, 3, 4]
 
+        # test
         result = floyd(weights)
-
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
 
@@ -54,11 +57,14 @@ class TestFloyd(unittest.TestCase):
     def test_problem2(self):
         inf = float('inf')
 
+        # problem
         weights = [
             [0, 8, 2],
             [5, 0, inf],
             [inf, 3, 0]
         ]
+
+        # solution
         distances = [
             [0, 5, 2],
             [5, 0, 7],
@@ -71,8 +77,8 @@ class TestFloyd(unittest.TestCase):
         ]
         path_answer = [1, 0, 2]
 
+        # test
         result = floyd(weights)
-
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
 
@@ -83,6 +89,7 @@ class TestFloyd(unittest.TestCase):
     def test_problem3(self):
         inf = float('inf')
 
+        # problem
         weights = [
             [0, 4, inf, inf, inf, 10, inf],
             [3, 0, inf, 18, inf, inf, inf],
@@ -92,6 +99,8 @@ class TestFloyd(unittest.TestCase):
             [inf, inf, inf, inf, inf, 0, 10],
             [inf, inf, inf, 8, inf, inf, 0]
         ]
+
+        # solution
         distances = [
             [0, 4, 36, 22, 24, 10, 20],
             [3, 0, 32, 18, 20, 13, 23],
@@ -112,8 +121,8 @@ class TestFloyd(unittest.TestCase):
         ]
         path_answer = [1, 3, 4, 2]
 
+        # test
         result = floyd(weights)
-
         self.assertEqual(result['distances'], distances)
         self.assertEqual(result['intermediate'], intermediate)
 

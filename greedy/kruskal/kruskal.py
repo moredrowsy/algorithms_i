@@ -56,13 +56,14 @@ def kruskal(weights):
     ------
     {edges: array of edges (tuple), cost: float}
     """
-    disjoint_sets = SetPointer(len(weights))
+    n = len(weights)
+    disjoint_sets = SetPointer(n)
     total_cost = 0
     edges, final_edges = [], []
 
     # create list of edges from undirected weights matrix
-    for i in range(len(weights)):
-        for j in range(i + 1, len(weights)):
+    for i in range(n):
+        for j in range(i + 1, n):
             if weights[i][j] != float('inf'):
                 edges.append(Edge(i, j, weights[i][j]))
 
@@ -70,7 +71,7 @@ def kruskal(weights):
     edges.sort(key=lambda edge: edge.weight)
 
     for edge in edges:
-        if len(final_edges) >= len(weights) - 1:
+        if len(final_edges) >= n - 1:
             break
 
         a, b = edge.indices()

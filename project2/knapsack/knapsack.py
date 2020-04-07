@@ -47,7 +47,7 @@ def knapsack(items, cap):
 
     Return
     ------
-    {knapsack: array of KnapsackItem, profit: maximum profit}
+    {knapsack: array of KnapsackItem, profit: float}
 
     NOTES
     -----
@@ -67,8 +67,11 @@ def knapsack(items, cap):
     # i = item index, j = weight index
     for i in range(1, n + 1):
         for j in range(1, cap + 1):
+            # if current item weight is over capacity, use previous item profit
             if items[i-1].weight > j:
                 profits[i][j] = profits[i-1][j]
+            # get max of prev item profit vs current item profit
+            # plus total profits from items within capacity limit
             else:
                 profits[i][j] = max(profits[i-1][j],
                                     profits[i-1][j-items[i-1].weight] +
@@ -85,6 +88,7 @@ def knapsack_items(items, profits):
     knapsack = []
     cap = len(profits[0]) - 1
 
+    # loop item index backwards
     for item in range(len(profits) - 1, -1, -1):
         if cap <= 0 or profits[item][cap] == 0:
             break

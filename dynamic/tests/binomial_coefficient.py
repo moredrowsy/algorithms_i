@@ -17,6 +17,7 @@ class TestBinomialCoefficient(unittest.TestCase):
         """
 
     def test_against_hardcoded_table(self):
+        # solution
         table = [
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],

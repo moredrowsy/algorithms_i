@@ -130,11 +130,11 @@ class Run(object):
             filename = self.input("Enter file name")
 
         with open(filename) as file:
-            try:
-                print()
-                for line in file:
-                    data = line.split()
+            print()
+            for i, line in enumerate(file):
+                data = line.split()
 
+                try:
                     if int(data[0]) == 0:
                         raise ValueError("Weight can not be 0.")
 
@@ -142,10 +142,10 @@ class Run(object):
                         len(self.items), int(data[0]), float(data[1])))
 
                     print("Added item:", self.items[-1])
-            except ValueError as err:
-                print("Invalid input:", err)
-            except Exception:
-                print("Invalid input from file.")
+                except ValueError as err:
+                    print(f"Invalid input at line {i}.", err)
+                except Exception:
+                    print(f"Invalid input at line {i}.")
 
     def clear_items(self):
         self.items = []

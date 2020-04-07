@@ -17,6 +17,7 @@ class TestSchedule(unittest.TestCase):
         """
 
     def test_problem1(self):
+        # problem
         jobs = [
             Job(1, 3, 40),
             Job(2, 1, 35),
@@ -26,19 +27,22 @@ class TestSchedule(unittest.TestCase):
             Job(6, 3, 15),
             Job(7, 2, 10)
         ]
-        solution_set = [
+
+        # solution
+        schedule = [
             Job(2, 1, 35),
             Job(1, 3, 40),
             Job(4, 3, 25),
         ]
-        profits_answer = 100
+        profits = 100
 
+        # test
         result = schedule_deadline(jobs)
-
-        self.assertEqual(result['jobs'], solution_set)
-        self.assertEqual(result['profits'], profits_answer)
+        self.assertEqual(result['jobs'], schedule)
+        self.assertEqual(result['profits'], profits)
 
     def test_problem2(self):
+        # problem
         jobs = [
             Job(1, 3, 30),
             Job(2, 1, 35),
@@ -48,20 +52,23 @@ class TestSchedule(unittest.TestCase):
             Job(6, 3, 25),
             Job(7, 4, 10)
         ]
-        solution_set = [
+
+        # solution
+        schedule = [
             Job(4, 1, 40),
             Job(1, 3, 30),
             Job(6, 3, 25),
             Job(5, 4, 50)
         ]
-        profits_answer = 145
+        profits = 145
 
+        # test
         result = schedule_deadline(jobs)
-
-        self.assertEqual(result['jobs'], solution_set)
-        self.assertEqual(result['profits'], profits_answer)
+        self.assertEqual(result['jobs'], schedule)
+        self.assertEqual(result['profits'], profits)
 
     def test_problem3(self):
+        # problem
         jobs = [
             Job(1, 2, 40),
             Job(2, 4, 15),
@@ -71,18 +78,20 @@ class TestSchedule(unittest.TestCase):
             Job(6, 1, 45),
             Job(7, 1, 55)
         ]
-        solution_set = [
+
+        # solution
+        schedule = [
             Job(7, 1, 55),
             Job(1, 2, 40),
             Job(3, 3, 60),
             Job(2, 4, 15)
         ]
-        profits_answer = 170
+        profits = 170
 
+        # test
         result = schedule_deadline(jobs)
-
-        self.assertEqual(result['jobs'], solution_set)
-        self.assertEqual(result['profits'], profits_answer)
+        self.assertEqual(result['jobs'], schedule)
+        self.assertEqual(result['profits'], profits)
 
 
 if __name__ == "__main__":
