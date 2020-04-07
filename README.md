@@ -14,8 +14,7 @@
 ## Project 2
 
 - Fractional Knapsack
-
-- Whole Knapsack
+- 0-1 Knapsack
 
 ## Greedy Algorithms
 

@@ -3,7 +3,7 @@
 ## Tasks
 
 - Fractional Knapsack
-- Whole (0-1) Knapsack
+- 0-1 Knapsack
 
 Requirements: python3
 

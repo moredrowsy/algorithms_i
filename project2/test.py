@@ -2,10 +2,11 @@
 All unit tests
 """
 import unittest
-from tests import fractional_knapsack
+from tests import knapsack, fractional_knapsack
 
 
 MODULES = [
+    knapsack,
     fractional_knapsack
 ]
 

@@ -1,6 +1,8 @@
 """
-Fractional Knapsack: Find the optimal collection of items within knapsack
-capacity with maximal profit
+Knapsack Problem: Find the optimal collection of items within capacity for
+maximum profit
+- 0-1 Knapsack: Dynamic approach
+- Fractional Knapsack: Greedy approach
 """
 
 
@@ -33,9 +35,41 @@ class KnapsackItem(object):
             and self.profit == o.profit
 
 
+def knapsack(items, cap):
+    """
+    Find optimum set of items with maximum profit within knapsack's capacity.
+    Items must be whole (can not be fractional).
+
+    Time Complexity: O(min(2^n, nCap))
+
+    Parameters
+    ----------
+    items (array): List of KnapsackItems
+    cap (int): Capacity of the knapsack
+
+    Return
+    ------
+    {profit: maximum profit}
+    """
+    n = len(items)
+    profits = [[0 for j in range(cap + 1)] for i in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for j in range(1, cap + 1):
+            if items[i-1].weight > j:
+                profits[i][j] = profits[i-1][j]
+            else:
+                profits[i][j] = max(profits[i-1][j],
+                                    profits[i-1][j-int(items[i-1].weight)] +
+                                    items[i-1].profit)
+
+    return {'profit': profits[n][cap]}
+
+
 def fractional_knapsack(items, cap):
     """
-    Calculate the optimal set of items' profit in Knapsack.
+    Find optimum set of items with maximum profit within knapsack's capacity.
+    Items can be fractional.
 
     Time complexity: O(nlogn)
     Complexity breakdown:

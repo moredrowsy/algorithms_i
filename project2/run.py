@@ -6,7 +6,7 @@ Project 2
 """
 import os
 
-from fractional_knapsack import fractional_knapsack, KnapsackItem
+from knapsack import KnapsackItem, knapsack, fractional_knapsack
 
 
 class Run(object):
@@ -16,8 +16,8 @@ class Run(object):
     capacity = -1
     items = []
     menu = "OPTIONS\n"\
-        "1: List fractional knapsack items\n"\
-        "2: List whole knapsack items\n"\
+        "1: List 0-1 knapsack items\n"\
+        "2: List fractional knapsack items\n"\
         "3. List entered items\n"\
         "4: Change capacity\n"\
         "5: Add items manually\n"\
@@ -67,6 +67,8 @@ class Run(object):
             print(title)
 
             if choice == "1":
+                self.knapsack()
+            elif choice == "2":
                 self.fract_knapsack()
             elif choice == "3":
                 self.print_items()
@@ -161,9 +163,21 @@ class Run(object):
             print(msg, end=end)
         return input("> ")
 
+    def knapsack(self):
+        """Run knapsack algorithm"""
+        if len(self.items) > 0:
+            print("Listing Fractional Knapsack")
+
+            result = knapsack(self.items, self.capacity)
+
+            print(f"Profit: {result['profit']:.2f}")
+            # for item in result['knapsack']:
+            #     self.print_fract_knapsack_item(item)
+        else:
+            print("No items entered")
+
     def fract_knapsack(self):
-        """Run fractional knapsack algorithm
-        """
+        """Run fractional knapsack algorithm"""
         if len(self.items) > 0:
             print("Listing Fractional Knapsack")
 
