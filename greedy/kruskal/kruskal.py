@@ -36,11 +36,12 @@ def kruskal(weights):
 
     Time Complexity: O(eloge), W(n^2 * logn), e = edges
     Complexity breakdown:
+        matrix to edges: e
         sort: eloge
-        set_pointer init: eloge
-        set_pointer ops: eloge
+        disjoint_sets init: eloge
+        disjoint_sets ops: eloge
         edges: e >= n - 1
-        total: 3*(eloge) = O(eloge)
+        total: e + 3*(eloge) = O(eloge)
         worst with dense graph: e = n(n-1)/2 = n^2
     Conclusion:
         if Graph is sparse: O(eloge)
@@ -55,7 +56,7 @@ def kruskal(weights):
     ------
     {edges: array of edges (tuple), cost: float}
     """
-    set_pointer = SetPointer(len(weights))
+    disjoint_sets = SetPointer(len(weights))
     total_cost = 0
     edges, final_edges = [], []
 
@@ -73,11 +74,11 @@ def kruskal(weights):
             break
 
         a, b = edge.indices()
-        root_a = set_pointer.find(a)
-        root_b = set_pointer.find(b)
 
-        if not set_pointer.equal(root_a, root_b):
-            set_pointer.merge(root_a, root_b)
+        # if a and b are not in same disjoint set, merge a, b to same set
+        root_a, root_b = disjoint_sets.find(a), disjoint_sets.find(b)
+        if root_a != root_b:
+            disjoint_sets.merge_root(root_a, root_b)
             final_edges.append(edge)
             total_cost += edge.weight
 
