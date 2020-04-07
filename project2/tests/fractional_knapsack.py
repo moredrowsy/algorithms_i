@@ -30,7 +30,6 @@ class TestFractionalKnapsack(unittest.TestCase):
         profit = 31.5
 
         result = fractional_knapsack(items, capacity)
-
         self.assertEqual(result['knapsack'], solution)
         self.assertEqual(result['profit'], profit)
 
