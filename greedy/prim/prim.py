@@ -10,7 +10,7 @@ def prim(weights, source=0):
 
     Time complexity: O(n^2)
     Complexity breakdown:
-        fro loop outer 1: n
+        for loop outer 1: n
         for loop outer 2: n - 1
         for loop inner 1: n
         for loop inner 2: n
@@ -25,7 +25,7 @@ def prim(weights, source=0):
 
     Return
     ------
-    {edges: array of edges (tuple), cost: int}
+    {edges: array of edges (tuple), cost: float}
 
     NOTES
     -----

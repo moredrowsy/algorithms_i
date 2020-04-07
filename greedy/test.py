@@ -2,11 +2,12 @@
 All unit tests
 """
 import unittest
-from tests import prim, dijsktra, schedule, huffman
+from tests import prim, kruskal, dijsktra, schedule, huffman
 
 
 MODULES = [
     prim,
+    kruskal,
     dijsktra,
     schedule,
     huffman

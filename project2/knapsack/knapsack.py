@@ -40,7 +40,7 @@ def knapsack(items, cap):
     Find optimum set of items with maximum profit within knapsack's capacity.
     Items must be whole (can not be fractional).
 
-    Time Complexity: O(min(2^n, nCap))
+    Time Complexity: O(min(2^n, n*c)), c = capacity
 
     Parameters
     ----------

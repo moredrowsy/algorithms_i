@@ -4,6 +4,7 @@ Greedy Algorithms
 from dijkstra import dijkstra, print_dijkstra_path
 from huffman import HuffmanNode, huffman_encode, huffman_decode, huffman_tree,\
     print_huffman_tree
+from kruskal import kruskal
 from prim import prim
 from schedule_deadline import schedule_deadline, Job
 
@@ -83,6 +84,76 @@ class Run(object):
         result = prim(weights, source)
 
         print("\nPrim's Algorithm (MST)")
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
+
+    def kruskal_algorithm(self):
+        """Run Kruskal's Algorithm on various problems"""
+        inf = float('inf')
+
+        print("\n\nKRUSKAL'S ALGORITHM\n-------------------")
+
+        # problem 1
+        print("\n\nPROBLEM 1")
+
+        weights = [
+            [0, 1, 3, inf, inf],
+            [1, 0, 3, 6, inf],
+            [3, 3, 0, 4, 2],
+            [inf, 6, 4, 0, 5],
+            [inf, inf, 2, 5, 0],
+        ]
+
+        print(f"\nWeights matrix")
+        print_matrix(weights)
+
+        result = kruskal(weights)
+
+        print("\nKruskal's Algorithm (MST)")
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
+
+        # problem 2
+        print("\n\nPROBLEM 2")
+
+        weights = [
+            [0, 13, 3, 22, 8, inf, inf, inf],
+            [13, 0, inf, 9, inf, inf, inf, inf],
+            [3, inf, 0, inf, 9, inf, inf, inf],
+            [22, 9, inf, 0, inf, 10, inf, inf],
+            [8, inf, 9, inf, 0, 15, 10, inf],
+            [inf, inf, inf, 10, 15, 0, inf, 12],
+            [inf, inf, inf, inf, 10, inf, 0, inf],
+            [inf, inf, inf, inf, 12, inf, inf, 0]
+        ]
+
+        print(f"\nWeights matrix")
+        print_matrix(weights)
+
+        result = kruskal(weights)
+
+        print("\nKruskal's Algorithm (MST)")
+        print("Edges:", result['edges'])
+        print("Cost:", result['cost'])
+
+        # problem 3
+        print("\n\nPROBLEM 3")
+
+        weights = [
+            [0, inf, 72, 50, 90, 35],
+            [inf, 0, 71, 70, 73, 75],
+            [72, 71, 0, inf, 77, 90],
+            [50, 70, inf, 0, 60, 40],
+            [90, 73, 77, 60, 0, 80],
+            [35, 75, 90, 40, 80, 0]
+        ]
+
+        print(f"\nWeights matrix")
+        print_matrix(weights)
+
+        result = kruskal(weights)
+
+        print("\nKruskal's Algorithm (MST)")
         print("Edges:", result['edges'])
         print("Cost:", result['cost'])
 
@@ -391,6 +462,7 @@ def print_matrix(A, pad_size=3, sep=" ", end="\n"):
 
 if __name__ == "__main__":
     Run().prim_algorithm()
+    Run().kruskal_algorithm()
     Run().dijkstra_shortest_path()
     Run().scheduling()
     Run().huffman_coding()

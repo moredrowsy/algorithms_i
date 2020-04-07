@@ -19,6 +19,7 @@
 ## Greedy Algorithms
 
 - Prim's Algorithm: Finding the minimal spanning tree (MST)
+- Kruskal's Algorithm: Finding the minimal spanning tree (MST)
 - Dijkstra's Shortest Path: Find the shortest path tree (SPT)
 - Deadline Scheduling
 - Huffman's Algorithm: Produces Huffman coding tree
