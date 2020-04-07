@@ -106,40 +106,46 @@ class Run(object):
 
             if info == "X" or info == "x":
                 break
-            elif len(data) == 2:
-                try:
-                    if int(data[0]) == 0:
-                        print("Weight can not be 0.", end=" ")
-                        raise ValueError()
-                    self.items.append(KnapsackItem(
-                        len(self.items), int(data[0]), float(data[1])))
-                    print("Added item:", self.items[-1])
-                except:
-                    print("Invalid input")
-            else:
-                print("Invalid input")
+
+            try:
+                if int(data[0]) == 0:
+                    raise ValueError("Weight can not be 0.")
+
+                self.items.append(KnapsackItem(
+                    len(self.items), int(data[0]), float(data[1])))
+
+                print("Added item:", self.items[-1])
+            except ValueError as err:
+                print("Invalid input:", err)
+            except Exception:
+                print("Invalid input.")
 
     def add_from_file(self, filename=None):
         """Populate KnapsackItems from file"""
-        while True:
-            if not filename:
-                filename = self.input("Enter file name")
+        if not filename:
+            filename = self.input("Enter file name")
 
-            while not os.path.exists(filename):
-                print("Path does not exist.")
-                filename = self.input("Enter file name")
+        while not os.path.exists(filename):
+            print("Path does not exist.")
+            filename = self.input("Enter file name")
 
-            with open(filename) as file:
+        with open(filename) as file:
+            try:
                 print()
                 for line in file:
                     data = line.split()
+
+                    if int(data[0]) == 0:
+                        raise ValueError("Weight can not be 0.")
+
                     self.items.append(KnapsackItem(
                         len(self.items), int(data[0]), float(data[1])))
 
                     print("Added item:", self.items[-1])
-
-                self.items = self.items
-                break
+            except ValueError as err:
+                print("Invalid input:", err)
+            except Exception:
+                print("Invalid input from file.")
 
     def clear_items(self):
         self.items = []
