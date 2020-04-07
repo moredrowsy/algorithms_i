@@ -108,8 +108,11 @@ class Run(object):
                 break
             elif len(data) == 2:
                 try:
+                    if int(data[0]) == 0:
+                        print("Weight can not be 0.", end=" ")
+                        raise ValueError()
                     self.items.append(KnapsackItem(
-                        len(self.items), float(data[0]), float(data[1])))
+                        len(self.items), int(data[0]), float(data[1])))
                     print("Added item:", self.items[-1])
                 except:
                     print("Invalid input")
@@ -131,7 +134,7 @@ class Run(object):
                 for line in file:
                     data = line.split()
                     self.items.append(KnapsackItem(
-                        len(self.items), float(data[0]), float(data[1])))
+                        len(self.items), int(data[0]), float(data[1])))
 
                     print("Added item:", self.items[-1])
 
@@ -166,7 +169,7 @@ class Run(object):
     def knapsack(self):
         """Run knapsack algorithm"""
         if len(self.items) > 0:
-            print("Listing Fractional Knapsack")
+            print("0-1 KNAPSACK")
 
             result = knapsack(self.items, self.capacity)
 
@@ -179,7 +182,7 @@ class Run(object):
     def fract_knapsack(self):
         """Run fractional knapsack algorithm"""
         if len(self.items) > 0:
-            print("Listing Fractional Knapsack")
+            print("FRACTIONAL KNAPSACK")
 
             result = fractional_knapsack(self.items, self.capacity)
 

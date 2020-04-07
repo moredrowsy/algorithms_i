@@ -16,18 +16,16 @@ class KnapsackItem(object):
         id (int): Knapsack item number
         weight (int): the weight of this item
         profit (float): the profit for this item
-        ratio (float): the profit per weight ratio
         """
         self.id = id
         self.weight = weight
         self.profit = profit
-        self.ratio = profit / weight if weight != 0 else 0
 
     def __str__(self):
         return f"(id:{self.id} weight:{self.weight} profit:{self.profit})"
 
     def __repr__(self):
-        return f"(id:{self.id} w:{self.weight} p:{self.profit} r:{self.ratio})"
+        return f"(id:{self.id} weight:{self.weight} profit:{self.profit})"
 
     def __eq__(self, o):
         return self.id == o.id\
@@ -44,12 +42,12 @@ def knapsack(items, cap):
 
     Parameters
     ----------
-    items (array): List of KnapsackItems
+    items (array): List of KnapsackItem
     cap (int): Capacity of the knapsack
 
     Return
     ------
-    {profit: maximum profit}
+    {knapsack: array of KnapsackItem, profit: maximum profit}
 
     NOTES
     -----
@@ -73,7 +71,7 @@ def knapsack(items, cap):
                 profits[i][j] = profits[i-1][j]
             else:
                 profits[i][j] = max(profits[i-1][j],
-                                    profits[i-1][j-int(items[i-1].weight)] +
+                                    profits[i-1][j-items[i-1].weight] +
                                     items[i-1].profit)
 
     # get list of knapack items from profits array
@@ -83,7 +81,7 @@ def knapsack(items, cap):
 
 
 def knapsack_items(items, profits):
-    """Get a list of items from profits array"""
+    """Get a list of items in knapsack from profits array"""
     knapsack = []
     cap = len(profits[0]) - 1
 
@@ -92,9 +90,10 @@ def knapsack_items(items, profits):
             break
         elif profits[item][cap] == profits[item-1][cap]:
             continue
+        else:
+            knapsack.append(items[item-1])
 
-        knapsack.append(items[item-1])
-        cap -= int(items[item-1].weight)
+        cap -= items[item-1].weight
 
     return knapsack
 
@@ -112,7 +111,7 @@ def fractional_knapsack(items, cap):
 
     Parameters
     ----------
-    items (array): List of KnapsackItems
+    items (array): List of KnapsackItem
     cap (int): Capacity of the knapsack
 
     Return
@@ -123,7 +122,7 @@ def fractional_knapsack(items, cap):
     knapsack = []
 
     # sort items by nonincreasing ratio
-    sorted_items = sorted(items, key=lambda item: item.ratio, reverse=True)
+    sorted_items = sorted(items, key=lambda i: i.profit/i.weight, reverse=True)
 
     for item in sorted_items:
         if cap > 0:
@@ -145,7 +144,7 @@ def bruteforce_knapsack(items, cap):
 
 
 def bf_knapsack(items, cap, n):
-    """Recursively permutate all items for maximum profit"""
+    """Recursively permutate all items within capacity for maximum profit"""
     if cap == 0 or n == 0:
         return 0
     elif items[n-1].weight > cap:

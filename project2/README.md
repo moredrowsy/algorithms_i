@@ -1,13 +1,13 @@
-# How to run Project 2
+# Project 2
+
+Requirements: python3
 
 ## Tasks
 
 - Fractional Knapsack
 - 0-1 Knapsack
 
-Requirements: python3
-
-## Interactive knapsack program
+## Interactive knapsack and fractional knapsack program
 
 ```bash
 python3 -m run
