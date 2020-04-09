@@ -4,7 +4,7 @@ Project 2
 - Fractional Knapsack
 - Whole Knapsack
 """
-import os
+import os.path
 
 from knapsack import KnapsackItem, knapsack, fractional_knapsack
 
@@ -27,7 +27,7 @@ class Run(object):
 
     def setup(self):
         """Run knapsack program setup"""
-        print("SETUP\n-----")
+        print("\nSETUP\n-----")
 
         self.change_capacity()
 
@@ -48,13 +48,10 @@ class Run(object):
 
     def start(self):
         """Run user interactive mode"""
-        title = "\nKNAPSACK PROGRAM\n----------------\n"
-        print(title)
         self.setup()
 
         while True:
             info = f"\nCAPACITY: {self.capacity}\t"
-            info += f"ITEMS ENTERED: {len(self.items)} items"
 
             print(info, end="\n\n")
             print(self.menu, end="\n")
@@ -64,14 +61,13 @@ class Run(object):
                 break
 
             self.clear_screen()
-            print(title)
 
             if choice == "1":
                 self.knapsack()
             elif choice == "2":
                 self.fract_knapsack()
             elif choice == "3":
-                self.print_items()
+                self.print_items(self.items, title="ITEMS ENTERED")
             elif choice == "4":
                 self.change_capacity()
             elif choice == "5":
@@ -85,43 +81,51 @@ class Run(object):
 
     def change_capacity(self):
         """User change knapsack capacity"""
+        print("Enter knapsack capacity")
+
         while True:
             try:
-                self.capacity = int(self.input("Enter knapsack capacity"))
+                self.capacity = int(self.input())
                 if self.capacity > 0:
                     break
                 else:
-                    print("Invalid.")
+                    raise ValueError()
             except:
                 print("Invalid.")
 
+        self.clear_screen()
+
     def add_items(self):
         """User add KnapsackItems from user"""
-        info = 0
-        print("Format: [WEIGHT] [PROFIT]\nEnter X to stop")
+        err_msg = ""
 
         while True:
-            info = self.input()
-            data = info.split()
+            self.clear_screen()
+            self.print_items(self.items, "ITEMS ENTERED")
+            print("\nFormat: [WEIGHT] [PROFIT]\nEnter X to stop")
 
-            if info == "X" or info == "x":
+            if err_msg:
+                print(err_msg)
+
+            data = self.input()
+
+            if data == "X" or data == "x":
+                self.clear_screen()
+                self.print_items(self.items, "ITEMS ENTERED")
                 break
 
             try:
-                if int(data[0]) == 0:
-                    raise ValueError("Weight can not be 0.")
-
+                weight, profit = self.process_input(data)
                 self.items.append(KnapsackItem(
-                    len(self.items), int(data[0]), float(data[1])))
-
-                print("Added item:", self.items[-1])
-            except ValueError as err:
-                print("Invalid input:", err)
-            except Exception:
-                print("Invalid input.")
+                    len(self.items), weight, profit))
+                err_msg = ""
+            except Exception as err:
+                err_msg = "Invalid input. " + str(err)
 
     def add_from_file(self, filename=None):
         """Populate KnapsackItems from file"""
+        err_msg = ""
+
         if not filename:
             filename = self.input("Enter file name")
 
@@ -132,31 +136,78 @@ class Run(object):
         with open(filename) as file:
             print()
             for i, line in enumerate(file):
-                data = line.split()
-
                 try:
-                    if int(data[0]) == 0:
-                        raise ValueError("Weight can not be 0.")
-
+                    weight, profit = self.process_input(line)
                     self.items.append(KnapsackItem(
-                        len(self.items), int(data[0]), float(data[1])))
+                        len(self.items), weight, profit))
+                except Exception as err:
+                    err_msg += f"\nInvalid input at line {i}. " + str(err)
 
-                    print("Added item:", self.items[-1])
-                except ValueError as err:
-                    print(f"Invalid input at line {i}.", err)
-                except Exception:
-                    print(f"Invalid input at line {i}.")
+        self.clear_screen()
+        self.print_items(self.items, "ITEMS ENTERED")
+
+        if err_msg:
+            print(err_msg)
+
+    def process_input(self, data):
+        """Return valid weight, profit input. Else raises ValueError"""
+        weight, profit = 0, 0
+        data = data.split()
+
+        if data:
+            if len(data) < 2:
+                raise ValueError("Missing profit input.")
+
+            try:
+                weight = int(data[0])
+            except:
+                raise ValueError("Weight must be integer.")
+
+            try:
+                profit = float(data[1])
+            except:
+                raise ValueError("Value must be a number.")
+
+            if weight <= 0:
+                raise ValueError("Weight must be greater than 0.")
+        else:
+            raise ValueError("Invalid input.")
+
+        return weight, profit
 
     def clear_items(self):
         self.items = []
         print("All entered items removed.")
 
-    def print_items(self):
+    def print_items(self, items, title=None, fract=False):
         """Print items entered from user or file"""
-        if len(self.items) > 0:
-            print("Items entered")
-            for item in self.items:
-                print(item)
+
+        if self.items:
+            labels = ["ID", "WEIGHT", "PROFIT"]
+            width = 10
+            fmt_label = "{:<5} {:<{w}} {:<{w}}"
+            fmt_data = "{:<5} {:<{w}} {:<{w}.2f}"
+
+            if title:
+                print(title, end="\n\n")
+
+            if fract:
+                labels = [*labels, "FRACTION"]
+                fmt_label += " {:<{w}}"
+                fmt_data += " {:<{w}.2f}"
+
+            bar = [5*'-'] + [width*'-' for _ in range(1, len(labels))]
+            print(fmt_label.format(*labels, w=width))
+            print(fmt_label.format(*bar, w=width))
+
+            if fract:
+                for f, item in items:
+                    print(fmt_data.format(item.id, item.weight, item.profit, f,
+                                          w=width))
+            else:
+                for item in items:
+                    print(fmt_data.format(item.id, item.weight, item.profit,
+                                          w=width))
         else:
             print("No items entered")
 
@@ -174,27 +225,23 @@ class Run(object):
 
     def knapsack(self):
         """Run knapsack algorithm"""
-        if len(self.items) > 0:
-            print("0-1 KNAPSACK")
-
+        if self.items:
             result = knapsack(self.items, self.capacity)
 
-            print(f"Profit: {result['profit']:.2f}")
-            for item in result['knapsack']:
-                print(f"Item: {item}")
+            title = "0-1 KNAPSACK"
+            self.print_items(result['knapsack'], title)
+            print(f"\nTOTAL PROFIT: {result['profit']:.2f}")
         else:
             print("No items entered")
 
     def fract_knapsack(self):
         """Run fractional knapsack algorithm"""
-        if len(self.items) > 0:
-            print("FRACTIONAL KNAPSACK")
-
+        if self.items:
             result = fractional_knapsack(self.items, self.capacity)
 
-            print(f"Profit: {result['profit']:.2f}")
-            for item in result['knapsack']:
-                print(f"Fraction: {item[0]:.2f}\tItem: {item[1]}")
+            title = "FRACTIONAL KNAPSACK"
+            self.print_items(result['knapsack'], title, fract=True)
+            print(f"\nTOTAL PROFIT: {result['profit']:.2f}")
         else:
             print("No items entered")
 

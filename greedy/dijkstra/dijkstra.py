@@ -29,11 +29,11 @@ def dijkstra(weights, source):
     NOTES
     -----
     - vnear: Node with min distance at each iteration.
-        Node is also index at length[i] to touch[vnear].
-        Tells us the previous node min total length at length[i].
     - length[]: List of min total length at each node.
-    - touch[]: List of vnear nodes for total length in length[i]
-        touch[vnear] to get node corresponding to length[i]
+        When updating length[i] with new min total length with vnear,
+        touch[i] stores vnear.
+    - touch[]: List of previous touched (visited) node to vnear.
+        touch[vnear] to get previous node touched by vnear.
     - final_edges[]: Resultant array of edges that produces the shortest
         path tree.
 

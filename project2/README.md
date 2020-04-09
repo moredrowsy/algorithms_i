@@ -7,7 +7,7 @@ Requirements: python3
 - Fractional Knapsack
 - 0-1 Knapsack
 
-## Interactive knapsack and fractional knapsack program
+## Interactive program for both 0-1 Knapsack and Fractional Knapsack tasks
 
 ```bash
 python3 -m run

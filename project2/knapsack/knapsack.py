@@ -22,10 +22,10 @@ class KnapsackItem(object):
         self.profit = profit
 
     def __str__(self):
-        return f"(id:{self.id} weight:{self.weight} profit:{self.profit})"
+        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
 
     def __repr__(self):
-        return f"(id:{self.id} weight:{self.weight} profit:{self.profit})"
+        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
 
     def __eq__(self, o):
         return self.id == o.id\
@@ -38,7 +38,8 @@ def knapsack(items, cap):
     Find optimum set of items with maximum profit within knapsack's capacity.
     Items must be whole (can not be fractional).
 
-    Time Complexity: O(min(2^n, n*c)), c = capacity
+    Time Complexity: O(min(2^n, n*C)), C = capacity
+    n*C is not polynomial; it can be worst than 2^n when capacity is large
 
     Parameters
     ----------

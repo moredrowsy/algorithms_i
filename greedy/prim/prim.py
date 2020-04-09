@@ -30,11 +30,11 @@ def prim(weights, source=0):
     NOTES
     -----
     - vnear: Node with min distance at each iteration.
-        Node is also index at distance[i] to nearest[vnear].
-        Tells us the previous node with min distance at distance[i].
-    - distance[]: List of min distances at each iteration.
-    - nearest[]: List of vnear nodes for distance in distance[i]
-        nearest[vnear] to get node corresponding to distance[i].
+    - distance[]: List of min distances at each node.
+        When updating distance[i] for new min distance with vnear,
+        nearest[i] stores vnear.
+    - nearest[]: List of previous nearest (closest) node to vnear.
+        nearest[vnear] to get previous node closest to vnear.
     - final_edges[]: Resultant array of edges that produces the minimal
                      spanning tree (MST).
 
