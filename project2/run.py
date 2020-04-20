@@ -67,9 +67,10 @@ class Run(object):
             elif choice == "2":
                 self.fract_knapsack()
             elif choice == "3":
-                self.print_items(self.items, title="ITEMS ENTERED")
+                self.print_items(self.items, "ITEMS ENTERED")
             elif choice == "4":
                 self.change_capacity()
+                self.clear_screen()
             elif choice == "5":
                 self.add_items()
             elif choice == "6":
@@ -79,7 +80,7 @@ class Run(object):
             else:
                 pass
 
-    def change_capacity(self):
+    def change_capacity(self, clear_screen=True):
         """User change knapsack capacity"""
         print("Enter knapsack capacity")
 
@@ -92,8 +93,6 @@ class Run(object):
                     raise ValueError()
             except:
                 print("Invalid.")
-
-        self.clear_screen()
 
     def add_items(self):
         """User add KnapsackItems from user"""
@@ -117,7 +116,7 @@ class Run(object):
             try:
                 weight, profit = self.process_input(data)
                 self.items.append(KnapsackItem(
-                    len(self.items), weight, profit))
+                    len(self.items) + 1, weight, profit))
                 err_msg = ""
             except Exception as err:
                 err_msg = "Invalid input. " + str(err)
@@ -131,7 +130,7 @@ class Run(object):
 
         while not os.path.exists(filename):
             print("Path does not exist.")
-            filename = self.input("Enter file name")
+            filename = self.input()
 
         with open(filename) as file:
             print()
@@ -139,7 +138,7 @@ class Run(object):
                 try:
                     weight, profit = self.process_input(line)
                     self.items.append(KnapsackItem(
-                        len(self.items), weight, profit))
+                        len(self.items) + 1, weight, profit))
                 except Exception as err:
                     err_msg += f"\nInvalid input at line {i}. " + str(err)
 

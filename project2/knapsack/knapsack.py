@@ -33,6 +33,46 @@ class KnapsackItem(object):
             and self.profit == o.profit
 
 
+def fractional_knapsack(items, cap):
+    """
+    Find optimum set of items with maximum profit within knapsack's capacity.
+    Items can be fractional.
+
+    Time complexity: O(nlogn)
+    Complexity breakdown:
+        sort: nlogn
+        for loop: n
+        total: nlogn + n = O(nlogn)
+
+    Parameters
+    ----------
+    items (array): List of KnapsackItem
+    cap (int): Capacity of the knapsack
+
+    Return
+    ------
+    {knapsack: array of (fraction, KnapsackItem), profit: float}
+    """
+    profit = 0
+    knapsack = []
+
+    # sort items by nonincreasing ratio
+    sorted_items = sorted(items, key=lambda i: i.profit/i.weight, reverse=True)
+
+    for item in sorted_items:
+        if cap > 0:
+            # if future capacity is negative, set to capacity/weight; else 1
+            fraction = cap / item.weight if cap - item.weight < 0 else 1
+
+            knapsack.append((fraction, item))
+            profit += fraction * item.profit
+            cap -= item.weight
+        else:
+            break
+
+    return {'knapsack': knapsack, 'profit': profit}
+
+
 def knapsack(items, cap):
     """
     Find optimum set of items with maximum profit within knapsack's capacity.
@@ -91,8 +131,10 @@ def knapsack_items(items, profits):
 
     # loop item index backwards
     for item in range(len(profits) - 1, -1, -1):
+        # stop when capacity or profit is 0
         if cap <= 0 or profits[item][cap] == 0:
             break
+        # skip if current profit is equal to next profit
         elif profits[item][cap] == profits[item-1][cap]:
             continue
         else:
@@ -103,53 +145,16 @@ def knapsack_items(items, profits):
     return knapsack
 
 
-def fractional_knapsack(items, cap):
-    """
-    Find optimum set of items with maximum profit within knapsack's capacity.
-    Items can be fractional.
-
-    Time complexity: O(nlogn)
-    Complexity breakdown:
-        sort: nlogn
-        for loop: n
-        total: nlogn + n = O(nlogn)
-
-    Parameters
-    ----------
-    items (array): List of KnapsackItem
-    cap (int): Capacity of the knapsack
-
-    Return
-    ------
-    {knapsack: array of (fraction, KnapsackItem), profit: float}
-    """
-    profit = 0
-    knapsack = []
-
-    # sort items by nonincreasing ratio
-    sorted_items = sorted(items, key=lambda i: i.profit/i.weight, reverse=True)
-
-    for item in sorted_items:
-        if cap > 0:
-            # if future capacity is negative, set to capacity/weight; else 1
-            fraction = cap / item.weight if cap - item.weight < 0 else 1
-
-            knapsack.append((fraction, item))
-            profit += fraction * item.profit
-            cap -= item.weight
-        else:
-            break
-
-    return {'knapsack': knapsack, 'profit': profit}
-
-
 def bruteforce_knapsack(items, cap):
-    """Bruteforce knapsack for testing purposes"""
+    """Bruteforce knapsack as answers for unit tests"""
     return bf_knapsack(items, cap, len(items))
 
 
 def bf_knapsack(items, cap, n):
-    """Recursively permutate all items within capacity for maximum profit"""
+    """
+    Recursively permutate all items within capacity for maximum profit.
+    Used for unit tests.
+    """
     if cap == 0 or n == 0:
         return 0
     elif items[n-1].weight > cap:

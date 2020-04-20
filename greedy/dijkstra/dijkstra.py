@@ -67,7 +67,7 @@ def dijkstra(weights, source):
 
         # find node with min dist
         for i in range(n):
-            if length[i] < min_dist and length[i] >= 0:
+            if 0 <= length[i] < min_dist:
                 min_dist = length[i]
                 vnear = i
 

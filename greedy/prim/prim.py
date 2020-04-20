@@ -69,7 +69,7 @@ def prim(weights, source=0):
 
         # find node with min dist
         for i in range(n):
-            if distance[i] < min_dist and distance[i] >= 0:
+            if 0 <= distance[i] < min_dist:
                 min_dist = distance[i]
                 vnear = i
 
