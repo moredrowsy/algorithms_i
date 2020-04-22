@@ -74,6 +74,9 @@ class Run(object):
             elif choice == "5":
                 self.add_items()
             elif choice == "6":
+                clear = self.input("Clear previous items? (Y/N)")
+                if clear == "Y" or clear == "y":
+                    self.clear_items()
                 self.add_from_file()
             elif choice == "7":
                 self.clear_items()
