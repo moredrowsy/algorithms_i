@@ -32,22 +32,23 @@ class Sudoku(object):
 
             assert self.box * self.box == self.size
 
-    def solve(self):
+    def solve(self, node=(0, 0)):
         """Solve Sudoku: backtracking algorithm"""
         # Find an empty node
-        node = self._find_empty_node()
+        node = self._find_empty(node)
 
         if node:
             row, col = node
+            next_node = self._next(node)
 
             # Try every number
             for number in range(1, self.size + 1):
                 # Check if node with number is promising
-                if self._is_promising(node, number):
+                if self._is_promising(row, col, number):
                     self.board[row][col] = number
 
                     # Recurse to next node
-                    if self.solve():
+                    if self.solve(next_node):
                         return True
                     # Unmark node if recursion path fails
                     else:
@@ -59,20 +60,34 @@ class Sudoku(object):
             # No more empty nodes means the Sudoku puzzle is solved
             return True
 
-    def _find_empty_node(self):
-        """Find an empty node in board. Return tuple of (row, col) else None"""
-        for i in range(self.size):
-            for j in range(self.size):
+    def _find_empty(self, node):
+        """Find an empty node. Return tuple of (row, col) else None"""
+        row, col = node
+
+        for i in range(row, self.size):
+            for j in range(col, self.size):
                 if self.board[i][j] == Sudoku.empty:
                     return i, j
+            col = 0
         return None
 
-    def _is_promising(self, node, number):
+    def _next(self, node):
+        """Return next node indices"""
+        row, col = node
+
+        if col == self.size - 1:
+            row, col = row + 1, 0
+        else:
+            col += 1
+
+        return row, col
+
+    def _is_promising(self, row, col, number):
         """Check if node with number is valid/promising"""
-        return self._is_valid_row(node[0], number) and\
-            self._is_valid_col(node[1], number) and\
-            self._is_valid_box(node, number) and\
-            self.board[node[0]][node[1]] == Sudoku.empty
+        return self._is_valid_row(row, number) and\
+            self._is_valid_col(col, number) and\
+            self._is_valid_box(row, col, number) and\
+            self.board[row][col] == Sudoku.empty
 
     def _is_valid_row(self, row, number):
         """Check row has no number"""
@@ -85,9 +100,8 @@ class Sudoku(object):
                 return False
         return True
 
-    def _is_valid_box(self, node, number):
+    def _is_valid_box(self, row, col, number):
         """Check box has no number"""
-        row, col = node
         row = row - row % self.box
         col = col - col % self.box
 
