@@ -1,3 +1,6 @@
+import math
+
+
 class Sudoku(object):
     """
     Sudoku puzzle solver
@@ -94,11 +97,20 @@ class Sudoku(object):
                     return False
         return True
 
-    @staticmethod
-    def print_board(board):
-        n = len(board)
+    def print(self):
+        """Print sudoku board"""
+        if self.board:
+            for i in range(self.size):
+                if i % self.box == 0 and i != 0:
+                    for j in range(self.box):
+                        if j != self.box - 1:
+                            print("-" * (self.box * 2) + "+-", end="")
+                        else:
+                            print("-" * (self.box * 2 - 1), end="")
+                    print()
 
-        for i in range(n):
-            for j in range(n):
-                print(f"{board[i][j]} ", end="")
-            print()
+                for j in range(self.size):
+                    if j % self.box == 0 and j != 0:
+                        print("| ", end="")
+                    print(f"{self.board[i][j]} ", end="")
+                print()

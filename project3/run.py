@@ -14,7 +14,31 @@ class Run(object):
     """
 
     def sudoku_game(self):
+        print("SUDOKU\n------")
+
         _ = Sudoku.empty
+        sudoku = Sudoku()
+
+        # problem 1
+        board = [
+            [3, _, 4, _],
+            [_, 2, _, 3],
+            [_, _, _, _],
+            [_, 4, _, 1],
+        ]
+
+        sudoku.setboard(board)
+
+        print("\nBoard")
+        sudoku.print()
+
+        if sudoku.solve():
+            print("\nSolution")
+            sudoku.print()
+        else:
+            print("Invalid board")
+
+        # problem 2
         board = [
             [_, _, _, _, _, _, 2, _, _],
             [_, 8, _, _, _, 7, _, 9, _],
@@ -27,10 +51,14 @@ class Run(object):
             [_, _, 6, _, _, _, _, _, _]
         ]
 
-        sudoku = Sudoku()
         sudoku.setboard(board)
+
+        print("\nBoard")
+        sudoku.print()
+
         if sudoku.solve():
-            Sudoku.print_board(board)
+            print("\nSolution")
+            sudoku.print()
         else:
             print("Invalid board")
 
