@@ -100,6 +100,7 @@ class Run(object):
 
     def knapsack_problem(self):
         print("\nKNAPSACK\n--------")
+
         # problem 1
         items = [
             KnapsackItem(1, 2, 40),
@@ -109,7 +110,7 @@ class Run(object):
         ]
         capacity = 16
         result = knapsack(items, capacity)
-        print(f"\nProfit: {result['profit']}")
+        print(f"\nProfit: {result['profit']} at capacity: {capacity}")
         print("Knapsack")
         print(result['knapsack'])
 
@@ -122,7 +123,7 @@ class Run(object):
         ]
         capacity = 14
         result = knapsack(items, capacity)
-        print(f"\nProfit: {result['profit']}")
+        print(f"\nProfit: {result['profit']} at capacity: {capacity}")
         print("Knapsack")
         print(result['knapsack'])
 

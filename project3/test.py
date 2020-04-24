@@ -2,10 +2,11 @@
 All unit tests
 """
 import unittest
-from tests import sudoku
+from tests import knapsack, sudoku
 
 
 MODULES = [
+    knapsack,
     sudoku
 ]
 

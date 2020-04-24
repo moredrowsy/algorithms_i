@@ -76,23 +76,24 @@ def knapsack(items, cap):
     pq = []
     heapq.heapify(pq)
 
+    # init root node
     node = KnapsackNode(-1, 0, 0)
     node.bound = bound(items, cap, node)
-    maxprofit = 0
     best_node = node
+    maxprofit = 0
 
     # enqueue node
     heapq.heappush(pq, (-node.bound, node))  # negate bound for maxheap
 
     while pq:
+        # dequeue node
         _, node = heapq.heappop(pq)
 
         if node.bound > maxprofit:
             # left child
-            left_child = KnapsackNode()
-            left_child.level = node.level + 1
-            left_child.weight = node.weight + items[left_child.level].weight
-            left_child.profit = node.profit + items[left_child.level].profit
+            left_child = KnapsackNode(node.level+1, node.weight, node.profit)
+            left_child.weight += items[left_child.level].weight
+            left_child.profit += items[left_child.level].profit
             left_child.indices = copy.copy(node.indices)
             left_child.indices.append(left_child.level)
 
@@ -101,15 +102,11 @@ def knapsack(items, cap):
                 best_node = left_child
 
             left_child.bound = bound(items, cap, left_child)
-
             if left_child.bound > maxprofit:
                 heapq.heappush(pq, (-left_child.bound, left_child))
 
             # right child
-            right_child = KnapsackNode()
-            right_child.level = node.level + 1
-            right_child.weight = node.weight
-            right_child.profit = node.profit
+            right_child = KnapsackNode(node.level+1, node.weight, node.profit)
             right_child.indices = copy.copy(node.indices)
 
             if right_child.weight <= cap and right_child.profit > maxprofit:
@@ -117,7 +114,6 @@ def knapsack(items, cap):
                 best_node = right_child
 
             right_child.bound = bound(items, cap, right_child)
-
             if right_child.bound > maxprofit:
                 heapq.heappush(pq, (-right_child.bound, right_child))
 
