@@ -7,6 +7,7 @@ import time
 import threading
 
 from sudoku import Sudoku
+from knapsack import knapsack, KnapsackItem
 
 
 class Run(object):
@@ -34,8 +35,8 @@ class Run(object):
                 time.sleep(1)
                 count += 1
 
-    def sudoku_game(self):
-        print("SUDOKU\n------")
+    def sudoku_puzzle(self):
+        print("\nSUDOKU\n------")
 
         _ = Sudoku.empty
         sudoku = Sudoku()
@@ -97,6 +98,35 @@ class Run(object):
         self.is_solving = False
         print_solving.join()
 
+    def knapsack_problem(self):
+        print("\nKNAPSACK\n--------")
+        # problem 1
+        items = [
+            KnapsackItem(1, 2, 40),
+            KnapsackItem(2, 5, 30),
+            KnapsackItem(3, 10, 50),
+            KnapsackItem(4, 5, 10)
+        ]
+        capacity = 16
+        result = knapsack(items, capacity)
+        print(f"\nProfit: {result['profit']}")
+        print("Knapsack")
+        print(result['knapsack'])
+
+        # problem 2
+        items = [
+            KnapsackItem(1, 5, 35),
+            KnapsackItem(2, 4, 16),
+            KnapsackItem(3, 7, 42),
+            KnapsackItem(4, 3, 9)
+        ]
+        capacity = 14
+        result = knapsack(items, capacity)
+        print(f"\nProfit: {result['profit']}")
+        print("Knapsack")
+        print(result['knapsack'])
+
 
 if __name__ == "__main__":
-    Run().sudoku_game()
+    Run().sudoku_puzzle()
+    Run().knapsack_problem()

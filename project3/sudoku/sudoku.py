@@ -47,7 +47,7 @@ class Sudoku(object):
                 if self._is_promising(row, col, number):
                     self.board[row][col] = number
 
-                    # Recurse to next node
+                    # Recur to next node
                     if self.solve(next_node):
                         return True
                     # Unmark node if recursion path fails
