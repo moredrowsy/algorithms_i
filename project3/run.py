@@ -1,7 +1,9 @@
 """
 Project 3
 
-- FSudoku
+- Sudoku: Backtracking
+- 0-1 Knapsack: Branch and bound
+- Traveling Salesman: Branch and bound
 """
 import time
 import threading

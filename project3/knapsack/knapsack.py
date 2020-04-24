@@ -127,7 +127,7 @@ def knapsack(items, cap):
 
 def bound(items, cap, node):
     """
-    Calculate max profit limit using greedy approach for current node.
+    Calculate max profit boundary using greedy approach for current node.
 
     Parameters
     ----------
