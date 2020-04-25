@@ -8,16 +8,12 @@ Project 3
 import time
 import threading
 
-from knapsack import knapsack, KnapsackItem
+from knapsack import knapsack, KnapsackItem, knapsack_debug
 from sudoku import Sudoku
 from traveling_salesman import traveling_salesman
 
 
-class Run(object):
-    """
-    Run project 3's tasks
-    """
-
+class SudokuRun(object):
     def __init__(self):
         self.is_solving = True
 
@@ -38,20 +34,12 @@ class Run(object):
                 time.sleep(1)
                 count += 1
 
-    def sudoku_puzzle(self):
-        print("\nSUDOKU\n------")
+    def start(self):
+        print("\nSUDOKU\n------\n")
 
-        _ = Sudoku.empty
+        board = get_2d_array_input("input_sudoku.txt")
+
         sudoku = Sudoku()
-
-        # problem 1
-        board = [
-            [3, _, 4, _],
-            [_, 2, _, 3],
-            [_, _, _, _],
-            [_, 4, _, 1],
-        ]
-
         sudoku.setboard(board)
 
         print("\nBoard")
@@ -61,124 +49,67 @@ class Run(object):
         print_solving = threading.Thread(target=self.print_solving)
         print_solving.start()
 
-        if sudoku.solve():
+        is_solved = sudoku.solve()
+        self.is_solving = False
+
+        if is_solved:
             print("Solution  ")
             sudoku.print()
         else:
             print("Invalid board")
 
-        self.is_solving = False
         print_solving.join()
 
-        # problem 2
-        board = [
-            [_, _, _, _, _, _, 2, _, _],
-            [_, 8, _, _, _, 7, _, 9, _],
-            [6, _, 2, _, _, _, 5, _, _],
-            [_, 7, _, _, 6, _, _, _, _],
-            [_, _, _, 9, _, 1, _, _, _],
-            [_, _, _, _, 2, _, _, 4, _],
-            [_, _, 5, _, _, _, 6, _, 3],
-            [_, 9, _, 4, _, _, _, 7, _],
-            [_, _, 6, _, _, _, _, _, _]
-        ]
 
-        sudoku.setboard(board)
+class KnapsackRun(object):
+    def __init__(self):
+        self.capacity = 0
+        self.items = []
 
-        print("\nBoard")
-        sudoku.print()
+    def start(self):
+        print("\nKNAPSACK\n--------\n")
 
-        print()
-        print_solving = threading.Thread(target=self.print_solving)
-        print_solving.start()
+        self.get_knapsack_input("input_knapsack.txt")
 
-        if sudoku.solve():
-            print("Solution  ")
-            sudoku.print()
-        else:
-            print("Invalid board")
+        result = knapsack_debug(self.items, self.capacity)
 
-        self.is_solving = False
-        print_solving.join()
+    def get_knapsack_input(self, filename):
+        self.capacity = int(input("Enter capacity: "))
 
-    def knapsack_problem(self):
-        print("\nKNAPSACK\n--------")
+        print(f"Reading data from {filename}")
+        with open(filename) as file:
+            weights = [int(i) for i in next(file).split()]
+            profits = [float(i) for i in next(file).split()]
 
-        # problem 1
-        items = [
-            KnapsackItem(1, 2, 40),
-            KnapsackItem(2, 5, 30),
-            KnapsackItem(3, 10, 50),
-            KnapsackItem(4, 5, 10)
-        ]
-        capacity = 16
-        result = knapsack(items, capacity)
-        print(f"\nProfit: {result['profit']} at capacity: {capacity}")
-        print("Knapsack")
-        print(result['knapsack'])
+            for i in range(len(weights)):
+                self.items.append(KnapsackItem(
+                    len(self.items)+1, weights[i], profits[i]))
 
-        # problem 2
-        items = [
-            KnapsackItem(1, 5, 35),
-            KnapsackItem(2, 4, 16),
-            KnapsackItem(3, 7, 42),
-            KnapsackItem(4, 3, 9)
-        ]
-        capacity = 14
-        result = knapsack(items, capacity)
-        print(f"\nProfit: {result['profit']} at capacity: {capacity}")
-        print("Knapsack")
-        print(result['knapsack'])
 
-    def travelingsalesman(self):
-        print("\nTRAVELING SALESMAN\n------------------")
+class TravelingSalesmanRun(object):
+    def start(self):
+        print("\nTRAVELING SALESMAN\n------------------\n")
 
-        # problem 1
-        adj = [
-            [0, 14, 4, 10, 20],
-            [14, 0, 7, 8, 7],
-            [4, 5, 0, 7, 16],
-            [11, 7, 9, 0, 2],
-            [18, 7, 17, 4, 0]
-        ]
+        adjacency = get_2d_array_input("input_salesman.txt")
 
         print("\nAdjacency Matrix")
-        print_matrix(adj)
+        print_matrix(adjacency)
 
-        result = traveling_salesman(adj)
+        result = traveling_salesman(adjacency)
         print(f"\nShortest path: {result['path']}")
         print(f"Length: {result['length']}")
 
-        # problem 2
-        adj = [
-            [0, 20, 30, 10, 1],
-            [15, 0, 16, 4, 2],
-            [3, 5, 0, 2, 4],
-            [19, 6, 18, 0, 3],
-            [16, 4, 7, 16, 0]
-        ]
 
-        print("\nAdjacency Matrix")
-        print_matrix(adj)
+def get_2d_array_input(filename):
+    array = []
 
-        result = traveling_salesman(adj)
-        print(f"\nShortest path: {result['path']}")
-        print(f"Length: {result['length']}")
+    print(f"Reading data from {filename}")
+    with open(filename) as file:
+        for line in file:
+            if line:
+                array.append([int(i) for i in line.split()])
 
-        # problem 3
-        adj = [
-            [0, 10, 15, 20],
-            [10, 0, 35, 25],
-            [15, 35, 0, 30],
-            [20, 25, 30, 0]
-        ]
-
-        print("\nAdjacency Matrix")
-        print_matrix(adj)
-
-        result = traveling_salesman(adj)
-        print(f"\nShortest path: {result['path']}")
-        print(f"Length: {result['length']}")
+    return array
 
 
 def print_matrix(A, pad_size=3, sep=" ", end="\n"):
@@ -192,6 +123,26 @@ def print_matrix(A, pad_size=3, sep=" ", end="\n"):
 
 
 if __name__ == "__main__":
-    Run().sudoku_puzzle()
-    Run().knapsack_problem()
-    Run().travelingsalesman()
+
+    menu = "\nWhich task?\n"\
+        "1: Sudoku\n"\
+        "2: 0-1 Knapsack\n"\
+        "3: Traveling Salesman\n"\
+        "X: Exit"
+    print(menu)
+
+    while True:
+        choice = input("> ")
+
+        if choice == "X" or choice == "x":
+            break
+        elif choice == "1":
+            SudokuRun().start()
+        elif choice == "2":
+            KnapsackRun().start()
+        elif choice == "3":
+            TravelingSalesmanRun().start()
+        else:
+            continue
+
+        print(menu)

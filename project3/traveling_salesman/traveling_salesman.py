@@ -28,7 +28,7 @@ class TravelNode(object):
 def traveling_salesman(adj):
     """
     Find the shortest path through every node once using track and bound
-    algorithm.
+    algorithm with best first search.
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ def traveling_salesman(adj):
 
                     # when the child node is near the end
                     if child.level == n - 2:
-                        add_leftover_nodes(child, n)
+                        add_remaining_nodes(child, n)
 
                         total_length = length(adj, child)
                         if total_length < minlength:
@@ -87,7 +87,6 @@ def bound(adj, node):
     """Find the lenght boundary for the current node"""
     n = len(adj)
     length = 0
-    level = node.level
     path = node.path
 
     # get all edges in path
@@ -97,13 +96,17 @@ def bound(adj, node):
     else:
         length += min(i for i in adj[0] if i > 0)
 
+    # find minimun edges not in path except for last node
     for i in range(1, n):
-        # row for last index in path
+        # when last path index is same as ith row
         if i == path[-1]:
-            row = [adj[path[-1]][i] for i in range(n) if i not in path]
+            # exlucde columns that are in path
+            row = (adj[i][j] for j in range(n) if j not in path and i != j)
             length += min(row)
+        # exclude ith row in path
         elif i not in path:
-            row = [adj[i][j] for j in range(n) if j not in path[1:] and i != j]
+            # exclude columns that are in path except the first node
+            row = (adj[i][j] for j in range(n) if j not in path[1:] and i != j)
             length += min(row)
 
     return length
@@ -120,7 +123,7 @@ def length(adj, node):
     return total_length
 
 
-def add_leftover_nodes(node, n):
+def add_remaining_nodes(node, n):
     """Add the remaining indices to node, including the start index @ end"""
     for i in range(1, n):
         if i not in node.path:

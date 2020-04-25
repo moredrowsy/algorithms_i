@@ -184,7 +184,7 @@ class Run(object):
     def print_items(self, items, title=None, fract=False):
         """Print items entered from user or file"""
 
-        if self.items:
+        if items:
             labels = ["ID", "WEIGHT", "PROFIT"]
             width = 10
             fmt_label = "{:<5} {:<{w}} {:<{w}}"
