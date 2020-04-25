@@ -192,6 +192,6 @@ def print_matrix(A, pad_size=3, sep=" ", end="\n"):
 
 
 if __name__ == "__main__":
-    # Run().sudoku_puzzle()
+    Run().sudoku_puzzle()
     Run().knapsack_problem()
     Run().travelingsalesman()

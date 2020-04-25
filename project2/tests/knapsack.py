@@ -8,7 +8,7 @@ from knapsack import KnapsackItem, knapsack, bruteforce_knapsack
 
 class TestKnapsack(unittest.TestCase):
     """
-    Tests for Fractional Knapsack
+    Tests for 0-1 Knapsack
     """
 
     def setUp(self):
