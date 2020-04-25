@@ -3,16 +3,41 @@ import heapq
 
 
 class TravelNode(object):
-    def __init__(self, level=0, bound=0, path=[]):
+    """Representation for the Traveling Salesman node"""
+
+    def __init__(self, level=0, bound=0, path=None):
+        """
+        Parameters
+        ----------
+        level (int): kth node level
+        bound (float): total boundary length for this node
+        path (list): list of path indices
+        """
         self.level = level
         self.bound = bound
-        self.path = path
+
+        if path is None:
+            self.path = []
+        else:
+            self.path = path
 
     def __lt__(self, o):
         return self.bound < o.bound
 
 
 def traveling_salesman(adj):
+    """
+    Find the shortest path through every node once using track and bound
+    algorithm.
+
+    Parameters
+    ----------
+    adj (array): 2D array adjacency matrix
+
+    Return
+    ------
+    {length: float, path: list of node indices}
+    """
     n = len(adj)
     minlength = float('inf')
 
@@ -34,7 +59,6 @@ def traveling_salesman(adj):
         node = heapq.heappop(pq)
 
         if node.bound < minlength:
-
             for i in range(1, n):
                 if i not in node.path:
                     # init child node
@@ -42,7 +66,7 @@ def traveling_salesman(adj):
                     child.path = copy.copy(node.path)
                     child.path.append(i)
 
-                    # update length if reach near the end
+                    # when the child node is near the end
                     if child.level == n - 2:
                         add_leftover_nodes(child, n)
 
@@ -60,6 +84,7 @@ def traveling_salesman(adj):
 
 
 def bound(adj, node):
+    """Find the lenght boundary for the current node"""
     n = len(adj)
     length = 0
     level = node.level
@@ -85,6 +110,7 @@ def bound(adj, node):
 
 
 def length(adj, node):
+    """Find total length of node's path"""
     total_length = 0
     path = node.path
 
@@ -95,6 +121,7 @@ def length(adj, node):
 
 
 def add_leftover_nodes(node, n):
+    """Add the remaining indices to node, including the start index @ end"""
     for i in range(1, n):
         if i not in node.path:
             node.path.append(i)

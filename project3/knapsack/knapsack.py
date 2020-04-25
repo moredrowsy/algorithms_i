@@ -32,21 +32,25 @@ class KnapsackItem(object):
 class KnapsackNode(object):
     """Knapsack node representation in Breath First Search traversal"""
 
-    def __init__(self, level=0, weight=0, profit=0, bound=0, indices=[]):
+    def __init__(self, level=0, weight=0, profit=0, bound=0, indices=None):
         """
         Parameters
         ----------
         level (int): kth item level
         weight (int): item's weight
         profit (float): item's profit
-        bound (float): maximum profit for this node using greedy apporach
+        bound (float): profit boundary for this node using greedy apporach
         indices (list): list of item indices
         """
         self.level = level
         self.weight = weight
         self.profit = profit
         self.bound = bound
-        self.indices = indices
+
+        if indices is None:
+            self.indices = []
+        else:
+            self.indices = indices
 
     def __lt__(self, o):
         return self.bound < o.bound
