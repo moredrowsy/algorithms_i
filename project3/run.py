@@ -8,8 +8,9 @@ Project 3
 import time
 import threading
 
-from sudoku import Sudoku
 from knapsack import knapsack, KnapsackItem
+from sudoku import Sudoku
+from traveling_salesman import traveling_salesman
 
 
 class Run(object):
@@ -129,7 +130,68 @@ class Run(object):
         print("Knapsack")
         print(result['knapsack'])
 
+    def travelingsalesman(self):
+        print("\nTRAVELING SALESMAN\n------------------")
+
+        # problem 1
+        adj = [
+            [0, 14, 4, 10, 20],
+            [14, 0, 7, 8, 7],
+            [4, 5, 0, 7, 16],
+            [11, 7, 9, 0, 2],
+            [18, 7, 17, 4, 0]
+        ]
+
+        print("\nAdjacency Matrix")
+        print_matrix(adj)
+
+        result = traveling_salesman(adj)
+        print(f"\nShortest path: {result['path']}")
+        print(f"Length: {result['length']}")
+
+        # problem 2
+        adj = [
+            [0, 20, 30, 10, 1],
+            [15, 0, 16, 4, 2],
+            [3, 5, 0, 2, 4],
+            [19, 6, 18, 0, 3],
+            [16, 4, 7, 16, 0]
+        ]
+
+        print("\nAdjacency Matrix")
+        print_matrix(adj)
+
+        result = traveling_salesman(adj)
+        print(f"\nShortest path: {result['path']}")
+        print(f"Length: {result['length']}")
+
+        # problem 3
+        adj = [
+            [0, 10, 15, 20],
+            [10, 0, 35, 25],
+            [15, 35, 0, 30],
+            [20, 25, 30, 0]
+        ]
+
+        print("\nAdjacency Matrix")
+        print_matrix(adj)
+
+        result = traveling_salesman(adj)
+        print(f"\nShortest path: {result['path']}")
+        print(f"Length: {result['length']}")
+
+
+def print_matrix(A, pad_size=3, sep=" ", end="\n"):
+    for i in range(len(A)):
+        for j in range(len(A[i])):
+            print(f"{(A[i][j]):>{pad_size}}", end=sep)
+        if i == len(A) - 1:
+            print(end, end="")
+        else:
+            print()
+
 
 if __name__ == "__main__":
-    Run().sudoku_puzzle()
-    Run().knapsack_problem()
+    # Run().sudoku_puzzle()
+    # Run().knapsack_problem()
+    Run().travelingsalesman()

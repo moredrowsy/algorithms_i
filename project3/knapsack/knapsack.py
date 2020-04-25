@@ -49,7 +49,7 @@ class KnapsackNode(object):
         self.indices = indices
 
     def __lt__(self, o):
-        return self.profit < o.profit
+        return self.bound < o.bound
 
 
 def knapsack(items, cap):
@@ -68,6 +68,8 @@ def knapsack(items, cap):
     ------
     {knapsack: array of KnapsackItem, profit: float}
     """
+    maxprofit = 0
+
     # sort items by nonincreasing ratio
     items.sort(key=lambda i: i.profit/i.weight, reverse=True)
 
@@ -80,7 +82,6 @@ def knapsack(items, cap):
     node = KnapsackNode(-1, 0, 0)
     node.bound = bound(items, cap, node)
     best_node = node
-    maxprofit = 0
 
     # enqueue node
     heapq.heappush(pq, (-node.bound, node))  # negate bound for maxheap
