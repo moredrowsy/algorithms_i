@@ -15,18 +15,15 @@ class Job(object):
         deadline (int): deadline number
         profit(float): profit for this job
         """
-        self.index = index
+        self.id = index
         self.deadline = deadline
         self.profit = profit
 
-    def __str__(self):
-        return f"(#{self.index}], {self.deadline}, {self.profit})"
-
     def __repr__(self):
-        return f"(#{self.index}, {self.deadline}, {self.profit})"
+        return f"(ID {self.id} D {self.deadline} P {self.profit})"
 
     def __eq__(self, o):
-        return self.index == o.index\
+        return self.id == o.id\
             and self.deadline == o.deadline\
             and self.profit == o.profit
 

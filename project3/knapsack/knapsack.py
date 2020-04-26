@@ -17,11 +17,8 @@ class KnapsackItem(object):
         self.weight = weight
         self.profit = profit
 
-    def __str__(self):
-        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
-
     def __repr__(self):
-        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
+        return f"(ID {self.id} W {self.weight} P {self.profit})"
 
     def __eq__(self, o):
         return self.id == o.id\
@@ -46,11 +43,10 @@ class KnapsackNode(object):
         self.weight = weight
         self.profit = profit
         self.bound = bound
+        self.indices = [] if indices is None else indices
 
-        if indices is None:
-            self.indices = []
-        else:
-            self.indices = indices
+    def __repr__(self):
+        return f"(L {self.level} W {self.weight} P {self.profit} B {self.bound})"
 
     def __lt__(self, o):
         return self.bound < o.bound
@@ -92,7 +88,7 @@ def knapsack(items, cap):
 
     while pq:
         # dequeue node
-        _, node = heapq.heappop(pq)
+        node = heapq.heappop(pq)[1]
 
         if node.bound > maxprofit:
             # left child
@@ -191,7 +187,7 @@ def knapsack_debug(items, cap):
 
     while pq:
         # dequeue node
-        _, node = heapq.heappop(pq)
+        node = heapq.heappop(pq)[1]
 
         if node.bound > maxprofit:
             # left child
@@ -230,6 +226,7 @@ def knapsack_debug(items, cap):
     for index in best_node.indices:
         knapsack.append(items[index])
 
+    # debug
     print("\nKNAPSACK\n")
     print_knapsack_items(knapsack)
     print(f"\nPROFIT: {maxprofit}")
@@ -250,17 +247,12 @@ def print_debug(step, node, pq, maxprofit):
 
 def print_pq(pq):
     """Print priority queue in tabular format"""
-    n = len(pq)
     pqeueue = copy.deepcopy(pq)
-    tuples = [heapq.heappop(pqeueue) for _ in range(n)]
-    items = [item for _, item in tuples]
-
-    print_nodes(items)
+    print_nodes([heapq.heappop(pqeueue)[1] for _ in range(len(pq))])
 
 
 def print_nodes(items):
     """Print noddes in tabular format"""
-
     labels = ["LEVEL", "PROFIT", "WEIGHT", "BOUND"]
     width = 10
     fmt_label = "{:<5} {:<{w}} {:<{w}} {:<{w}}"
@@ -280,7 +272,6 @@ def print_nodes(items):
 
 def print_knapsack_items(items):
     """Print knapsack items in tabular format"""
-
     labels = ["ID", "PROFIT", "WEIGHT"]
     width = 10
     fmt_label = "{:<5} {:<{w}} {:<{w}}"

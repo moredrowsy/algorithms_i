@@ -29,7 +29,6 @@ class Sudoku(object):
         if self.board:
             self.size = len(self.board)
             self.box = int(math.sqrt(self.size))
-
             assert self.box * self.box == self.size
 
     def solve(self, node=(0, 0)):

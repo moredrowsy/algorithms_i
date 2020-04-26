@@ -100,7 +100,6 @@ class Run(object):
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 4
-        print("TESTING PROBLEMS USED IN DIJKSTRA")
         print("\n\nPROBLEM 1")
 
         weights = [
@@ -127,7 +126,6 @@ class Run(object):
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 5
-        print("TESTING PROBLEMS USED IN DIJKSTRA")
         print("\n\nPROBLEM 2")
 
         weights = [
@@ -155,7 +153,6 @@ class Run(object):
         print_floyd_path(result['intermediate'], source, target)
 
         # problem 6
-        print("TESTING PROBLEMS USED IN DIJKSTRA")
         print("\n\nPROBLEM 3")
 
         weights = [
@@ -184,7 +181,7 @@ class Run(object):
 
     def chain_matrix(self):
         """Run Chain Matrix Multiplication algorithm"""
-        print("\n\nCHAIN MATRIX MULTIPLIATION\n--------------------")
+        print("\n\nCHAIN MATRIX MULTIPLICATION\n---------------------------")
 
         # problem 1
         print("\n\nPROBLEM 1")

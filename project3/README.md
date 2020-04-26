@@ -8,7 +8,7 @@ Requirements: python3
 - 0/1 Knapsack using branch and bound best-first search
 - Traveling Salesman Problem using branch and bound best-first search
 
-## Simple verification of each tasks
+## Interactive program to run the above tasks
 
 ```bash
 python3 -m run

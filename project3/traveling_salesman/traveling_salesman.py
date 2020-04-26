@@ -15,11 +15,10 @@ class TravelNode(object):
         """
         self.level = level
         self.bound = bound
+        self.path = [] if path is None else path
 
-        if path is None:
-            self.path = []
-        else:
-            self.path = path
+    def __repr__(self):
+        return f"(L {self.level} B {self.bound})"
 
     def __lt__(self, o):
         return self.bound < o.bound
@@ -46,8 +45,7 @@ def traveling_salesman(adj):
     heapq.heapify(pq)
 
     # init root node
-    node = TravelNode(0)
-    node.path.append(0)
+    node = TravelNode(0, 0, [0])
     node.bound = bound(adj, node)
     best_node = node
 
@@ -86,30 +84,30 @@ def traveling_salesman(adj):
 def bound(adj, node):
     """Find the lenght boundary for the current node"""
     n = len(adj)
-    length = 0
+    minlength = 0
     path = node.path
 
     # get all edges in path
     if len(path) > 1:
         for i in range(len(path) - 1):
-            length += adj[path[i]][path[i+1]]
+            minlength += adj[path[i]][path[i+1]]
     else:
-        length += min(i for i in adj[0] if i > 0)
+        minlength += min(i for i in adj[0] if i > 0)
 
-    # find minimun edges not in path except for last node
+    # find minimun edges not in path except for last index
     for i in range(1, n):
         # when last path index is same as ith row
         if i == path[-1]:
             # exlucde columns that are in path
             row = (adj[i][j] for j in range(n) if j not in path and i != j)
-            length += min(row)
+            minlength += min(row)
         # exclude ith row in path
         elif i not in path:
             # exclude columns that are in path except the first node
             row = (adj[i][j] for j in range(n) if j not in path[1:] and i != j)
-            length += min(row)
+            minlength += min(row)
 
-    return length
+    return minlength
 
 
 def length(adj, node):

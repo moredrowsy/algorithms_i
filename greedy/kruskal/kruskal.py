@@ -16,11 +16,8 @@ class Edge(object):
         self.b = b
         self.weight = weight
 
-    def __str__(self):
-        return f"({self.a}, {self.b}, {self.weight})"
-
     def __repr__(self):
-        return f"({self.a}, {self.b}, {self.weight})"
+        return f"({self.a}, {self.b}, W {self.weight})"
 
     def __eq__(self, o):
         return self.a == o.a and self.b == o.b and self.weight == o.weight

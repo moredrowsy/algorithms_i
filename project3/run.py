@@ -76,14 +76,12 @@ class KnapsackRun(object):
     def get_knapsack_input(self, filename):
         self.capacity = int(input("Enter capacity: "))
 
-        print(f"Reading data from {filename}")
-        with open(filename) as file:
-            weights = [int(i) for i in next(file).split()]
-            profits = [float(i) for i in next(file).split()]
+        data = get_2d_array_input("input_knapsack.txt")
+        profits, weights = data[0], data[1]
 
-            for i in range(len(weights)):
-                self.items.append(KnapsackItem(
-                    len(self.items)+1, weights[i], profits[i]))
+        for i in range(len(weights)):
+            self.items.append(KnapsackItem(
+                len(self.items)+1, weights[i], profits[i]))
 
 
 class TravelingSalesmanRun(object):

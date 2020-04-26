@@ -14,9 +14,6 @@ class SetPointer(object):
         """
         self.pointers = [i for i in range(size)]
 
-    def __str__(self):
-        return f"{self.pointers}"
-
     def __repr__(self):
         return f"{self.pointers}"
 

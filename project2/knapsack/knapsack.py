@@ -21,11 +21,8 @@ class KnapsackItem(object):
         self.weight = weight
         self.profit = profit
 
-    def __str__(self):
-        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
-
     def __repr__(self):
-        return f"id:{self.id} weight:{self.weight} profit:{self.profit}"
+        return f"(ID {self.id} W {self.weight} P {self.profit})"
 
     def __eq__(self, o):
         return self.id == o.id\

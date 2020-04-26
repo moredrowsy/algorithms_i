@@ -21,9 +21,6 @@ class HuffmanNode(object):
         self.left = left
         self.right = right
 
-    def __str__(self):
-        return f"({self.sym if self.sym else 'None'}, {self.freq})"
-
     def __repr__(self):
         return f"({self.sym if self.sym else 'None'}, {self.freq})"
 
