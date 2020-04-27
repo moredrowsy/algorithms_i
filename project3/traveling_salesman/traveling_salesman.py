@@ -15,7 +15,7 @@ class TravelNode(object):
         """
         self.level = level
         self.bound = bound
-        self.path = [] if path is None else path
+        self.path = path if path else []
 
     def __repr__(self):
         return f"(L {self.level} B {self.bound})"
@@ -28,6 +28,9 @@ def traveling_salesman(adj):
     """
     Find the shortest path through every node once using track and bound
     algorithm with best first search.
+
+    Time complexity: W(b^m), b = branching factor, m = depth of tree if
+        state space tree is not pruned.
 
     Parameters
     ----------

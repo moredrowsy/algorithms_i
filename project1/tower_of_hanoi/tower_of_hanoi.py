@@ -59,7 +59,7 @@ class TowerOfHanoi(object):
         target (dict): Target dictionary with "label" and "array" peg
         display (bool): Display each steps of moving disk
         """
-        if disks > 0:
+        if disks:
             # move disks-1 from source to helper
             # target is now helper peg
             self._move_disks(disks - 1, source, helper, target, display)

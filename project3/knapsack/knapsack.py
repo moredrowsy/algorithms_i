@@ -43,7 +43,7 @@ class KnapsackNode(object):
         self.weight = weight
         self.profit = profit
         self.bound = bound
-        self.indices = [] if indices is None else indices
+        self.indices = indices if indices else []
 
     def __repr__(self):
         return f"(L {self.level} W {self.weight} P {self.profit} B {self.bound})"
@@ -54,10 +54,11 @@ class KnapsackNode(object):
 
 def knapsack(items, cap):
     """
-    0-1 Knapsack using bracnh and bound algorithm using Best First Search,
+    0-1 Knapsack using branch and bound algorithm using Best First Search,
     a modified version of Breath First Search using priority queue.
 
-    Time Complexity: Worst case exponential
+    Time complexity: W(b^m), b = branching factor, m = depth of tree if
+        state space tree is not pruned.
 
     Parameters
     ----------
@@ -139,7 +140,7 @@ def bound(items, cap, node):
     ------
     profit (float): maxprofit boundary
     """
-    # return 0 if weight is over capacity
+    # invalidate bound if weight is at/over capacity
     if node.weight >= cap:
         return 0
 

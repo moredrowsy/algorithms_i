@@ -3,7 +3,11 @@ import math
 
 class Sudoku(object):
     """
-    Sudoku puzzle solver
+    Sudoku puzzle solver.
+
+    Time complexity: O(n^m)
+        n = # possibilities in each square, m = # blank spaces in board
+        Ex: For 9x9, O(9^m)
     """
     # Value for empty node in board
     empty = 0
@@ -82,25 +86,25 @@ class Sudoku(object):
         return row, col
 
     def _is_promising(self, row, col, number):
-        """Check if node with number is valid/promising"""
-        return self._is_valid_row(row, number) and\
-            self._is_valid_col(col, number) and\
-            self._is_valid_box(row, col, number) and\
+        """Check if node with number is promising"""
+        return self._not_in_row(row, number) and\
+            self._not_in_col(col, number) and\
+            self._not_in_box(row, col, number) and\
             self.board[row][col] == Sudoku.empty
 
-    def _is_valid_row(self, row, number):
-        """Check row has no number"""
-        return False if number in self.board[row] else True
+    def _not_in_row(self, row, number):
+        """Check number is not in row"""
+        return number not in self.board[row]
 
-    def _is_valid_col(self, col, number):
-        """Check column has no number"""
+    def _not_in_col(self, col, number):
+        """Check number is not in column"""
         for i in range(self.size):
             if self.board[i][col] == number:
                 return False
         return True
 
-    def _is_valid_box(self, row, col, number):
-        """Check box has no number"""
+    def _not_in_box(self, row, col, number):
+        """Check number is not in box"""
         row = row - row % self.box
         col = col - col % self.box
 

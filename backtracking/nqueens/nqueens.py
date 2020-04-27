@@ -2,6 +2,8 @@ def nqueens(n):
     """
     Backtracking algorithm to print all valid Queen positions permutation.
 
+    Time complexity: O(n^n)
+
     Parameters
     ----------
     n (int): Size of board
