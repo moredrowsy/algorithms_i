@@ -31,8 +31,8 @@ def chain_matrix_multiply(dimensions):
     ------
     {seperations: 2D array of seperation indices, cost: total multiplications}
 
-    NOTES
-    -----
+    NOTE
+    ----
     multiplications[]: Holds the minimum total elementary multiplications for
         each permutation from i "through" j.
         Ex: i = 2, j = 4; Total multiplications is from A2 through A4

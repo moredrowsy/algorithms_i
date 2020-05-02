@@ -87,8 +87,8 @@ def knapsack(items, cap):
     ------
     {knapsack: array of KnapsackItem, profit: float}
 
-    NOTES
-    -----
+    NOTE
+    ----
     i: Index i represent item number.
         i starts at 0 for items[i]
         i starts at 1 for profits[i][j]

@@ -27,8 +27,8 @@ def prim(weights, source=0):
     ------
     {edges: array of edges (tuple), cost: float}
 
-    NOTES
-    -----
+    NOTE
+    ----
     - vnear: Node with min distance at each iteration.
     - distance[]: List of min distances at each node.
         When updating distance[i] for new min distance with vnear,

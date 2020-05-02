@@ -26,8 +26,8 @@ def dijkstra(weights, source):
     ------
     {edges: array of tuple, predecessor: array of parent nodes}
 
-    NOTES
-    -----
+    NOTE
+    ----
     - vnear: Node with min distance at each iteration.
     - length[]: List of min total length at each node.
         When updating length[i] with new min total length with vnear,
@@ -130,8 +130,8 @@ def print_dijkstra_path(predecessor, target):
     predecessor (array): List of parent nodes
     target (int): Destination node
 
-    NOTES
-    -----
+    NOTE
+    ----
     source node is assumed from dijkstra's algorithm
     """
     print_predecessor(predecessor, target)
