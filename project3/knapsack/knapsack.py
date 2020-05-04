@@ -75,9 +75,7 @@ def knapsack(items, cap):
     items.sort(key=lambda i: i.profit/i.weight, reverse=True)
 
     # init priority queue
-    # python heapq is ONLY minheap, so negate item in tuple for maxheap!
     pq = []
-    heapq.heapify(pq)
 
     # init root node
     node = KnapsackNode(-1, 0, 0)
@@ -170,7 +168,6 @@ def knapsack_debug(items, cap):
     # init priority queue
     # python heapq is ONLY minheap, so negate item in tuple for maxheap!
     pq = []
-    heapq.heapify(pq)
 
     # init root node
     node = KnapsackNode(-1, 0, 0)
@@ -248,8 +245,8 @@ def print_debug(step, node, pq, maxprofit):
 
 def print_pq(pq):
     """Print priority queue in tabular format"""
-    pqeueue = copy.deepcopy(pq)
-    print_nodes([heapq.heappop(pqeueue)[1] for _ in range(len(pq))])
+    pqueue = copy.deepcopy(pq)
+    print_nodes([heapq.heappop(pqueue)[1] for _ in range(len(pq))])
 
 
 def print_nodes(items):

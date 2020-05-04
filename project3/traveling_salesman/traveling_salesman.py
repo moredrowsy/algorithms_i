@@ -45,7 +45,6 @@ def traveling_salesman(adj):
 
     # init priority queue
     pq = []
-    heapq.heapify(pq)
 
     # init root node
     node = TravelNode(0, 0, [0])
@@ -67,19 +66,19 @@ def traveling_salesman(adj):
                     child.path = copy.copy(node.path)
                     child.path.append(i)
 
-                    # when the child node is near the end
-                    if child.level == n - 2:
+                    # when next level does not compelete tour
+                    if child.level != n - 2:
+                        child.bound = bound(adj, child)
+
+                        if child.bound < minlength:
+                            heapq.heappush(pq, child)
+                    else:
                         add_remaining_nodes(child, n)
 
                         total_length = length(adj, child)
                         if total_length < minlength:
                             minlength = total_length
                             best_node = child
-                    else:
-                        child.bound = bound(adj, child)
-
-                        if child.bound < minlength:
-                            heapq.heappush(pq, child)
 
     return {'length': minlength, 'path': best_node.path}
 
@@ -94,11 +93,9 @@ def bound(adj, node):
     if len(path) > 1:
         for i in range(len(path) - 1):
             minlength += adj[path[i]][path[i+1]]
-    else:
-        minlength += min(i for i in adj[0] if i > 0)
 
     # find minimun edges not in path except for last index
-    for i in range(1, n):
+    for i in range(0, n):
         # when last path index is same as ith row
         if i == path[-1]:
             # exlucde columns that are in path
