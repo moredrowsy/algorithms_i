@@ -110,7 +110,7 @@ class Sudoku(object):
 
         for i in range(self.box):
             for j in range(self.box):
-                if self.board[i + row][j + col] == number:
+                if self.board[row+i][col+j] == number:
                     return False
         return True
 
