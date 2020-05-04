@@ -61,11 +61,11 @@ def huffman_nodes(string):
     """
     map_nodes = {}
 
-    for i in range(len(string)):
-        if string[i] in map_nodes:
-            map_nodes[string[i]].freq += 1
+    for s in string:
+        if s in map_nodes:
+            map_nodes[s].freq += 1
         else:
-            map_nodes[string[i]] = HuffmanNode(string[i], 1)
+            map_nodes[s] = HuffmanNode(s, 1)
 
     return list(map_nodes.values())
 
@@ -117,8 +117,8 @@ def huffman_decode(root, string):
     decoded_string = ''
     node = root
 
-    for i in range(len(string)):
-        node = node.left if string[i] == '0' else node.right
+    for s in string:
+        node = node.left if s == '0' else node.right
 
         if node.is_leaf():
             decoded_string += node.sym
@@ -143,8 +143,8 @@ def huffman_encode(root, string):
     encoded_string = ''
     huffmap = huffman_map(root)
 
-    for i in range(len(string)):
-        encoded_string += huffmap[string[i]]
+    for s in string:
+        encoded_string += huffmap[s]
 
     return encoded_string
 
