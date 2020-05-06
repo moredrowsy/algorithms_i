@@ -117,17 +117,19 @@ class Sudoku(object):
     def print(self):
         """Print sudoku board"""
         if self.board:
+            pad = len(str(self.size))
+
             for i in range(self.size):
                 if i % self.box == 0 and i != 0:
                     for j in range(self.box):
                         if j != self.box - 1:
-                            print("-" * (self.box * 2) + "+-", end="")
+                            print("-" * (self.box * (pad+1)) + "+-", end="")
                         else:
-                            print("-" * (self.box * 2 - 1), end="")
+                            print("-" * (self.box * (pad+1) - 1), end="")
                     print()
 
                 for j in range(self.size):
                     if j % self.box == 0 and j != 0:
                         print("| ", end="")
-                    print(f"{self.board[i][j]} ", end="")
+                    print(f"{self.board[i][j]:^{pad}} ", end="")
                 print()
