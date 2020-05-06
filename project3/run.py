@@ -49,14 +49,18 @@ class SudokuRun(object):
         print_solving = threading.Thread(target=self.print_solving)
         print_solving.start()
 
-        is_solved = sudoku.solve()
-        self.is_solving = False
+        try:
+            is_solved = sudoku.solve()
+            self.is_solving = False
 
-        if is_solved:
-            print("Solution  ")
-            sudoku.print()
-        else:
-            print("Invalid board")
+            if is_solved:
+                print("Solution  ")
+                sudoku.print()
+            else:
+                print("Invalid board")
+        except KeyboardInterrupt:
+            print("Interrupted")
+            self.is_solving = False
 
         print_solving.join()
 
