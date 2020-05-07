@@ -17,10 +17,11 @@ class TestSudoku(unittest.TestCase):
         """
 
     def test_problem1(self):
-        _ = Sudoku.empty
+        sudoku = Sudoku()
+        _ = sudoku.empty
 
         # problem
-        board = [
+        grid = [
             [3, _, 4, _],
             [_, 2, _, 3],
             [_, _, _, _],
@@ -36,17 +37,19 @@ class TestSudoku(unittest.TestCase):
         ]
 
         # test
-        sudoku = Sudoku()
-        sudoku.setboard(board)
+        sudoku.set_grid(grid)
         is_solved = sudoku.solve()
+        is_verified = sudoku.verify()
+        self.assertEqual(grid, solution)
         self.assertEqual(is_solved, True)
-        self.assertEqual(board, solution)
+        self.assertEqual(is_verified, True)
 
     def test_problem2(self):
-        _ = Sudoku.empty
+        sudoku = Sudoku()
+        _ = sudoku.empty
 
         # problem
-        board = [
+        grid = [
             [3, _, 6, 5, _, 8, 4, _, _],
             [5, 2, _, _, _, _, _, _, _],
             [_, 8, 7, _, _, _, _, 3, 1],
@@ -72,17 +75,19 @@ class TestSudoku(unittest.TestCase):
         ]
 
         # test
-        sudoku = Sudoku()
-        sudoku.setboard(board)
+        sudoku.set_grid(grid)
         is_solved = sudoku.solve()
+        is_verified = sudoku.verify()
+        self.assertEqual(grid, solution)
         self.assertEqual(is_solved, True)
-        self.assertEqual(board, solution)
+        self.assertEqual(is_verified, True)
 
     def test_problem3(self):
-        _ = Sudoku.empty
+        sudoku = Sudoku()
+        _ = sudoku.empty
 
         # problem
-        board = [
+        grid = [
             [_, _, _, _, _, _, 2, _, _],
             [_, 8, _, _, _, 7, _, 9, _],
             [6, _, 2, _, _, _, 5, _, _],
@@ -108,11 +113,12 @@ class TestSudoku(unittest.TestCase):
         ]
 
         # test
-        sudoku = Sudoku()
-        sudoku.setboard(board)
+        sudoku.set_grid(grid)
         is_solved = sudoku.solve()
+        is_verified = sudoku.verify()
+        self.assertEqual(grid, solution)
         self.assertEqual(is_solved, True)
-        self.assertEqual(board, solution)
+        self.assertEqual(is_verified, True)
 
 
 if __name__ == "__main__":

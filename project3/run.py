@@ -37,12 +37,12 @@ class SudokuRun(object):
     def start(self):
         print("\nSUDOKU\n------\n")
 
-        board = get_2d_array_input("input_sudoku.txt")
+        grid = get_2d_array_input("input_sudoku.txt")
 
         sudoku = Sudoku()
-        sudoku.setboard(board)
+        sudoku.set_grid(grid)
 
-        print("\nBoard")
+        print("\nGrid")
         sudoku.print()
 
         print()
@@ -57,7 +57,7 @@ class SudokuRun(object):
                 print("Solution" + " " * 10)
                 sudoku.print()
             else:
-                print("Invalid board")
+                print("Invalid grid")
         except KeyboardInterrupt:
             print("Interrupted")
             self.is_solving = False
