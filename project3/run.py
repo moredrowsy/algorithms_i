@@ -24,12 +24,12 @@ class SudokuRun(object):
 
         while self.is_solving and count < timeout:
             n = 5
-            for x in range(n):
+            for i in range(n):
                 if not self.is_solving:
                     print(" " * 20, end="\r")
                     return
 
-                b = "Solving" + "." * x + " " * n
+                b = "Solving" + "." * i + " " * n
                 print(b, end="\r")
                 time.sleep(1)
                 count += 1
@@ -54,7 +54,7 @@ class SudokuRun(object):
             self.is_solving = False
 
             if is_solved:
-                print("Solution  ")
+                print("Solution" + " " * 10)
                 sudoku.print()
             else:
                 print("Invalid board")
