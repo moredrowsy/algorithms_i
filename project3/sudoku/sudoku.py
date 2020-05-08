@@ -86,7 +86,6 @@ class Sudoku(object):
         Try to imply single possibilities for each empty cell with given number.
         Will mark empty cell with single possibilty implication.
         """
-        implications = []  # list of implications for all empty cells
         placements = []  # list of implication placements
         pset = set(p for p in range(1, self.size+1))
 
@@ -96,40 +95,45 @@ class Sudoku(object):
         placements.append(Implication(cell))
         do_implications = True
 
-        # init implications list for empty cells
-        for i in range(row, self.size):
-            for j in range(col, self.size):
-                if self.grid[i][j] == self.empty:
-                    implications.append(Implication((i, j), pset.copy()))
-            col = 0
-
-        # do a round of implication placements
+        # do a round of implications
         while do_implications:
             # turn off do_implications
             do_implications = False
 
-            # check every implication and try to reduce possibilities
-            for imp in implications:
-                if imp.possibilities:
+            # check implications by each subgrids
+            for i in range(self.size):
+                implications = []
+                subset = pset.copy()
+
+                # subgrid start indices
+                y = self.subgrid * (i // self.subgrid)
+                x = self.subgrid * (i % self.subgrid)
+
+                # reduce subset in subgrid
+                for row in range(y, y + self.subgrid):
+                    for col in range(x, x + self.subgrid):
+                        subset.discard(self.grid[row][col])
+
+                # place subset to each free cell in subgrid
+                for row in range(y, y + self.subgrid):
+                    for col in range(x, x + self.subgrid):
+                        if self.grid[row][col] == self.empty:
+                            imp = Implication((row, col), subset.copy())
+                            implications.append(imp)
+
+                # reduce subset for each implications by row and col
+                for imp in implications:
                     row, col = imp.cell
+                    for j in range(self.size):
+                        imp.possibilities.discard(self.grid[row][j])
+                        imp.possibilities.discard(self.grid[j][col])
 
-                    # reduce possibilities in subgrid
-                    y, x = row - row % self.subgrid, col - col % self.subgrid
-                    for i in range(y, y + self.subgrid):
-                        for j in range(x, x + self.subgrid):
-                            imp.possibilities.discard(self.grid[i][j])
-
-                    # reduce possibilities in row and col
-                    for i in range(self.size):
-                        imp.possibilities.discard(self.grid[row][i])
-                        imp.possibilities.discard(self.grid[i][col])
-
-                    # set placement when there's only one possibilty
+                    # place implication when there's only one possibilty
                     if len(imp.possibilities) == 1:
                         self.grid[row][col] = imp.possibilities.pop()
                         placements.append(imp)
 
-                        # do implications when there's a placement
+                        # set do_implications when there's a placement
                         do_implications = True
 
         return placements
