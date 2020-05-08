@@ -4,9 +4,15 @@ import math
 class Implication(object):
     """A sudoku cell with possibilities set"""
 
-    def __init__(self, x, y, *args):
-        self.cell = (x, y)
-        self.possibilities = set()
+    def __init__(self, cell, pset=None):
+        """
+        Parameters
+        ----------
+        cell (tuple): A tuple of (row, col) indices in grid
+        pset (set): A set of possibilities for a given cell
+        """
+        self.cell = cell
+        self.possibilities = set() if None else pset
 
     def __repr__(self):
         return f"({self.cell[0]}, {self.cell[1]})"
@@ -82,20 +88,19 @@ class Sudoku(object):
         """
         implications = []  # list of implications for all empty cells
         placements = []  # list of implication placements
+        pset = set(p for p in range(1, self.size+1))
 
         # do first placement with number
         row, col = cell
         self.grid[row][col] = number
-        placements.append(Implication(*cell))
+        placements.append(Implication(cell))
         do_implications = True
 
         # init implications list for empty cells
         for i in range(row, self.size):
             for j in range(col, self.size):
                 if self.grid[i][j] == self.empty:
-                    imp = Implication(i, j, self.grid[row][col])
-                    imp.possibilities = set(p for p in range(1, self.size+1))
-                    implications.append(imp)
+                    implications.append(Implication((i, j), pset.copy()))
             col = 0
 
         # do a round of implication placements
