@@ -147,7 +147,6 @@ class Sudoku(object):
     def _find_empty(self, cell):
         """Find an empty cell. Return tuple of (row, col) else None"""
         row, col = cell
-
         for i in range(row, self.size):
             for j in range(col, self.size):
                 if self.grid[i][j] == self.empty:
@@ -158,12 +157,10 @@ class Sudoku(object):
     def _next(self, cell):
         """Return next cell indices"""
         row, col = cell
-
         if col == self.size - 1:
             row, col = row + 1, 0
         else:
             col += 1
-
         return row, col
 
     def _is_promising(self, row, col, number):

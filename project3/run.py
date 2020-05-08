@@ -14,18 +14,14 @@ from traveling_salesman import traveling_salesman
 
 
 class SudokuRun(object):
-    def __init__(self):
-        self.is_solving = True
-
-    def print_solving(self):
-        self.is_solving = True
+    def print_solving(self, is_solving_event):
         timeout = 300
         count = 0
 
-        while self.is_solving and count < timeout:
+        while is_solving_event.is_set() and count < timeout:
             n = 5
             for i in range(n):
-                if not self.is_solving:
+                if not is_solving_event.is_set() or count >= timeout:
                     print(" " * 20, end="\r")
                     return
 
@@ -46,12 +42,15 @@ class SudokuRun(object):
         sudoku.print()
 
         print()
-        print_solving = threading.Thread(target=self.print_solving)
+        is_solving = threading.Event()
+        is_solving.set()
+        print_solving = threading.Thread(
+            target=self.print_solving, args=(is_solving,))
         print_solving.start()
 
         try:
             is_solved = sudoku.solve()
-            self.is_solving = False
+            is_solving.clear()
 
             if is_solved:
                 print("Solution" + " " * 10)
@@ -59,8 +58,8 @@ class SudokuRun(object):
             else:
                 print("Invalid grid")
         except KeyboardInterrupt:
+            is_solving.clear()
             print("Interrupted")
-            self.is_solving = False
 
         print_solving.join()
 

@@ -84,7 +84,7 @@ def traveling_salesman(adj):
 
 
 def bound(adj, node):
-    """Find the lenght boundary for the current node"""
+    """Find the length boundary for the current node"""
     n = len(adj)
     minlength = 0
     path = node.path
