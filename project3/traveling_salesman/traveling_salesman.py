@@ -27,14 +27,15 @@ class TravelNode(object):
 def traveling_salesman(adj):
     """
     Find the shortest path through every node once using track and bound
-    algorithm with best first search.
+    algorithm with best first search. It is a minimization algorithm of the
+    Hamiltonian circuit.
 
     Time complexity: W(b^m), b = branching factor, m = depth of tree if
         state space tree is not pruned.
 
     Parameters
     ----------
-    adj (array): 2D array adjacency matrix
+    adj (array): 2D array adjacency matrix, a directed graph.
 
     Return
     ------
@@ -73,7 +74,7 @@ def traveling_salesman(adj):
                         if child.bound < minlength:
                             heapq.heappush(pq, child)
                     else:
-                        add_remaining_nodes(child, n)
+                        add_remaining_vertices(child, n)
 
                         total_length = length(adj, child)
                         if total_length < minlength:
@@ -121,8 +122,8 @@ def length(adj, node):
     return total_length
 
 
-def add_remaining_nodes(node, n):
-    """Add the remaining indices to node, including the start index @ end"""
+def add_remaining_vertices(node, n):
+    """Add the remaining vertices to node's path, including the start"""
     for i in range(1, n):
         if i not in node.path:
             node.path.append(i)
