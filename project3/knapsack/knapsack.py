@@ -69,7 +69,7 @@ def knapsack(items, cap):
     ------
     {knapsack: array of KnapsackItem, profit: float}
     """
-    maxprofit = 0
+    maxprofit = -float('inf')
 
     # sort items by nonincreasing ratio
     items.sort(key=lambda i: i.profit/i.weight, reverse=True)
@@ -89,6 +89,7 @@ def knapsack(items, cap):
         # dequeue node
         node = heapq.heappop(pq)[1]
 
+        # check if current node is promising; else prune this branch
         if node.bound > maxprofit:
             # left child
             left_child = KnapsackNode(node.level+1, node.weight, node.profit)
